@@ -87,7 +87,7 @@ function Index() {
             <div className="absolute -inset-6 rounded-[2rem] bg-[image:var(--gradient-hero)] opacity-20 blur-2xl" />
             <img
               src={heroImg}
-              alt="Three teenage girls smiling and creating together with AI on a glowing laptop"
+              alt="Illustration of a smiling teenage girl with pink leaves and a flower blooming from her head, surrounded by AI sparkles"
               width={1536}
               height={1152}
               className="relative rounded-[2rem] shadow-[var(--shadow-glow)] w-full"
