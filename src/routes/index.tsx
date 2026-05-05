@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import heroImg from "@/assets/hero.jpg";
+import heroImg from "@/assets/hero.png";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Cpu, Palette, Users, ArrowRight, Wand2 } from "lucide-react";
 
@@ -84,13 +84,12 @@ function Index() {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-6 rounded-[2rem] bg-[image:var(--gradient-hero)] opacity-20 blur-2xl" />
             <img
               src={heroImg}
-              alt="Illustration of a smiling teenage girl with pink leaves and a flower blooming from her head, surrounded by AI sparkles"
+              alt="Illustration of a smiling teen girl on a beanbag surrounded by translucent AI app windows"
               width={1536}
-              height={1152}
-              className="relative rounded-[2rem] shadow-[var(--shadow-glow)] w-full"
+              height={864}
+              className="relative w-full"
             />
           </div>
         </div>
