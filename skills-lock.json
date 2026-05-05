@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "efecto-graphic-design": {
+      "source": "pablostanley/efecto-plugin",
+      "sourceType": "github",
+      "skillPath": "skills/graphic-design/SKILL.md",
+      "computedHash": "42b3917b6ff051e2ff230d689f09ee0e357b39454c868804060ac1ebb39e2658"
+    },
+    "efecto-social-media": {
+      "source": "pablostanley/efecto-plugin",
+      "sourceType": "github",
+      "skillPath": "skills/social-media/SKILL.md",
+      "computedHash": "77e17247140c5ca4a52719f3936f86b075daea706d1929b33e1977967f3bba98"
+    },
+    "efecto-web-design": {
+      "source": "pablostanley/efecto-plugin",
+      "sourceType": "github",
+      "skillPath": "skills/web-design/SKILL.md",
+      "computedHash": "60ce1a19cccdb51b07078782c5f25b72a651b4b6a314780ca3b9a3f93eaa169d"
+    }
+  }
+}

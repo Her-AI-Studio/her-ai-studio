@@ -1,0 +1,286 @@
+---
+import Layout from "../layouts/Layout.astro";
+import zaraImage from "../assets/zara.png";
+
+const title = "Her AI Studio — A creative AI space for the next generation of women";
+const description =
+  "Her AI Studio is a free studio program for middle and high school girls building with AI. Where girls become confident creators.";
+const ogTitle = "Her AI Studio";
+const ogDescription = "A free creative AI studio for girls in grades 6–12.";
+---
+
+<Layout {title} {description} {ogTitle} {ogDescription}>
+
+  <nav id="studio-nav" aria-label="Main navigation">
+    <a href="/" class="nav-logo">Her AI Studio</a>
+    <ul class="nav-links">
+      <li><a href="#why">Why</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+    <a href="#join" class="nav-apply">Apply free</a>
+  </nav>
+
+  <nav class="room-progress" aria-hidden="true">
+    <div class="room-dot active" data-room="door"></div>
+    <div class="room-dot" data-room="why"></div>
+    <div class="room-dot" data-room="program"></div>
+    <div class="room-dot" data-room="gallery"></div>
+    <div class="room-dot" data-room="join"></div>
+  </nav>
+
+  <!-- ROOM 1 -->
+  <section id="door" class="studio-room room-door">
+    <div class="room-inner" style="padding-top:0;padding-bottom:0;">
+      <div class="door-grid">
+
+        <div>
+          <h1 class="door-h1" data-reveal>
+            Her<br><span class="accent">AI</span><br>Studio
+          </h1>
+          <p class="door-tagline" data-reveal data-delay="1">
+            You don't need to know code.<br>You need to want to create.
+          </p>
+          <p class="door-meta" data-reveal data-delay="2">
+            6th–12th grade <span aria-hidden="true">·</span> 100% beginner-friendly <span aria-hidden="true">·</span> Free to apply
+          </p>
+          <a href="#join" class="door-cta" data-reveal data-delay="3">
+            Enter the studio
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="scroll-cue" data-reveal data-delay="4">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="door-hero-col" data-reveal data-delay="1">
+          <img
+            src={zaraImage.src}
+            width={zaraImage.width}
+            height={zaraImage.height}
+            alt="A girl sitting cross-legged on a bean bag, surrounded by floating holographic AI project panels"
+            loading="eager"
+            fetchpriority="high"
+            style="width:100%;max-width:600px;display:block;"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM 2 -->
+  <section id="why" class="studio-room room-floor">
+    <div class="room-inner">
+      <p class="room-label" data-reveal>Why we built this</p>
+      <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2.5rem;max-width:100%;" data-reveal data-delay="1">
+        Where girls become<br>confident AI creators.
+      </h2>
+
+      <div class="pillars">
+        <div class="pillar-main" data-reveal data-delay="2">
+          <h3 class="pillar-title">Build real things</h3>
+          <p class="pillar-body">
+            Design chatbots, art generators, and apps powered by AI — from your very first session. Not tutorials. Not demos. Yours.
+          </p>
+        </div>
+        <div class="pillars-secondary">
+          <div class="pillar-secondary" data-reveal data-delay="3">
+            <h3 class="pillar-title">A sisterhood</h3>
+            <p class="pillar-body">
+              Learn alongside girls who get it. Mentors, peers, and role models who look like you.
+            </p>
+          </div>
+          <div class="pillar-secondary" data-reveal data-delay="4">
+            <h3 class="pillar-title">Future-ready skills</h3>
+            <p class="pillar-body">
+              Prompt engineering, machine learning intuition, and ethical AI thinking that schools don't teach yet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM 3 -->
+  <section id="program" class="studio-room room-benches">
+    <div class="room-inner">
+      <p class="room-label" data-reveal>What you'll do here</p>
+      <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:0.75rem;max-width:100%;" data-reveal data-delay="1">
+        Four stations.<br>Eight weeks.
+      </h2>
+      <p style="color:var(--muted-foreground);font-size:0.975rem;margin-bottom:2.25rem;max-width:52ch;" data-reveal data-delay="2">
+        No coding background needed — just curiosity and a willingness to make things.
+      </p>
+
+      <ol class="workbench-stations">
+        <li class="station" data-reveal data-delay="1">
+          <span class="station-num">01</span>
+          <div class="station-title">Discover</div>
+          <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field.</p>
+        </li>
+        <li class="station" data-reveal data-delay="2">
+          <span class="station-num">02</span>
+          <div class="station-title">Create</div>
+          <p class="station-body">Build your first AI-powered project — image, text, or voice. Make something no one has made before.</p>
+        </li>
+        <li class="station" data-reveal data-delay="3">
+          <span class="station-num">03</span>
+          <div class="station-title">Collaborate</div>
+          <p class="station-body">Team up on a creative challenge with mentor support. Some of the best ideas need a crew.</p>
+        </li>
+        <li class="station" data-reveal data-delay="4">
+          <span class="station-num">04</span>
+          <div class="station-title">Showcase</div>
+          <p class="station-body">Present your work at the Studio Showcase to friends, family, and industry guests.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ROOM 4 -->
+  <section id="gallery" class="studio-room room-gallery">
+    <div class="room-inner">
+      <p class="room-label" data-reveal>What gets made here</p>
+      <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2.25rem;max-width:100%;" data-reveal data-delay="1">
+        Real projects.<br>Real creators.
+      </h2>
+
+      <div class="gallery-wall">
+        <div class="gallery-frame frame-1" data-reveal data-delay="1">
+          <span class="frame-tag">Chatbot</span>
+          <h3 class="frame-title">Luna's Mood Playlist Bot</h3>
+          <blockquote class="frame-quote">
+            "I built a bot that reads your mood and makes you a playlist. My friends use it every day."
+          </blockquote>
+          <cite class="frame-cite">Luna, grade 9</cite>
+        </div>
+
+        <div class="gallery-frame frame-2" data-reveal data-delay="2">
+          <span class="frame-tag">Art Generator</span>
+          <h3 class="frame-title">Amara's AI Portrait Filter</h3>
+          <blockquote class="frame-quote">
+            "I trained it on artists I love. Now it makes portraits in their style. It feels like magic I made myself."
+          </blockquote>
+          <cite class="frame-cite">Amara, grade 11</cite>
+        </div>
+
+        <div class="gallery-frame frame-3" data-reveal data-delay="3">
+          <span class="frame-tag">App</span>
+          <h3 class="frame-title">The Study Buddy App</h3>
+          <blockquote class="frame-quote">
+            "Our team built a study app that notices when you're stressed and adjusts the pace."
+          </blockquote>
+          <cite class="frame-cite">Priya, grade 8</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM 5 -->
+  <section id="join" class="studio-room room-cta">
+    <div class="room-inner">
+      <div class="cta-layout">
+        <div>
+          <p class="room-label cta-label" data-reveal>Apply</p>
+          <h2 class="cta-h2" data-reveal data-delay="1">
+            There's a seat<br>with your<br>name on it.
+          </h2>
+          <p class="cta-sub" data-reveal data-delay="2">
+            Applications are open for the next cohort. Bring your curiosity — we'll bring everything else.
+          </p>
+          <div data-reveal data-delay="3" style="display:flex;flex-direction:column;gap:0.5rem;">
+            <p style="font-size:0.9rem;color:oklch(1 0 0 / 0.80);margin:0;">Grades 6–12</p>
+            <p style="font-size:0.9rem;color:oklch(1 0 0 / 0.80);margin:0;">Completely free</p>
+            <p style="font-size:0.9rem;color:oklch(1 0 0 / 0.80);margin:0;">Zero experience needed</p>
+          </div>
+        </div>
+
+        <div data-reveal data-delay="2">
+          <form class="apply-form" action="#" method="post" novalidate>
+            <div class="form-field">
+              <label for="apply-name">Your name</label>
+              <input type="text" id="apply-name" name="name" placeholder="First name" autocomplete="given-name" required />
+            </div>
+            <div class="form-field">
+              <label for="apply-email">Email address</label>
+              <input type="email" id="apply-email" name="email" placeholder="you@email.com" autocomplete="email" required />
+            </div>
+            <div class="form-field">
+              <label for="apply-grade">What grade are you in?</label>
+              <select id="apply-grade" name="grade" required>
+                <option value="">Select your grade</option>
+                <option value="6">6th grade</option>
+                <option value="7">7th grade</option>
+                <option value="8">8th grade</option>
+                <option value="9">9th grade</option>
+                <option value="10">10th grade</option>
+                <option value="11">11th grade</option>
+                <option value="12">12th grade</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="apply-create">What do you want to create?</label>
+              <textarea id="apply-create" name="create" placeholder="Tell us in a few sentences — anything goes." rows="3"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Apply now — it's free</button>
+            <p class="form-fine-print">We read every application. You'll hear from us within a week.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="studio-footer">
+      <p>© 2026 Her AI Studio</p>
+      <p>A community program for the next generation of women in AI.</p>
+    </div>
+  </footer>
+
+  <script>
+    const revealObserver = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("is-visible"); }),
+      { threshold: 0.12, rootMargin: "0px 0px -32px 0px" }
+    );
+    document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
+
+    const nav = document.getElementById("studio-nav");
+    if (nav) {
+      window.addEventListener("scroll", () =>
+        nav.classList.toggle("nav-scrolled", window.scrollY > 60), { passive: true });
+    }
+
+    const rooms = document.querySelectorAll(".studio-room");
+    const dots  = document.querySelectorAll(".room-dot");
+    const roomObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            dots.forEach((d) => d.classList.remove("active"));
+            document.querySelector(`.room-dot[data-room="${e.target.id}"]`)?.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.45 }
+    );
+    rooms.forEach((r) => roomObserver.observe(r));
+
+    const form = document.querySelector(".apply-form") as HTMLFormElement | null;
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const btn = form.querySelector(".submit-btn") as HTMLButtonElement;
+        if (btn) {
+          btn.textContent = "Application received";
+          btn.style.background = "oklch(1 0 0 / 0.35)";
+          btn.disabled = true;
+        }
+      });
+    }
+  </script>
+</Layout>
