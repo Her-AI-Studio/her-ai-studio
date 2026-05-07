@@ -21,12 +21,15 @@ This skill requires the **Efecto MCP server**. Check if it's available by lookin
 **If Efecto tools are NOT available, install the MCP server:**
 
 ### Claude Code
+
 ```bash
 claude mcp add efecto -- npx -y @efectoapp/mcp
 ```
 
 ### Cursor
+
 Add to `.cursor/mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -39,6 +42,7 @@ Add to `.cursor/mcp.json`:
 ```
 
 ### Windsurf / VS Code / Other MCP Clients
+
 ```json
 {
   "mcpServers": {
@@ -73,19 +77,24 @@ Sessions expire after 15 minutes of inactivity. The browser must be connected be
 ## Quick Start — Build a Page in 7 Steps
 
 ### Step 1: Create a Session
+
 ```
 create_session
   label: "Landing page design"
 ```
+
 Returns `{ sessionId, documentId, designUrl }`. Tell the user to open the URL. The session ID is stored automatically — all subsequent tools use it.
 
 ### Step 2: Wait for Browser Connection
+
 ```
 session_status
 ```
+
 Poll until `browserConnected: true`. The browser must be open before you can push tools.
 
 ### Step 3: Create an Artboard
+
 ```
 create_artboard
   name: "Homepage"
@@ -94,9 +103,11 @@ create_artboard
   backgroundColor: "#ffffff"
   className: "flex flex-col"
 ```
+
 Returns the artboard ID. **Always set className to "flex flex-col"** so children stack vertically.
 
 ### Step 4: Add Sections with JSX
+
 ```
 add_section
   parentId: "<artboard-id>"
@@ -109,15 +120,19 @@ add_section
     </div>
   </nav>'
 ```
+
 This is the most efficient way to build complex layouts — one JSX string per section.
 
 ### Step 5: Read Current State
+
 ```
 get_document
 ```
+
 Returns JSX-like markup with `data-id` attributes on every node. Use these IDs for updates.
 
 ### Step 6: Fine-Tune with Updates
+
 ```
 batch_update
   updates: [
@@ -127,6 +142,7 @@ batch_update
 ```
 
 ### Step 7: Iterate
+
 Repeat Steps 4-6 to add more sections, adjust styling, and refine the design. The user sees every change in real time.
 
 ---
@@ -135,110 +151,110 @@ Repeat Steps 4-6 to add more sections, adjust styling, and refine the design. Th
 
 ### Reading State
 
-| Tool | Purpose |
-|------|---------|
-| `get_selection` | Returns currently selected nodes/artboards with JSX subtrees |
-| `get_document` | Returns full document as JSX with data-id attributes |
-| `list_artboards` | Lists all artboards with IDs, names, dimensions |
-| `find_nodes` | Search nodes by name, text content, type, or className |
+| Tool             | Purpose                                                      |
+| ---------------- | ------------------------------------------------------------ |
+| `get_selection`  | Returns currently selected nodes/artboards with JSX subtrees |
+| `get_document`   | Returns full document as JSX with data-id attributes         |
+| `list_artboards` | Lists all artboards with IDs, names, dimensions              |
+| `find_nodes`     | Search nodes by name, text content, type, or className       |
 
 ### Creating Content
 
-| Tool | Purpose |
-|------|---------|
-| `create_artboard` | Creates a new artboard (screen/frame) |
-| `add_section` | Adds complex layouts from JSX markup (preferred) |
-| `add_node` | Adds a single node to a parent |
+| Tool              | Purpose                                          |
+| ----------------- | ------------------------------------------------ |
+| `create_artboard` | Creates a new artboard (screen/frame)            |
+| `add_section`     | Adds complex layouts from JSX markup (preferred) |
+| `add_node`        | Adds a single node to a parent                   |
 
 ### Modifying Content
 
-| Tool | Purpose |
-|------|---------|
-| `update_node` | Updates any node property (className, textContent, tag, style, src, link, elementId, etc.) |
-| `update_class` | Shortcut: replaces only className on a node |
-| `update_artboard` | Updates artboard properties (name, size, background, className) |
-| `batch_update` | Updates multiple nodes in one call (bulk styling) |
-| `replace_section` | Replaces a node and its children with new JSX |
+| Tool              | Purpose                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| `update_node`     | Updates any node property (className, textContent, tag, style, src, link, elementId, etc.) |
+| `update_class`    | Shortcut: replaces only className on a node                                                |
+| `update_artboard` | Updates artboard properties (name, size, background, className)                            |
+| `batch_update`    | Updates multiple nodes in one call (bulk styling)                                          |
+| `replace_section` | Replaces a node and its children with new JSX                                              |
 
 ### Organizing Structure
 
-| Tool | Purpose |
-|------|---------|
-| `move_node` | Reparents or reorders a node |
-| `duplicate_node` | Deep-clones a node with fresh IDs |
-| `duplicate_artboard` | Deep-clones an artboard for variations |
-| `group_nodes` | Wraps selected nodes in a frame container |
-| `ungroup_node` | Unwraps a group, moving children to parent |
-| `reorder_node` | Brings to front or sends to back (z-order) |
+| Tool                 | Purpose                                    |
+| -------------------- | ------------------------------------------ |
+| `move_node`          | Reparents or reorders a node               |
+| `duplicate_node`     | Deep-clones a node with fresh IDs          |
+| `duplicate_artboard` | Deep-clones an artboard for variations     |
+| `group_nodes`        | Wraps selected nodes in a frame container  |
+| `ungroup_node`       | Unwraps a group, moving children to parent |
+| `reorder_node`       | Brings to front or sends to back (z-order) |
 
 ### Display & Selection
 
-| Tool | Purpose |
-|------|---------|
-| `select_nodes` | Highlights nodes for the user to see |
-| `set_visibility` | Shows/hides nodes (like Figma eye icon) |
-| `delete_nodes` | Deletes nodes and their children |
-| `delete_artboard` | Deletes an artboard and all contents |
+| Tool              | Purpose                                 |
+| ----------------- | --------------------------------------- |
+| `select_nodes`    | Highlights nodes for the user to see    |
+| `set_visibility`  | Shows/hides nodes (like Figma eye icon) |
+| `delete_nodes`    | Deletes nodes and their children        |
+| `delete_artboard` | Deletes an artboard and all contents    |
 
 ### Alignment & Distribution
 
-| Tool | Purpose |
-|------|---------|
-| `align_nodes` | Aligns multiple nodes (left/center/right/top/middle/bottom) |
-| `distribute_nodes` | Distributes nodes evenly (horizontal/vertical) |
+| Tool               | Purpose                                                     |
+| ------------------ | ----------------------------------------------------------- |
+| `align_nodes`      | Aligns multiple nodes (left/center/right/top/middle/bottom) |
+| `distribute_nodes` | Distributes nodes evenly (horizontal/vertical)              |
 
 ### History
 
-| Tool | Purpose |
-|------|---------|
-| `undo` | Undoes the last action (Cmd+Z) |
+| Tool   | Purpose                                     |
+| ------ | ------------------------------------------- |
+| `undo` | Undoes the last action (Cmd+Z)              |
 | `redo` | Redoes the last undone action (Cmd+Shift+Z) |
 
 ### Viewport & Document
 
-| Tool | Purpose |
-|------|---------|
-| `zoom_to_artboard` | Zooms viewport to show a specific artboard |
-| `zoom_to_fit` | Zooms to fit all artboards in the viewport |
-| `set_viewport` | Sets viewport zoom level and/or pan position |
-| `rename_document` | Renames the document |
-| `new_document` | Creates a new blank document (replaces current) |
+| Tool               | Purpose                                         |
+| ------------------ | ----------------------------------------------- |
+| `zoom_to_artboard` | Zooms viewport to show a specific artboard      |
+| `zoom_to_fit`      | Zooms to fit all artboards in the viewport      |
+| `set_viewport`     | Sets viewport zoom level and/or pan position    |
+| `rename_document`  | Renames the document                            |
+| `new_document`     | Creates a new blank document (replaces current) |
 
 ### Canvas & Reading
 
-| Tool | Purpose |
-|------|---------|
-| `move_artboard` | Repositions an artboard on the canvas for multi-screen flows |
-| `deselect_all` | Clears the current node selection |
+| Tool            | Purpose                                                               |
+| --------------- | --------------------------------------------------------------------- |
+| `move_artboard` | Repositions an artboard on the canvas for multi-screen flows          |
+| `deselect_all`  | Clears the current node selection                                     |
 | `get_node_tree` | Returns JSX for one node/artboard subtree (faster than full document) |
 
 ### Fill & Export
 
-| Tool | Purpose |
-|------|---------|
-| `set_fill` | Sets the fill (background) of a node or artboard — solid color, gradient, or image. Handles dual-write automatically. |
-| `export_image` | Exports an artboard or node as an image (PNG, JPEG, WebP, SVG). Returns base64 data URL. |
+| Tool           | Purpose                                                                                                               |
+| -------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `set_fill`     | Sets the fill (background) of a node or artboard — solid color, gradient, or image. Handles dual-write automatically. |
+| `export_image` | Exports an artboard or node as an image (PNG, JPEG, WebP, SVG). Returns base64 data URL.                              |
 
 ### Theme
 
-| Tool | Purpose |
-|------|---------|
-| `get_theme` | Returns the current theme tokens (colors, fonts, radii) and active mode |
-| `set_theme` | Sets theme tokens — colors, fonts, border radii. Accepts partial updates. |
-| `set_theme_mode` | Switches between light/dark/custom modes |
-| `reset_theme` | Resets theme to defaults |
+| Tool             | Purpose                                                                   |
+| ---------------- | ------------------------------------------------------------------------- |
+| `get_theme`      | Returns the current theme tokens (colors, fonts, radii) and active mode   |
+| `set_theme`      | Sets theme tokens — colors, fonts, border radii. Accepts partial updates. |
+| `set_theme_mode` | Switches between light/dark/custom modes                                  |
+| `reset_theme`    | Resets theme to defaults                                                  |
 
 ### Design Validation
 
-| Tool | Purpose |
-|------|---------|
-| `audit_design` | Audits design against professional quality rules: typography (scale, weight contrast, sizing), color (neutral consistency, pure black, low-contrast combos), spacing (4pt grid, touch targets), and AI slop detection (monotonous layouts). Pass `artboardId` for one artboard or omit for all. |
-| `repair_design` | Applies safe, deterministic fixes across the document (or one artboard) in one pass: missing w-full, missing flex, arbitrary Tailwind values → inline styles, pure black → zinc-950, touch-target bumps, placeholder images, empty text defaults. Pass `dryRun: true` to preview. |
+| Tool            | Purpose                                                                                                                                                                                                                                                                                         |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `audit_design`  | Audits design against professional quality rules: typography (scale, weight contrast, sizing), color (neutral consistency, pure black, low-contrast combos), spacing (4pt grid, touch targets), and AI slop detection (monotonous layouts). Pass `artboardId` for one artboard or omit for all. |
+| `repair_design` | Applies safe, deterministic fixes across the document (or one artboard) in one pass: missing w-full, missing flex, arbitrary Tailwind values → inline styles, pure black → zinc-950, touch-target bumps, placeholder images, empty text defaults. Pass `dryRun: true` to preview.               |
 
 ### Image Search
 
-| Tool | Purpose |
-|------|---------|
+| Tool            | Purpose                                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
 | `search_images` | Search for free stock images (Lummi). No session required. Returns URLs to use with `add_node` or `set_fill`. |
 
 ---
@@ -262,17 +278,18 @@ Returns a list of images with `url`, `thumbnail`, `alt`, `width`, `height`, `pho
 
 ### Filters
 
-| Filter | Values | When to Use |
-|--------|--------|-------------|
-| `query` | Any search term | Always — describe what you need ("team working", "abstract gradient", "coffee shop") |
+| Filter        | Values                             | When to Use                                                                                  |
+| ------------- | ---------------------------------- | -------------------------------------------------------------------------------------------- |
+| `query`       | Any search term                    | Always — describe what you need ("team working", "abstract gradient", "coffee shop")         |
 | `orientation` | `horizontal`, `vertical`, `square` | Match the layout: horizontal for hero banners, vertical for mobile/stories, square for cards |
-| `type` | `photo`, `illustration`, `3d` | Default returns all. Use "photo" for realistic imagery, "illustration" for stylized graphics |
-| `luminance` | `dark`, `neutral`, `bright` | Match the design mood: "dark" for dark-themed pages, "bright" for light/airy designs |
-| `limit` | 1–20 (default: 6) | Keep low (3–6) to avoid overwhelming context |
+| `type`        | `photo`, `illustration`, `3d`      | Default returns all. Use "photo" for realistic imagery, "illustration" for stylized graphics |
+| `luminance`   | `dark`, `neutral`, `bright`        | Match the design mood: "dark" for dark-themed pages, "bright" for light/airy designs         |
+| `limit`       | 1–20 (default: 6)                  | Keep low (3–6) to avoid overwhelming context                                                 |
 
 ### Workflow: Search → Apply
 
 **Step 1: Search for images**
+
 ```
 search_images
   query: "modern office workspace"
@@ -282,6 +299,7 @@ search_images
 ```
 
 **Step 2a: Add as an image node**
+
 ```
 add_node
   parentId: "<section-id>"
@@ -292,6 +310,7 @@ add_node
 ```
 
 **Step 2b: Set as background fill**
+
 ```
 set_fill
   targetId: "<section-id>"
@@ -299,6 +318,7 @@ set_fill
 ```
 
 **Step 2c: Use in JSX (add_section)**
+
 ```
 add_section
   parentId: "<artboard-id>"
@@ -339,28 +359,28 @@ add_node
 
 ### Input Sources
 
-| Input Type | Description | Key Properties |
-|-----------|-------------|----------------|
-| `shader` (default) | Generative WebGL visuals | `shaderType`, `shaderSettings` |
-| `image` | Process an image through effects | `mediaInput: { mediaUrl, mediaType: "image", objectFit }` |
-| `video` | Process a video through effects | `mediaInput: { mediaUrl, mediaType: "video" }` |
-| `fill` | Solid color through effects | `fillColor: "#hex"` |
+| Input Type         | Description                      | Key Properties                                            |
+| ------------------ | -------------------------------- | --------------------------------------------------------- |
+| `shader` (default) | Generative WebGL visuals         | `shaderType`, `shaderSettings`                            |
+| `image`            | Process an image through effects | `mediaInput: { mediaUrl, mediaType: "image", objectFit }` |
+| `video`            | Process a video through effects  | `mediaInput: { mediaUrl, mediaType: "video" }`            |
+| `fill`             | Solid color through effects      | `fillColor: "#hex"`                                       |
 
 ### Generative Shader Types (11)
 
-| Shader | Description | Best For |
-|--------|-------------|----------|
+| Shader         | Description                   | Best For                          |
+| -------------- | ----------------------------- | --------------------------------- |
 | `meshGradient` | Smooth organic color blending | Hero backgrounds, ambient visuals |
-| `dotGrid` | Animated dot grid pattern | Tech/data aesthetics |
-| `voronoi` | Cell-based organic pattern | Abstract textures |
-| `liquidMetal` | Metallic fluid simulation | Premium/luxury visuals |
-| `chrome` | Chrome reflection effect | Bold, reflective accents |
-| `pulsar` | Radial pulsing energy | Dynamic, attention-grabbing |
-| `blackHole` | Gravitational distortion | Dramatic dark visuals |
-| `glass` | Frosted glass refraction | Subtle, elegant overlays |
-| `spiral` | Spiraling motion pattern | Hypnotic, playful |
-| `particles` | Floating particle system | Ambient, atmospheric |
-| `fireworks` | Exploding particle bursts | Celebration, energy |
+| `dotGrid`      | Animated dot grid pattern     | Tech/data aesthetics              |
+| `voronoi`      | Cell-based organic pattern    | Abstract textures                 |
+| `liquidMetal`  | Metallic fluid simulation     | Premium/luxury visuals            |
+| `chrome`       | Chrome reflection effect      | Bold, reflective accents          |
+| `pulsar`       | Radial pulsing energy         | Dynamic, attention-grabbing       |
+| `blackHole`    | Gravitational distortion      | Dramatic dark visuals             |
+| `glass`        | Frosted glass refraction      | Subtle, elegant overlays          |
+| `spiral`       | Spiraling motion pattern      | Hypnotic, playful                 |
+| `particles`    | Floating particle system      | Ambient, atmospheric              |
+| `fireworks`    | Exploding particle bursts     | Celebration, energy               |
 
 ### Visual Effects (28)
 
@@ -377,13 +397,13 @@ add_node
   className: "w-full h-[500px] rounded-2xl"
 ```
 
-| Category | Effect IDs | Description |
-|----------|-----------|-------------|
-| **ASCII** | `ascii-standard`, `ascii-dense`, `ascii-minimal`, `ascii-blocks`, `ascii-braille`, `ascii-technical`, `ascii-matrix`, `ascii-hatching` | Convert visuals to ASCII character art |
-| **Dither** | `dither-floyd-steinberg`, `dither-atkinson`, `dither-stucki`, `dither-sierra`, `dither-sierra-lite`, `dither-burkes`, `dither-jarvis-judice-ninke`, `dither-two-row-sierra`, `color-separation` | Retro dithering patterns |
-| **Halftone** | `halftone-mono`, `halftone-cmyk` | Print-style dot patterns (mono or CMYK) |
-| **Glitch** | `glitch-vhs`, `glitch-digital`, `glitch-weird`, `glitch-chromatic` | Digital corruption and distortion |
-| **Art** | `art-kuwahara`, `art-crosshatch`, `art-lineart`, `art-engraving`, `art-stipple` | Painterly and sketch-style filters |
+| Category     | Effect IDs                                                                                                                                                                                      | Description                             |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| **ASCII**    | `ascii-standard`, `ascii-dense`, `ascii-minimal`, `ascii-blocks`, `ascii-braille`, `ascii-technical`, `ascii-matrix`, `ascii-hatching`                                                          | Convert visuals to ASCII character art  |
+| **Dither**   | `dither-floyd-steinberg`, `dither-atkinson`, `dither-stucki`, `dither-sierra`, `dither-sierra-lite`, `dither-burkes`, `dither-jarvis-judice-ninke`, `dither-two-row-sierra`, `color-separation` | Retro dithering patterns                |
+| **Halftone** | `halftone-mono`, `halftone-cmyk`                                                                                                                                                                | Print-style dot patterns (mono or CMYK) |
+| **Glitch**   | `glitch-vhs`, `glitch-digital`, `glitch-weird`, `glitch-chromatic`                                                                                                                              | Digital corruption and distortion       |
+| **Art**      | `art-kuwahara`, `art-crosshatch`, `art-lineart`, `art-engraving`, `art-stipple`                                                                                                                 | Painterly and sketch-style filters      |
 
 ### Post-Process Stack
 
@@ -399,6 +419,7 @@ postProcesses: [
 ### Common Recipes
 
 **ASCII art hero from an image:**
+
 ```
 search_images  query: "city skyline"  orientation: "horizontal"  limit: 1
 add_node
@@ -412,6 +433,7 @@ add_node
 ```
 
 **Generative gradient background:**
+
 ```
 add_node
   parentId: "<artboard-id>"
@@ -421,6 +443,7 @@ add_node
 ```
 
 **Halftone effect on a photo:**
+
 ```
 add_node
   parentId: "<section-id>"
@@ -438,18 +461,18 @@ add_node
 
 Every node maps 1:1 to an HTML element. The `type` determines behavior; the `tag` determines which HTML element renders.
 
-| Type | Default Tag | All Valid Tags | Content Property |
-|------|-------------|----------------|-----------------|
-| **frame** | `div` | div, section, article, aside, main, nav, header, footer, ul, ol, li, figure, figcaption, form, table, thead, tbody, tr, th, td | (none — pure container) |
-| **text** | `p` | p, span, h1, h2, h3, h4, h5, h6, blockquote, label, li | `textContent` |
-| **image** | `img` | img | `src`, `alt`, `objectFit` |
-| **button** | `button` | button, a, div | `textContent`, `variant` |
-| **link** | `a` | a, button, div, span | `textContent`, `href`, `target` |
-| **icon** | `svg` | svg | `iconName` (kebab-case), `iconLibrary`, `iconWeight` |
-| **input** | `input` | input, textarea, select | `placeholder`, `inputType`, `label` |
-| **video** | `video` | video | `src`, `poster`, `autoPlay`, `loop`, `muted` |
-| **shader** | (WebGL) | — | `shaderType`, `inputType`, `effectId`, `effectEnabled`, `effectSettings`, `postProcesses` |
-| **component** | `div` | div | `componentId`, `overrides` |
+| Type          | Default Tag | All Valid Tags                                                                                                                 | Content Property                                                                          |
+| ------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| **frame**     | `div`       | div, section, article, aside, main, nav, header, footer, ul, ol, li, figure, figcaption, form, table, thead, tbody, tr, th, td | (none — pure container)                                                                   |
+| **text**      | `p`         | p, span, h1, h2, h3, h4, h5, h6, blockquote, label, li                                                                         | `textContent`                                                                             |
+| **image**     | `img`       | img                                                                                                                            | `src`, `alt`, `objectFit`                                                                 |
+| **button**    | `button`    | button, a, div                                                                                                                 | `textContent`, `variant`                                                                  |
+| **link**      | `a`         | a, button, div, span                                                                                                           | `textContent`, `href`, `target`                                                           |
+| **icon**      | `svg`       | svg                                                                                                                            | `iconName` (kebab-case), `iconLibrary`, `iconWeight`                                      |
+| **input**     | `input`     | input, textarea, select                                                                                                        | `placeholder`, `inputType`, `label`                                                       |
+| **video**     | `video`     | video                                                                                                                          | `src`, `poster`, `autoPlay`, `loop`, `muted`                                              |
+| **shader**    | (WebGL)     | —                                                                                                                              | `shaderType`, `inputType`, `effectId`, `effectEnabled`, `effectSettings`, `postProcesses` |
+| **component** | `div`       | div                                                                                                                            | `componentId`, `overrides`                                                                |
 
 ### Tag Determines Type in JSX
 
@@ -488,25 +511,35 @@ This is the primary way to build layouts. Write standard JSX with HTML tags and 
 ```jsx
 <section className="flex flex-col items-center gap-12 px-16 py-24 bg-white w-full">
   <div className="flex flex-col items-center gap-4 max-w-2xl">
-    <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Choose Us</span>
+    <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">
+      Why Choose Us
+    </span>
     <h2 className="text-4xl font-bold text-gray-900 text-center">Everything you need to scale</h2>
-    <p className="text-lg text-gray-500 text-center">Built for modern teams that move fast and ship faster.</p>
+    <p className="text-lg text-gray-500 text-center">
+      Built for modern teams that move fast and ship faster.
+    </p>
   </div>
   <div className="flex gap-8 w-full max-w-5xl">
     <div className="flex flex-col gap-3 p-8 bg-gray-50 rounded-2xl grow">
       <svg icon="lightning" className="w-8 h-8 text-blue-600" />
       <h3 className="text-lg font-semibold text-gray-900">Lightning Fast</h3>
-      <p className="text-sm text-gray-500">Deploy in seconds, not hours. Our edge network ensures sub-50ms latency worldwide.</p>
+      <p className="text-sm text-gray-500">
+        Deploy in seconds, not hours. Our edge network ensures sub-50ms latency worldwide.
+      </p>
     </div>
     <div className="flex flex-col gap-3 p-8 bg-gray-50 rounded-2xl grow">
       <svg icon="shield-check" className="w-8 h-8 text-blue-600" />
       <h3 className="text-lg font-semibold text-gray-900">Enterprise Security</h3>
-      <p className="text-sm text-gray-500">SOC 2 certified with end-to-end encryption. Your data stays yours.</p>
+      <p className="text-sm text-gray-500">
+        SOC 2 certified with end-to-end encryption. Your data stays yours.
+      </p>
     </div>
     <div className="flex flex-col gap-3 p-8 bg-gray-50 rounded-2xl grow">
       <svg icon="headset" className="w-8 h-8 text-blue-600" />
       <h3 className="text-lg font-semibold text-gray-900">24/7 Support</h3>
-      <p className="text-sm text-gray-500">Our team is always on. Get answers in minutes, not days.</p>
+      <p className="text-sm text-gray-500">
+        Our team is always on. Get answers in minutes, not days.
+      </p>
     </div>
   </div>
 </section>
@@ -521,6 +554,7 @@ Efecto supports 4 icon libraries with ~9,400 icons total. Icons render as SVG an
 ### How to Write Icons in JSX
 
 The canonical format:
+
 ```jsx
 <svg icon="arrow-right" className="w-5 h-5 text-gray-600" />
 ```
@@ -532,15 +566,15 @@ The canonical format:
 
 ### Common Icon Names (Phosphor — default library)
 
-| Category | Icons |
-|----------|-------|
-| **Arrows** | `arrow-right`, `arrow-left`, `arrow-up`, `arrow-down`, `caret-right`, `caret-down` |
-| **Actions** | `check`, `x`, `plus`, `minus`, `magnifying-glass`, `funnel`, `pencil`, `trash` |
-| **UI** | `gear`, `sliders`, `dots-three`, `list`, `squares-four`, `sidebar` |
-| **Social** | `google-logo`, `apple-logo`, `github-logo`, `x-logo`, `linkedin-logo`, `discord-logo`, `facebook-logo`, `instagram-logo`, `youtube-logo` |
-| **Objects** | `envelope`, `lock`, `eye`, `eye-slash`, `star`, `heart`, `user`, `users`, `house`, `lightning`, `fire`, `rocket` |
-| **Media** | `image`, `camera`, `play`, `pause`, `microphone`, `speaker-high` |
-| **Commerce** | `shopping-cart`, `credit-card`, `currency-dollar`, `receipt`, `package` |
+| Category     | Icons                                                                                                                                    |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Arrows**   | `arrow-right`, `arrow-left`, `arrow-up`, `arrow-down`, `caret-right`, `caret-down`                                                       |
+| **Actions**  | `check`, `x`, `plus`, `minus`, `magnifying-glass`, `funnel`, `pencil`, `trash`                                                           |
+| **UI**       | `gear`, `sliders`, `dots-three`, `list`, `squares-four`, `sidebar`                                                                       |
+| **Social**   | `google-logo`, `apple-logo`, `github-logo`, `x-logo`, `linkedin-logo`, `discord-logo`, `facebook-logo`, `instagram-logo`, `youtube-logo` |
+| **Objects**  | `envelope`, `lock`, `eye`, `eye-slash`, `star`, `heart`, `user`, `users`, `house`, `lightning`, `fire`, `rocket`                         |
+| **Media**    | `image`, `camera`, `play`, `pause`, `microphone`, `speaker-high`                                                                         |
+| **Commerce** | `shopping-cart`, `credit-card`, `currency-dollar`, `receipt`, `package`                                                                  |
 
 ### Icon Sizing Guide
 
@@ -558,6 +592,7 @@ w-16 h-16   /* 64px — hero section centerpiece */
 ### Icon Patterns in Sections
 
 **Feature card with icon:**
+
 ```jsx
 <div className="flex flex-col gap-3 p-8 bg-gray-50 rounded-2xl grow">
   <svg icon="lightning" className="w-8 h-8 text-blue-600" />
@@ -567,6 +602,7 @@ w-16 h-16   /* 64px — hero section centerpiece */
 ```
 
 **Button with icon (icons are siblings, not children):**
+
 ```jsx
 <div className="flex items-center gap-2 bg-gray-900 text-white px-5 py-2.5 rounded-lg">
   <span className="text-sm font-medium">Get Started</span>
@@ -575,6 +611,7 @@ w-16 h-16   /* 64px — hero section centerpiece */
 ```
 
 **Social icons row:**
+
 ```jsx
 <div className="flex items-center gap-4">
   <svg icon="x-logo" className="w-5 h-5 text-gray-400" />
@@ -585,6 +622,7 @@ w-16 h-16   /* 64px — hero section centerpiece */
 ```
 
 **Input with icon:**
+
 ```jsx
 <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2 bg-white">
   <svg icon="magnifying-glass" className="w-4 h-4 text-gray-400" />
@@ -593,11 +631,13 @@ w-16 h-16   /* 64px — hero section centerpiece */
 ```
 
 **Using a different library (Lucide):**
+
 ```jsx
 <svg icon="check" iconLibrary="lucide" className="w-5 h-5 text-green-600" />
 ```
 
 **Using a weight variant (Phosphor bold):**
+
 ```jsx
 <svg icon="star" iconWeight="fill" className="w-5 h-5 text-yellow-500" />
 ```
@@ -607,6 +647,7 @@ w-16 h-16   /* 64px — hero section centerpiece */
 ## Tailwind CSS Patterns That Work
 
 ### Layout
+
 ```
 flex                    /* Horizontal flex row */
 flex flex-col           /* Vertical flex column */
@@ -619,6 +660,7 @@ grow                    /* Fill remaining space (DO NOT use flex-1) */
 ```
 
 ### Spacing
+
 ```
 p-4 p-6 p-8 p-12       /* Padding all sides */
 px-6 py-4               /* Horizontal / vertical padding */
@@ -627,6 +669,7 @@ mx-auto                 /* Center horizontally */
 ```
 
 ### Sizing
+
 ```
 w-full                  /* Full width of parent */
 w-auto                  /* Width from content */
@@ -638,6 +681,7 @@ h-[400px]               /* Fixed pixel height */
 ```
 
 ### Typography
+
 ```
 text-xs text-sm text-base text-lg text-xl text-2xl text-3xl text-4xl text-5xl text-6xl text-7xl text-8xl text-9xl
 font-light font-normal font-medium font-semibold font-bold font-extrabold font-black
@@ -679,6 +723,7 @@ ring-ring                  /* Focus ring color */
 ```
 
 **When to use semantic vs hardcoded colors:**
+
 - **Semantic** (`bg-primary`, `text-foreground`): UI components, buttons, cards, text — anything that should adapt with theme/mode changes
 - **Hardcoded** (`bg-blue-500`, `text-white`): Decorative elements, brand-specific colors, illustrations, gradients
 
@@ -706,6 +751,7 @@ style: { "background-color": "#f9f9f9" }
 ```
 
 ### Borders & Radius
+
 ```
 border border-2                      /* Border width */
 border-gray-200 border-gray-300      /* Border color */
@@ -713,6 +759,7 @@ rounded rounded-lg rounded-xl rounded-2xl rounded-full  /* Border radius */
 ```
 
 ### Effects
+
 ```
 shadow-sm shadow shadow-md shadow-lg shadow-xl
 opacity-50 opacity-75
@@ -720,6 +767,7 @@ ring-1 ring-2 ring-blue-500          /* Ring / outline */
 ```
 
 ### Gradients
+
 ```
 bg-gradient-to-r from-blue-500 to-purple-500
 bg-gradient-to-b from-white to-gray-50
@@ -753,13 +801,13 @@ Works on both nodes and artboards. For artboards, solid fills update `background
 
 Any node can be made clickable with the `link` property on `add_node`, `update_node`, or `batch_update`. Use `elementId` to make a node an anchor target.
 
-| Link Type | Use Case | Required Fields |
-|-----------|----------|-----------------|
-| `url` | External URL | `url`, optional `target: "_blank"` |
-| `page` | Navigate to another artboard | `pageId` (artboard ID) |
-| `section` | Scroll to element anchor | `sectionId` (matches an `elementId`) |
-| `email` | mailto link | `email` |
-| `phone` | tel link | `phone` |
+| Link Type | Use Case                     | Required Fields                      |
+| --------- | ---------------------------- | ------------------------------------ |
+| `url`     | External URL                 | `url`, optional `target: "_blank"`   |
+| `page`    | Navigate to another artboard | `pageId` (artboard ID)               |
+| `section` | Scroll to element anchor     | `sectionId` (matches an `elementId`) |
+| `email`   | mailto link                  | `email`                              |
+| `phone`   | tel link                     | `phone`                              |
 
 ```
 # Make a button link to an external URL
@@ -785,14 +833,16 @@ Works on any node type — frames, text, images, buttons. For published sites, `
 ## Artboard Best Practices
 
 ### Standard Sizes
-| Name | Width | Height | Use Case |
-|------|-------|--------|----------|
-| Desktop | 1440 | 900+ | Full website pages |
-| Desktop (narrow) | 1280 | 800+ | Content-focused pages |
-| Tablet | 768 | 1024 | Tablet responsive view |
-| Mobile | 375 | 812 | iPhone / mobile view |
+
+| Name             | Width | Height | Use Case               |
+| ---------------- | ----- | ------ | ---------------------- |
+| Desktop          | 1440  | 900+   | Full website pages     |
+| Desktop (narrow) | 1280  | 800+   | Content-focused pages  |
+| Tablet           | 768   | 1024   | Tablet responsive view |
+| Mobile           | 375   | 812    | iPhone / mobile view   |
 
 ### Always Start With
+
 ```
 create_artboard:
   name: "Homepage"
@@ -816,10 +866,18 @@ create_artboard:
 <nav className="flex items-center justify-between px-16 py-5 bg-white w-full border-b border-gray-100">
   <h2 className="text-xl font-bold text-gray-900">Acme</h2>
   <div className="flex items-center gap-8">
-    <a className="text-sm font-medium text-gray-600" href="#">Features</a>
-    <a className="text-sm font-medium text-gray-600" href="#">Pricing</a>
-    <a className="text-sm font-medium text-gray-600" href="#">About</a>
-    <button className="px-5 py-2.5 text-sm font-medium text-white bg-gray-900 rounded-lg">Get Started</button>
+    <a className="text-sm font-medium text-gray-600" href="#">
+      Features
+    </a>
+    <a className="text-sm font-medium text-gray-600" href="#">
+      Pricing
+    </a>
+    <a className="text-sm font-medium text-gray-600" href="#">
+      About
+    </a>
+    <button className="px-5 py-2.5 text-sm font-medium text-white bg-gray-900 rounded-lg">
+      Get Started
+    </button>
   </div>
 </nav>
 ```
@@ -829,13 +887,23 @@ create_artboard:
 ```jsx
 <section className="flex flex-col items-center justify-center gap-8 px-16 py-32 bg-white w-full">
   <div className="flex flex-col items-center gap-6 max-w-3xl">
-    <span className="px-4 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full uppercase tracking-wider">Now in Beta</span>
-    <h1 className="text-6xl font-bold text-gray-900 text-center leading-tight">Build beautiful websites at the speed of thought</h1>
-    <p className="text-xl text-gray-500 text-center">The AI-powered design tool that turns ideas into production-ready pages. No code required.</p>
+    <span className="px-4 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full uppercase tracking-wider">
+      Now in Beta
+    </span>
+    <h1 className="text-6xl font-bold text-gray-900 text-center leading-tight">
+      Build beautiful websites at the speed of thought
+    </h1>
+    <p className="text-xl text-gray-500 text-center">
+      The AI-powered design tool that turns ideas into production-ready pages. No code required.
+    </p>
   </div>
   <div className="flex items-center gap-4">
-    <button className="px-8 py-3.5 text-base font-semibold text-white bg-blue-600 rounded-xl">Start Free Trial</button>
-    <button className="px-8 py-3.5 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-xl">Watch Demo</button>
+    <button className="px-8 py-3.5 text-base font-semibold text-white bg-blue-600 rounded-xl">
+      Start Free Trial
+    </button>
+    <button className="px-8 py-3.5 text-base font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-xl">
+      Watch Demo
+    </button>
   </div>
 </section>
 ```
@@ -845,14 +913,27 @@ create_artboard:
 ```jsx
 <section className="flex items-center gap-16 px-16 py-24 bg-white w-full">
   <div className="flex flex-col gap-6 grow">
-    <h1 className="text-5xl font-bold text-gray-900 leading-tight">Ship your next product in record time</h1>
-    <p className="text-lg text-gray-500">From prototype to production in minutes. Our platform handles the complexity so you can focus on what matters.</p>
+    <h1 className="text-5xl font-bold text-gray-900 leading-tight">
+      Ship your next product in record time
+    </h1>
+    <p className="text-lg text-gray-500">
+      From prototype to production in minutes. Our platform handles the complexity so you can focus
+      on what matters.
+    </p>
     <div className="flex items-center gap-4">
-      <button className="px-6 py-3 text-base font-semibold text-white bg-gray-900 rounded-lg">Get Started</button>
-      <a className="text-base font-medium text-gray-600" href="#">Learn more</a>
+      <button className="px-6 py-3 text-base font-semibold text-white bg-gray-900 rounded-lg">
+        Get Started
+      </button>
+      <a className="text-base font-medium text-gray-600" href="#">
+        Learn more
+      </a>
     </div>
   </div>
-  <img src="https://placehold.co/600x400" alt="Product screenshot" className="w-[560px] h-[380px] rounded-2xl object-cover bg-gray-100" />
+  <img
+    src="https://placehold.co/600x400"
+    alt="Product screenshot"
+    className="w-[560px] h-[380px] rounded-2xl object-cover bg-gray-100"
+  />
 </section>
 ```
 
@@ -861,8 +942,12 @@ create_artboard:
 ```jsx
 <section className="flex flex-col items-center gap-16 px-16 py-24 bg-gray-50 w-full">
   <div className="flex flex-col items-center gap-4 max-w-2xl">
-    <h2 className="text-4xl font-bold text-gray-900 text-center">Powerful features for modern teams</h2>
-    <p className="text-lg text-gray-500 text-center">Everything you need to design, build, and ship — all in one place.</p>
+    <h2 className="text-4xl font-bold text-gray-900 text-center">
+      Powerful features for modern teams
+    </h2>
+    <p className="text-lg text-gray-500 text-center">
+      Everything you need to design, build, and ship — all in one place.
+    </p>
   </div>
   <div className="flex gap-8 w-full max-w-6xl">
     <div className="flex flex-col gap-4 p-8 bg-white rounded-2xl shadow-sm grow">
@@ -870,21 +955,29 @@ create_artboard:
         <span className="text-blue-600 text-lg font-bold">1</span>
       </div>
       <h3 className="text-xl font-semibold text-gray-900">Real-Time Collaboration</h3>
-      <p className="text-sm text-gray-500 leading-relaxed">Work together with your team in real time. See cursors, selections, and changes as they happen.</p>
+      <p className="text-sm text-gray-500 leading-relaxed">
+        Work together with your team in real time. See cursors, selections, and changes as they
+        happen.
+      </p>
     </div>
     <div className="flex flex-col gap-4 p-8 bg-white rounded-2xl shadow-sm grow">
       <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-xl">
         <span className="text-green-600 text-lg font-bold">2</span>
       </div>
       <h3 className="text-xl font-semibold text-gray-900">One-Click Deploy</h3>
-      <p className="text-sm text-gray-500 leading-relaxed">Push to production with a single click. Built-in CI/CD, preview deployments, and rollbacks.</p>
+      <p className="text-sm text-gray-500 leading-relaxed">
+        Push to production with a single click. Built-in CI/CD, preview deployments, and rollbacks.
+      </p>
     </div>
     <div className="flex flex-col gap-4 p-8 bg-white rounded-2xl shadow-sm grow">
       <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-xl">
         <span className="text-purple-600 text-lg font-bold">3</span>
       </div>
       <h3 className="text-xl font-semibold text-gray-900">AI Assistant</h3>
-      <p className="text-sm text-gray-500 leading-relaxed">Built-in AI that understands your codebase. Generate components, fix bugs, and refactor with natural language.</p>
+      <p className="text-sm text-gray-500 leading-relaxed">
+        Built-in AI that understands your codebase. Generate components, fix bugs, and refactor with
+        natural language.
+      </p>
     </div>
   </div>
 </section>
@@ -895,7 +988,10 @@ create_artboard:
 ```jsx
 <section className="flex flex-col items-center gap-12 px-16 py-24 bg-white w-full">
   <div className="flex flex-col items-center gap-6 max-w-2xl">
-    <p className="text-2xl text-gray-700 text-center leading-relaxed italic">"This tool completely transformed our workflow. We shipped our redesign in two weeks instead of two months."</p>
+    <p className="text-2xl text-gray-700 text-center leading-relaxed italic">
+      "This tool completely transformed our workflow. We shipped our redesign in two weeks instead
+      of two months."
+    </p>
     <div className="flex items-center gap-4">
       <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
       <div className="flex flex-col">
@@ -933,7 +1029,9 @@ create_artboard:
         </div>
         <p className="text-sm text-gray-500">Perfect for individuals and small projects.</p>
       </div>
-      <button className="w-full py-3 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg">Get Started</button>
+      <button className="w-full py-3 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg">
+        Get Started
+      </button>
     </div>
     <div className="flex flex-col gap-6 p-8 bg-gray-900 rounded-2xl grow">
       <div className="flex flex-col gap-2">
@@ -944,7 +1042,9 @@ create_artboard:
         </div>
         <p className="text-sm text-gray-400">For growing teams that need more power.</p>
       </div>
-      <button className="w-full py-3 text-sm font-semibold text-gray-900 bg-white rounded-lg">Get Started</button>
+      <button className="w-full py-3 text-sm font-semibold text-gray-900 bg-white rounded-lg">
+        Get Started
+      </button>
     </div>
     <div className="flex flex-col gap-6 p-8 bg-white rounded-2xl border border-gray-200 grow">
       <div className="flex flex-col gap-2">
@@ -955,7 +1055,9 @@ create_artboard:
         </div>
         <p className="text-sm text-gray-500">For large organizations with custom needs.</p>
       </div>
-      <button className="w-full py-3 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg">Contact Sales</button>
+      <button className="w-full py-3 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg">
+        Contact Sales
+      </button>
     </div>
   </div>
 </section>
@@ -966,10 +1068,16 @@ create_artboard:
 ```jsx
 <section className="flex flex-col items-center gap-8 px-16 py-24 bg-gray-900 w-full">
   <h2 className="text-4xl font-bold text-white text-center">Ready to get started?</h2>
-  <p className="text-lg text-gray-400 text-center max-w-xl">Join thousands of teams already building faster. Start your free trial today.</p>
+  <p className="text-lg text-gray-400 text-center max-w-xl">
+    Join thousands of teams already building faster. Start your free trial today.
+  </p>
   <div className="flex items-center gap-4">
-    <button className="px-8 py-3.5 text-base font-semibold text-gray-900 bg-white rounded-xl">Start Free Trial</button>
-    <button className="px-8 py-3.5 text-base font-semibold text-gray-300 bg-transparent border border-gray-700 rounded-xl">Talk to Sales</button>
+    <button className="px-8 py-3.5 text-base font-semibold text-gray-900 bg-white rounded-xl">
+      Start Free Trial
+    </button>
+    <button className="px-8 py-3.5 text-base font-semibold text-gray-300 bg-transparent border border-gray-700 rounded-xl">
+      Talk to Sales
+    </button>
   </div>
 </section>
 ```
@@ -980,9 +1088,15 @@ create_artboard:
 <footer className="flex items-center justify-between px-16 py-8 bg-white border-t border-gray-100 w-full">
   <span className="text-sm text-gray-500">2026 Acme Inc. All rights reserved.</span>
   <div className="flex items-center gap-6">
-    <a className="text-sm text-gray-500" href="#">Privacy</a>
-    <a className="text-sm text-gray-500" href="#">Terms</a>
-    <a className="text-sm text-gray-500" href="#">Contact</a>
+    <a className="text-sm text-gray-500" href="#">
+      Privacy
+    </a>
+    <a className="text-sm text-gray-500" href="#">
+      Terms
+    </a>
+    <a className="text-sm text-gray-500" href="#">
+      Contact
+    </a>
   </div>
 </footer>
 ```
@@ -1019,9 +1133,9 @@ create_artboard:
 1. **Always `get_document` first** before modifying an existing design. You need the `data-id` attributes.
 2. **Use `get_selection`** when the user asks you to edit or add something "here" — it returns the selected nodes with their JSX subtrees so you can make contextual edits.
 3. **Never guess node IDs** — always read them from `get_document`, `get_selection`, or `find_nodes`.
-3. **Use `add_section` with JSX** for building structures. It is far more efficient than `add_node` one element at a time.
-4. **Use `batch_update`** for multiple small changes. One call instead of many.
-5. **Prefer updating over deleting and recreating.** Use `update_node` or `update_class`.
+4. **Use `add_section` with JSX** for building structures. It is far more efficient than `add_node` one element at a time.
+5. **Use `batch_update`** for multiple small changes. One call instead of many.
+6. **Prefer updating over deleting and recreating.** Use `update_node` or `update_class`.
 
 ### Critical Gotchas
 
@@ -1029,6 +1143,7 @@ create_artboard:
 Without it, children overlap at (0,0). This is the #1 mistake.
 
 **Artboard backgroundColor is a property, NOT a className**
+
 ```
 WRONG:  className: "bg-gray-900 flex flex-col"
 RIGHT:  backgroundColor: "#1a1a1a", className: "flex flex-col"
@@ -1036,11 +1151,13 @@ RIGHT:  backgroundColor: "#1a1a1a", className: "flex flex-col"
 
 **Never use arbitrary hex colors in className**
 Tailwind 4 generates CSS at build time. Dynamic classes like `bg-[#f9f9f9]` have no CSS at runtime and are invisible.
+
 ```
 WRONG:  className: "bg-[#f9f9f9] text-[#333333]"
 RIGHT:  className: "bg-gray-50 text-gray-700"
 ALSO OK: style: { "background-color": "#f9f9f9", "color": "#333333" }
 ```
+
 Note: The system auto-converts arbitrary hex to inline styles, but prefer named colors.
 
 **`flex-1` does not work — use `grow` instead**
@@ -1051,6 +1168,7 @@ Frame types (div, section, nav, header, footer) cannot hold text directly. Use t
 
 **Button nodes ignore children**
 The button renderer only uses `textContent`. Do not nest icons or other elements inside buttons — wrap them in a flex container instead:
+
 ```jsx
 <div className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg">
   <span className="text-sm font-medium">Continue</span>
@@ -1279,12 +1397,12 @@ Efecto's theme system lets you define design tokens (colors, radius) that power 
 
 ### Theme Tools
 
-| Tool | Description |
-|------|-------------|
-| `get_theme` | Returns current theme: id, name, modes, activeMode, and resolved active tokens |
-| `set_theme` | Apply a preset, import CSS, or provide token objects directly |
-| `set_theme_mode` | Switch the active mode (e.g. "light" -> "dark") |
-| `reset_theme` | Remove theme entirely — back to raw Tailwind colors with no semantic tokens |
+| Tool             | Description                                                                    |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `get_theme`      | Returns current theme: id, name, modes, activeMode, and resolved active tokens |
+| `set_theme`      | Apply a preset, import CSS, or provide token objects directly                  |
+| `set_theme_mode` | Switch the active mode (e.g. "light" -> "dark")                                |
+| `reset_theme`    | Remove theme entirely — back to raw Tailwind colors with no semantic tokens    |
 
 ### Apply a Preset
 
@@ -1345,25 +1463,25 @@ These classes render correctly in any mode — switch from light to dark and all
 
 ### Supported Token Keys
 
-| CSS Variable | Token Key | Usage |
-|-------------|-----------|-------|
-| `--background` | `background` | Page background (`bg-background`) |
-| `--foreground` | `foreground` | Primary text (`text-foreground`) |
-| `--card` | `card` | Card surface (`bg-card`) |
-| `--card-foreground` | `cardForeground` | Card text (`text-card-foreground`) |
-| `--popover` | `popover` | Popover surface (`bg-popover`) |
-| `--popover-foreground` | `popoverForeground` | Popover text (`text-popover-foreground`) |
-| `--primary` | `primary` | Primary action (`bg-primary`) |
-| `--primary-foreground` | `primaryForeground` | Text on primary (`text-primary-foreground`) |
-| `--secondary` | `secondary` | Secondary surface (`bg-secondary`) |
-| `--secondary-foreground` | `secondaryForeground` | Text on secondary (`text-secondary-foreground`) |
-| `--muted` | `muted` | Muted surface (`bg-muted`) |
-| `--muted-foreground` | `mutedForeground` | Muted text (`text-muted-foreground`) |
-| `--accent` | `accent` | Accent surface (`bg-accent`) |
-| `--accent-foreground` | `accentForeground` | Text on accent (`text-accent-foreground`) |
-| `--destructive` | `destructive` | Error/danger (`bg-destructive`) |
+| CSS Variable               | Token Key               | Usage                                               |
+| -------------------------- | ----------------------- | --------------------------------------------------- |
+| `--background`             | `background`            | Page background (`bg-background`)                   |
+| `--foreground`             | `foreground`            | Primary text (`text-foreground`)                    |
+| `--card`                   | `card`                  | Card surface (`bg-card`)                            |
+| `--card-foreground`        | `cardForeground`        | Card text (`text-card-foreground`)                  |
+| `--popover`                | `popover`               | Popover surface (`bg-popover`)                      |
+| `--popover-foreground`     | `popoverForeground`     | Popover text (`text-popover-foreground`)            |
+| `--primary`                | `primary`               | Primary action (`bg-primary`)                       |
+| `--primary-foreground`     | `primaryForeground`     | Text on primary (`text-primary-foreground`)         |
+| `--secondary`              | `secondary`             | Secondary surface (`bg-secondary`)                  |
+| `--secondary-foreground`   | `secondaryForeground`   | Text on secondary (`text-secondary-foreground`)     |
+| `--muted`                  | `muted`                 | Muted surface (`bg-muted`)                          |
+| `--muted-foreground`       | `mutedForeground`       | Muted text (`text-muted-foreground`)                |
+| `--accent`                 | `accent`                | Accent surface (`bg-accent`)                        |
+| `--accent-foreground`      | `accentForeground`      | Text on accent (`text-accent-foreground`)           |
+| `--destructive`            | `destructive`           | Error/danger (`bg-destructive`)                     |
 | `--destructive-foreground` | `destructiveForeground` | Text on destructive (`text-destructive-foreground`) |
-| `--border` | `border` | Default borders (`border-border`) |
-| `--input` | `input` | Input borders (`bg-input`) |
-| `--ring` | `ring` | Focus rings (`ring-ring`) |
-| `--radius` | `radius` | Border radius base |
+| `--border`                 | `border`                | Default borders (`border-border`)                   |
+| `--input`                  | `input`                 | Input borders (`bg-input`)                          |
+| `--ring`                   | `ring`                  | Focus rings (`ring-ring`)                           |
+| `--radius`                 | `radius`                | Border radius base                                  |

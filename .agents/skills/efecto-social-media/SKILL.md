@@ -21,12 +21,15 @@ This skill requires the **Efecto MCP server**. Check if it's available by lookin
 **If Efecto tools are NOT available, install the MCP server:**
 
 ### Claude Code
+
 ```bash
 claude mcp add efecto -- npx -y @efectoapp/mcp
 ```
 
 ### Cursor
+
 Add to `.cursor/mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -39,6 +42,7 @@ Add to `.cursor/mcp.json`:
 ```
 
 ### Windsurf / VS Code / Other MCP Clients
+
 ```json
 {
   "mcpServers": {
@@ -70,6 +74,7 @@ Every design starts with a session:
 ```
 create_session  label: "Instagram Carousel"
 ```
+
 Returns `{ sessionId, documentId, designUrl }`. Tell the user to open the URL, then poll `session_status` until `browserConnected: true`.
 
 ### Building Social Media Designs
@@ -99,21 +104,21 @@ batch_update  updates: [
 
 ### All 46 Tools
 
-| Category | Tools |
-|----------|-------|
-| **Session** | `create_session`, `wait_for_connection`, `session_status`, `close_session` |
-| **Reading** | `get_document`, `get_selection`, `get_node_tree`, `list_artboards`, `find_nodes` |
-| **Creating** | `create_artboard`, `add_section`, `add_node` |
-| **Modifying** | `update_node`, `update_class`, `update_artboard`, `batch_update`, `replace_section` |
-| **Organizing** | `move_node`, `duplicate_node`, `duplicate_artboard`, `group_nodes`, `ungroup_node`, `reorder_node` |
-| **Selection** | `select_nodes`, `deselect_all`, `set_visibility`, `delete_nodes`, `delete_artboard` |
-| **Alignment** | `align_nodes`, `distribute_nodes` |
-| **Fill & Export** | `set_fill`, `export_image` |
-| **Viewport** | `zoom_to_artboard`, `zoom_to_fit`, `set_viewport`, `move_artboard` |
-| **Document** | `rename_document`, `new_document` |
-| **History** | `undo`, `redo` |
-| **Theme** | `get_theme`, `set_theme`, `set_theme_mode`, `reset_theme` |
-| **Quality** | `audit_design`, `repair_design` |
+| Category          | Tools                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------- |
+| **Session**       | `create_session`, `wait_for_connection`, `session_status`, `close_session`                         |
+| **Reading**       | `get_document`, `get_selection`, `get_node_tree`, `list_artboards`, `find_nodes`                   |
+| **Creating**      | `create_artboard`, `add_section`, `add_node`                                                       |
+| **Modifying**     | `update_node`, `update_class`, `update_artboard`, `batch_update`, `replace_section`                |
+| **Organizing**    | `move_node`, `duplicate_node`, `duplicate_artboard`, `group_nodes`, `ungroup_node`, `reorder_node` |
+| **Selection**     | `select_nodes`, `deselect_all`, `set_visibility`, `delete_nodes`, `delete_artboard`                |
+| **Alignment**     | `align_nodes`, `distribute_nodes`                                                                  |
+| **Fill & Export** | `set_fill`, `export_image`                                                                         |
+| **Viewport**      | `zoom_to_artboard`, `zoom_to_fit`, `set_viewport`, `move_artboard`                                 |
+| **Document**      | `rename_document`, `new_document`                                                                  |
+| **History**       | `undo`, `redo`                                                                                     |
+| **Theme**         | `get_theme`, `set_theme`, `set_theme_mode`, `reset_theme`                                          |
+| **Quality**       | `audit_design`, `repair_design`                                                                    |
 
 ### JSX Format for `add_section`
 
@@ -225,13 +230,13 @@ When you design a website, you're writing for someone who stopped scrolling and 
 
 Choose font sizes based on the role, not a formula. The canvas is large (1080px+) but the content is consumed small — so sizes need to be generous.
 
-| Role | Size | Weight | Example |
-|------|------|--------|---------|
-| **Hero / Impact** | `text-7xl` to `text-8xl` | `font-extrabold` or `font-black` | A single punchy statement |
-| **Slide headline** | `text-4xl` to `text-5xl` | `font-bold` or `font-extrabold` | The main point of each slide |
-| **Supporting text** | `text-2xl` to `text-3xl` | `font-medium` or `font-normal` | One sentence of context |
-| **Labels / tags** | `text-lg` to `text-xl` | `font-semibold` | Category labels, @handles |
-| **Smallest allowed** | `text-lg` | any | Nothing smaller than this. Ever. |
+| Role                 | Size                     | Weight                           | Example                          |
+| -------------------- | ------------------------ | -------------------------------- | -------------------------------- |
+| **Hero / Impact**    | `text-7xl` to `text-8xl` | `font-extrabold` or `font-black` | A single punchy statement        |
+| **Slide headline**   | `text-4xl` to `text-5xl` | `font-bold` or `font-extrabold`  | The main point of each slide     |
+| **Supporting text**  | `text-2xl` to `text-3xl` | `font-medium` or `font-normal`   | One sentence of context          |
+| **Labels / tags**    | `text-lg` to `text-xl`   | `font-semibold`                  | Category labels, @handles        |
+| **Smallest allowed** | `text-lg`                | any                              | Nothing smaller than this. Ever. |
 
 **Key insight:** Where you'd use `text-base` on a website, use `text-xl` on social. Where you'd use `text-2xl` for a web heading, use `text-4xl` to `text-5xl` on social. It's not scaling — it's choosing the right size for a medium that gets consumed at 1/3 the designed resolution.
 
@@ -242,6 +247,7 @@ Choose font sizes based on the role, not a formula. The canvas is large (1080px+
 Social media copy is NOT web copy. Write like a creative director at a streetwear brand, not a SaaS marketing team.
 
 **Rules:**
+
 - **Max 6-8 words per headline.** "Ship faster. Break nothing." not "Our platform helps engineering teams ship code faster while maintaining quality."
 - **One idea per slide.** If you need a comma, you probably need two slides.
 - **Kill filler words.** No "that", "just", "really", "very", "in order to", "leverage", "utilize".
@@ -251,9 +257,11 @@ Social media copy is NOT web copy. Write like a creative director at a streetwea
 - **CTAs are 2-3 words.** "Follow for more" / "Save this" / "Link in bio" / "Try it free"
 
 **Bad (website brain):**
+
 > "Our comprehensive platform provides teams with everything they need to design, build, and deploy modern web applications efficiently."
 
 **Good (social media brain):**
+
 > "Design. Build. Ship."
 
 ---
@@ -262,13 +270,13 @@ Social media copy is NOT web copy. Write like a creative director at a streetwea
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Post (Square)** | 1080 | 1080 | Feed posts, single images |
-| **Portrait Post** | 1080 | 1350 | Feed posts (more screen real estate) |
-| **Story / Reel** | 1080 | 1920 | Stories, Reels, vertical video covers |
-| **Carousel Slide** | 1080 | 1080 | Each slide in a carousel |
-| **Carousel (Portrait)** | 1080 | 1350 | Carousel, portrait format |
+| Format                  | Width | Height | Use Case                              |
+| ----------------------- | ----- | ------ | ------------------------------------- |
+| **Post (Square)**       | 1080  | 1080   | Feed posts, single images             |
+| **Portrait Post**       | 1080  | 1350   | Feed posts (more screen real estate)  |
+| **Story / Reel**        | 1080  | 1920   | Stories, Reels, vertical video covers |
+| **Carousel Slide**      | 1080  | 1080   | Each slide in a carousel              |
+| **Carousel (Portrait)** | 1080  | 1350   | Carousel, portrait format             |
 
 ### Carousel Best Practices
 
@@ -309,9 +317,15 @@ Social media copy is NOT web copy. Write like a creative director at a streetwea
 ```jsx
 <section className="flex flex-col items-center justify-center gap-10 px-12 py-24 bg-gray-900 w-full h-full">
   <span className="text-xl font-semibold text-blue-400 uppercase tracking-widest">New drop</span>
-  <h1 className="text-5xl font-extrabold text-white text-center leading-tight">Your bold statement here</h1>
-  <p className="text-2xl text-gray-400 text-center leading-relaxed max-w-[900px]">One short sentence of context.</p>
-  <button className="px-10 py-5 text-xl font-bold text-gray-900 bg-white rounded-2xl">See more</button>
+  <h1 className="text-5xl font-extrabold text-white text-center leading-tight">
+    Your bold statement here
+  </h1>
+  <p className="text-2xl text-gray-400 text-center leading-relaxed max-w-[900px]">
+    One short sentence of context.
+  </p>
+  <button className="px-10 py-5 text-xl font-bold text-gray-900 bg-white rounded-2xl">
+    See more
+  </button>
 </section>
 ```
 
@@ -321,12 +335,12 @@ Social media copy is NOT web copy. Write like a creative director at a streetwea
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Thumbnail** | 1280 | 720 | Video thumbnail (16:9) |
-| **Channel Banner** | 2560 | 1440 | Channel art (safe area: 1546x423 center) |
-| **End Screen** | 1280 | 720 | End screen overlay |
-| **Community Post** | 1080 | 1080 | Community tab image |
+| Format             | Width | Height | Use Case                                 |
+| ------------------ | ----- | ------ | ---------------------------------------- |
+| **Thumbnail**      | 1280  | 720    | Video thumbnail (16:9)                   |
+| **Channel Banner** | 2560  | 1440   | Channel art (safe area: 1546x423 center) |
+| **End Screen**     | 1280  | 720    | End screen overlay                       |
+| **Community Post** | 1080  | 1080   | Community tab image                      |
 
 ### Thumbnail Best Practices
 
@@ -368,10 +382,10 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Video Cover** | 1080 | 1920 | Video thumbnail / cover image |
-| **Profile Photo** | 200 | 200 | Account avatar |
+| Format            | Width | Height | Use Case                      |
+| ----------------- | ----- | ------ | ----------------------------- |
+| **Video Cover**   | 1080  | 1920   | Video thumbnail / cover image |
+| **Profile Photo** | 200   | 200    | Account avatar                |
 
 ### TikTok Tips
 
@@ -385,8 +399,12 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ```jsx
 <section className="flex flex-col items-center justify-center gap-8 px-12 py-48 bg-gray-900 w-full h-full">
-  <span className="px-6 py-2 text-lg font-bold text-white bg-red-500 rounded-full uppercase">Part 3</span>
-  <h1 className="text-5xl font-extrabold text-white text-center leading-tight">The trick nobody talks about</h1>
+  <span className="px-6 py-2 text-lg font-bold text-white bg-red-500 rounded-full uppercase">
+    Part 3
+  </span>
+  <h1 className="text-5xl font-extrabold text-white text-center leading-tight">
+    The trick nobody talks about
+  </h1>
   <p className="text-2xl text-gray-400 text-center">Watch till the end</p>
 </section>
 ```
@@ -397,12 +415,12 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Standard Pin** | 1000 | 1500 | Standard pin (2:3 ratio) |
-| **Long Pin** | 1000 | 2100 | Infographic / tall pin |
-| **Square Pin** | 1000 | 1000 | Square format |
-| **Board Cover** | 600 | 600 | Board thumbnail |
+| Format           | Width | Height | Use Case                 |
+| ---------------- | ----- | ------ | ------------------------ |
+| **Standard Pin** | 1000  | 1500   | Standard pin (2:3 ratio) |
+| **Long Pin**     | 1000  | 2100   | Infographic / tall pin   |
+| **Square Pin**   | 1000  | 1000   | Square format            |
+| **Board Cover**  | 600   | 600    | Board thumbnail          |
 
 ### Pinterest Tips
 
@@ -419,7 +437,9 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 <section className="flex flex-col items-center justify-between gap-8 px-12 py-16 bg-amber-50 w-full h-full">
   <div className="flex flex-col items-center gap-6">
     <span className="text-lg font-bold text-amber-700 uppercase tracking-widest">Free Guide</span>
-    <h1 className="text-5xl font-extrabold text-gray-900 text-center leading-tight">10 Design Rules Every Beginner Needs</h1>
+    <h1 className="text-5xl font-extrabold text-gray-900 text-center leading-tight">
+      10 Design Rules Every Beginner Needs
+    </h1>
     <p className="text-2xl text-gray-600 text-center">Save this pin for later</p>
   </div>
   <div className="w-full h-[500px] bg-amber-100 rounded-3xl"></div>
@@ -433,14 +453,14 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Post Image** | 1200 | 630 | Shared image / link preview |
-| **Cover Photo** | 1640 | 856 | Page cover (safe: center 820x312) |
-| **Event Cover** | 1920 | 1005 | Event banner |
-| **Story** | 1080 | 1920 | Facebook Story |
-| **Ad (Square)** | 1080 | 1080 | Feed ad |
-| **Ad (Landscape)** | 1200 | 628 | Feed ad, landscape |
+| Format             | Width | Height | Use Case                          |
+| ------------------ | ----- | ------ | --------------------------------- |
+| **Post Image**     | 1200  | 630    | Shared image / link preview       |
+| **Cover Photo**    | 1640  | 856    | Page cover (safe: center 820x312) |
+| **Event Cover**    | 1920  | 1005   | Event banner                      |
+| **Story**          | 1080  | 1920   | Facebook Story                    |
+| **Ad (Square)**    | 1080  | 1080   | Feed ad                           |
+| **Ad (Landscape)** | 1200  | 628    | Feed ad, landscape                |
 
 ### Facebook Tips
 
@@ -455,8 +475,12 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 ```jsx
 <section className="flex items-center gap-12 p-16 bg-white w-full h-full">
   <div className="flex flex-col gap-4 grow">
-    <span className="text-xl font-semibold text-blue-600 uppercase tracking-wide">Announcement</span>
-    <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">We just launched something big</h1>
+    <span className="text-xl font-semibold text-blue-600 uppercase tracking-wide">
+      Announcement
+    </span>
+    <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">
+      We just launched something big
+    </h1>
     <p className="text-2xl text-gray-500">Link in comments</p>
   </div>
   <div className="w-[350px] h-[350px] bg-blue-100 rounded-3xl"></div>
@@ -469,13 +493,13 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Image post** | 1200 | 675 | Standard tweet image (16:9) |
-| **Card image** | 1200 | 628 | Link preview card |
-| **Banner** | 1500 | 500 | Profile banner |
-| **Two-image post** | 700 | 800 | Each image in 2-image tweet |
-| **Thread graphic** | 1200 | 675 | Consistent visual for threads |
+| Format             | Width | Height | Use Case                      |
+| ------------------ | ----- | ------ | ----------------------------- |
+| **Image post**     | 1200  | 675    | Standard tweet image (16:9)   |
+| **Card image**     | 1200  | 628    | Link preview card             |
+| **Banner**         | 1500  | 500    | Profile banner                |
+| **Two-image post** | 700   | 800    | Each image in 2-image tweet   |
+| **Thread graphic** | 1200  | 675    | Consistent visual for threads |
 
 ### Twitter Tips
 
@@ -490,7 +514,9 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ```jsx
 <section className="flex flex-col items-center justify-center gap-6 p-16 bg-gray-900 w-full h-full">
-  <h1 className="text-6xl font-extrabold text-white text-center leading-tight">Hot take incoming</h1>
+  <h1 className="text-6xl font-extrabold text-white text-center leading-tight">
+    Hot take incoming
+  </h1>
   <p className="text-2xl text-gray-400 text-center">Your bold opinion in one sentence.</p>
   <p className="text-xl text-blue-400 font-semibold">@yourhandle</p>
 </section>
@@ -502,13 +528,13 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Post** | 1200 | 1200 | Square feed post |
-| **Portrait post** | 1080 | 1350 | Takes more feed space |
-| **Carousel slide** | 1080 | 1080 | Document carousel |
-| **Banner** | 1584 | 396 | Profile/company banner |
-| **Article cover** | 1200 | 644 | Newsletter header |
+| Format             | Width | Height | Use Case               |
+| ------------------ | ----- | ------ | ---------------------- |
+| **Post**           | 1200  | 1200   | Square feed post       |
+| **Portrait post**  | 1080  | 1350   | Takes more feed space  |
+| **Carousel slide** | 1080  | 1080   | Document carousel      |
+| **Banner**         | 1584  | 396    | Profile/company banner |
+| **Article cover**  | 1200  | 644    | Newsletter header      |
 
 ### LinkedIn Tips
 
@@ -542,18 +568,21 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 ## General Design Rules
 
 ### Layout
+
 - **Center-align** most content (social is not web's default left-align)
 - **Generous padding**: `p-12` to `p-16` minimum — don't crowd the edges
 - **Vertically center**: `justify-center` on slides — content should sit in the middle, not hang from the top
 - **`w-full h-full`** on top-level sections to fill the artboard completely
 
 ### Color & Contrast
+
 - Minimum 4.5:1 contrast ratio — feed images get JPEG-compressed, low contrast disappears
 - Solid backgrounds beat gradients for text readability
 - Dark mode designs (white on dark) tend to pop more in feeds
 - Avoid pastel-on-pastel — it looks washed out at thumbnail size
 
 ### Multi-Slide Consistency
+
 - Same background color on every slide
 - Same headline position (same y-position across slides)
 - Same font sizes for the same role (all headlines match, all body text matches)
@@ -561,12 +590,12 @@ YouTube thumbnails are the most competitive visual format on the internet. They 
 
 ### Platform Quick Reference
 
-| Platform | Best Format | Text Style | Vibe |
-|----------|-------------|------------|------|
-| **Instagram** | 1080x1350 portrait | Bold, centered | Visual-first, aesthetic |
-| **YouTube** | 1280x720 thumbnail | Massive, high-contrast | Clickbait energy, faces |
-| **TikTok** | 1080x1920 vertical | Bold with safe zones | Fast, punchy, trending |
-| **Pinterest** | 1000x1500 tall | Warm, clear overlay | Aspirational, search-driven |
-| **Facebook** | 1200x630 landscape | Clean, readable | Broad audience, shareable |
-| **Twitter/X** | 1200x675 landscape | One-liner, bold | Opinionated, minimal |
-| **LinkedIn** | 1080x1080 square | Professional-bold | Thought leadership, clean |
+| Platform      | Best Format        | Text Style             | Vibe                        |
+| ------------- | ------------------ | ---------------------- | --------------------------- |
+| **Instagram** | 1080x1350 portrait | Bold, centered         | Visual-first, aesthetic     |
+| **YouTube**   | 1280x720 thumbnail | Massive, high-contrast | Clickbait energy, faces     |
+| **TikTok**    | 1080x1920 vertical | Bold with safe zones   | Fast, punchy, trending      |
+| **Pinterest** | 1000x1500 tall     | Warm, clear overlay    | Aspirational, search-driven |
+| **Facebook**  | 1200x630 landscape | Clean, readable        | Broad audience, shareable   |
+| **Twitter/X** | 1200x675 landscape | One-liner, bold        | Opinionated, minimal        |
+| **LinkedIn**  | 1080x1080 square   | Professional-bold      | Thought leadership, clean   |

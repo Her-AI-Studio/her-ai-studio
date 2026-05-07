@@ -21,12 +21,15 @@ This skill requires the **Efecto MCP server**. Check if it's available by lookin
 **If Efecto tools are NOT available, install the MCP server:**
 
 ### Claude Code
+
 ```bash
 claude mcp add efecto -- npx -y @efectoapp/mcp
 ```
 
 ### Cursor
+
 Add to `.cursor/mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -39,6 +42,7 @@ Add to `.cursor/mcp.json`:
 ```
 
 ### Windsurf / VS Code / Other MCP Clients
+
 ```json
 {
   "mcpServers": {
@@ -70,6 +74,7 @@ Every design starts with a session:
 ```
 create_session  label: "Pitch Deck"
 ```
+
 Returns `{ sessionId, documentId, designUrl }`. Tell the user to open the URL, then poll `session_status` until `browserConnected: true`.
 
 ### Building Designs
@@ -98,21 +103,21 @@ batch_update  updates: [
 
 ### All 46 Tools
 
-| Category | Tools |
-|----------|-------|
-| **Session** | `create_session`, `wait_for_connection`, `session_status`, `close_session` |
-| **Reading** | `get_document`, `get_selection`, `get_node_tree`, `list_artboards`, `find_nodes` |
-| **Creating** | `create_artboard`, `add_section`, `add_node` |
-| **Modifying** | `update_node`, `update_class`, `update_artboard`, `batch_update`, `replace_section` |
-| **Organizing** | `move_node`, `duplicate_node`, `duplicate_artboard`, `group_nodes`, `ungroup_node`, `reorder_node` |
-| **Selection** | `select_nodes`, `deselect_all`, `set_visibility`, `delete_nodes`, `delete_artboard` |
-| **Alignment** | `align_nodes`, `distribute_nodes` |
-| **Fill & Export** | `set_fill`, `export_image` |
-| **Viewport** | `zoom_to_artboard`, `zoom_to_fit`, `set_viewport`, `move_artboard` |
-| **Document** | `rename_document`, `new_document` |
-| **History** | `undo`, `redo` |
-| **Theme** | `get_theme`, `set_theme`, `set_theme_mode`, `reset_theme` |
-| **Quality** | `audit_design`, `repair_design` |
+| Category          | Tools                                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------- |
+| **Session**       | `create_session`, `wait_for_connection`, `session_status`, `close_session`                         |
+| **Reading**       | `get_document`, `get_selection`, `get_node_tree`, `list_artboards`, `find_nodes`                   |
+| **Creating**      | `create_artboard`, `add_section`, `add_node`                                                       |
+| **Modifying**     | `update_node`, `update_class`, `update_artboard`, `batch_update`, `replace_section`                |
+| **Organizing**    | `move_node`, `duplicate_node`, `duplicate_artboard`, `group_nodes`, `ungroup_node`, `reorder_node` |
+| **Selection**     | `select_nodes`, `deselect_all`, `set_visibility`, `delete_nodes`, `delete_artboard`                |
+| **Alignment**     | `align_nodes`, `distribute_nodes`                                                                  |
+| **Fill & Export** | `set_fill`, `export_image`                                                                         |
+| **Viewport**      | `zoom_to_artboard`, `zoom_to_fit`, `set_viewport`, `move_artboard`                                 |
+| **Document**      | `rename_document`, `new_document`                                                                  |
+| **History**       | `undo`, `redo`                                                                                     |
+| **Theme**         | `get_theme`, `set_theme`, `set_theme_mode`, `reset_theme`                                          |
+| **Quality**       | `audit_design`, `repair_design`                                                                    |
 
 ### JSX Format for `add_section`
 
@@ -234,11 +239,11 @@ The common thread: **less is more.** Every element must earn its place.
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Standard (16:9)** | 1920 | 1080 | Presentations, screen share |
-| **Widescreen (16:10)** | 1920 | 1200 | Mac-native presentations |
-| **Classic (4:3)** | 1440 | 1080 | Traditional slides, projectors |
+| Format                 | Width | Height | Use Case                       |
+| ---------------------- | ----- | ------ | ------------------------------ |
+| **Standard (16:9)**    | 1920  | 1080   | Presentations, screen share    |
+| **Widescreen (16:10)** | 1920  | 1200   | Mac-native presentations       |
+| **Classic (4:3)**      | 1440  | 1080   | Traditional slides, projectors |
 
 ### Slide Design Rules
 
@@ -255,8 +260,12 @@ The common thread: **less is more.** Every element must earn its place.
 
 ```jsx
 <section className="flex flex-col items-center justify-center gap-6 p-24 bg-gray-900 w-full h-full">
-  <span className="text-xl font-semibold text-blue-400 uppercase tracking-widest">Q4 2026 Update</span>
-  <h1 className="text-7xl font-extrabold text-white text-center leading-none tracking-tight">Building the Future of Design</h1>
+  <span className="text-xl font-semibold text-blue-400 uppercase tracking-widest">
+    Q4 2026 Update
+  </span>
+  <h1 className="text-7xl font-extrabold text-white text-center leading-none tracking-tight">
+    Building the Future of Design
+  </h1>
   <p className="text-2xl text-gray-400 font-medium">Acme Inc. / October 2026</p>
 </section>
 ```
@@ -276,7 +285,9 @@ The common thread: **less is more.** Every element must earn its place.
 <section className="flex items-center gap-16 px-24 py-16 bg-white w-full h-full">
   <div className="flex flex-col gap-6 grow">
     <h2 className="text-4xl font-bold text-gray-900 leading-snug">Revenue grew 3x in 12 months</h2>
-    <p className="text-2xl text-gray-500 leading-relaxed">We hit $10M ARR ahead of schedule, driven by enterprise adoption and a 95% retention rate.</p>
+    <p className="text-2xl text-gray-500 leading-relaxed">
+      We hit $10M ARR ahead of schedule, driven by enterprise adoption and a 95% retention rate.
+    </p>
   </div>
   <div className="w-[600px] h-[500px] bg-gray-100 rounded-3xl"></div>
 </section>
@@ -296,7 +307,9 @@ The common thread: **less is more.** Every element must earn its place.
 
 ```jsx
 <section className="flex flex-col items-center justify-center gap-8 px-32 py-24 bg-gray-50 w-full h-full">
-  <p className="text-4xl text-gray-700 text-center leading-relaxed italic">"The best tool we've adopted this year. Our design velocity doubled."</p>
+  <p className="text-4xl text-gray-700 text-center leading-relaxed italic">
+    "The best tool we've adopted this year. Our design velocity doubled."
+  </p>
   <div className="flex items-center gap-4">
     <div className="w-16 h-16 bg-gray-300 rounded-full"></div>
     <div className="flex flex-col">
@@ -339,13 +352,13 @@ The common thread: **less is more.** Every element must earn its place.
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Digital Poster** | 1080 | 1350 | Online events, sharing |
-| **A4 Portrait** | 794 | 1123 | Print posters (210x297mm at 96dpi) |
-| **Letter Portrait** | 816 | 1056 | US letter print (8.5x11in at 96dpi) |
-| **Wide Banner** | 1920 | 600 | Website event banners |
-| **Square** | 1080 | 1080 | Multi-purpose, adaptable |
+| Format              | Width | Height | Use Case                            |
+| ------------------- | ----- | ------ | ----------------------------------- |
+| **Digital Poster**  | 1080  | 1350   | Online events, sharing              |
+| **A4 Portrait**     | 794   | 1123   | Print posters (210x297mm at 96dpi)  |
+| **Letter Portrait** | 816   | 1056   | US letter print (8.5x11in at 96dpi) |
+| **Wide Banner**     | 1920  | 600    | Website event banners               |
+| **Square**          | 1080  | 1080   | Multi-purpose, adaptable            |
 
 ### Event Poster Hierarchy
 
@@ -363,7 +376,9 @@ Everything else (speakers, sponsors, descriptions) is secondary.
 ```jsx
 <section className="flex flex-col justify-between p-16 bg-gray-900 w-full h-full">
   <div className="flex items-center justify-between">
-    <span className="text-lg font-bold text-gray-400 uppercase tracking-widest">Design Conf 2026</span>
+    <span className="text-lg font-bold text-gray-400 uppercase tracking-widest">
+      Design Conf 2026
+    </span>
     <div className="w-12 h-12 bg-blue-500 rounded-xl"></div>
   </div>
   <div className="flex flex-col gap-6">
@@ -372,7 +387,9 @@ Everything else (speakers, sponsors, descriptions) is secondary.
       <p className="text-3xl font-bold text-blue-400">March 15, 2026</p>
       <p className="text-2xl text-gray-400">San Francisco / Moscone Center</p>
     </div>
-    <button className="w-fit px-10 py-4 text-xl font-bold text-gray-900 bg-white rounded-2xl">Get Tickets</button>
+    <button className="w-fit px-10 py-4 text-xl font-bold text-gray-900 bg-white rounded-2xl">
+      Get Tickets
+    </button>
   </div>
 </section>
 ```
@@ -383,7 +400,9 @@ Everything else (speakers, sponsors, descriptions) is secondary.
 <section className="flex items-end gap-8 p-16 bg-gray-900 w-full h-full">
   <div className="flex flex-col gap-4 grow">
     <span className="text-lg font-semibold text-purple-400 uppercase tracking-wider">Keynote</span>
-    <h1 className="text-5xl font-extrabold text-white leading-tight">Designing with AI: What Changes and What Doesn't</h1>
+    <h1 className="text-5xl font-extrabold text-white leading-tight">
+      Designing with AI: What Changes and What Doesn't
+    </h1>
     <div className="flex items-center gap-3">
       <div className="w-12 h-12 bg-gray-700 rounded-full"></div>
       <div className="flex flex-col">
@@ -401,11 +420,11 @@ Everything else (speakers, sponsors, descriptions) is secondary.
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Email Header** | 600 | 200 | Top-of-email banner (max-width 600px) |
-| **Email Hero** | 600 | 400 | Hero image in newsletter |
-| **Wide Email Hero** | 1200 | 400 | Retina email hero (scales to 600px) |
+| Format              | Width | Height | Use Case                              |
+| ------------------- | ----- | ------ | ------------------------------------- |
+| **Email Header**    | 600   | 200    | Top-of-email banner (max-width 600px) |
+| **Email Hero**      | 600   | 400    | Hero image in newsletter              |
+| **Wide Email Hero** | 1200  | 400    | Retina email hero (scales to 600px)   |
 
 ### Email Design Rules
 
@@ -431,9 +450,13 @@ Everything else (speakers, sponsors, descriptions) is secondary.
 
 ```jsx
 <section className="flex flex-col items-center justify-center gap-6 px-12 py-12 bg-blue-600 w-full h-full">
-  <h1 className="text-4xl font-extrabold text-white text-center leading-tight">What we shipped this week</h1>
+  <h1 className="text-4xl font-extrabold text-white text-center leading-tight">
+    What we shipped this week
+  </h1>
   <p className="text-xl text-blue-100 text-center">3 features, 2 fixes, 1 big announcement</p>
-  <button className="px-8 py-3 text-lg font-bold text-blue-600 bg-white rounded-xl">Read the update</button>
+  <button className="px-8 py-3 text-lg font-bold text-blue-600 bg-white rounded-xl">
+    Read the update
+  </button>
 </section>
 ```
 
@@ -443,12 +466,12 @@ Everything else (speakers, sponsors, descriptions) is secondary.
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Blog Hero (16:9)** | 1200 | 675 | Standard blog header |
-| **Blog Hero (2:1)** | 1200 | 600 | Wide blog header |
-| **Medium Article** | 1400 | 788 | Medium.com header |
-| **Substack** | 1456 | 816 | Substack header image |
+| Format               | Width | Height | Use Case              |
+| -------------------- | ----- | ------ | --------------------- |
+| **Blog Hero (16:9)** | 1200  | 675    | Standard blog header  |
+| **Blog Hero (2:1)**  | 1200  | 600    | Wide blog header      |
+| **Medium Article**   | 1400  | 788    | Medium.com header     |
+| **Substack**         | 1456  | 816    | Substack header image |
 
 ### Blog Hero Tips
 
@@ -463,7 +486,9 @@ Everything else (speakers, sponsors, descriptions) is secondary.
 ```jsx
 <section className="flex flex-col items-center justify-center gap-6 px-16 py-16 bg-gray-900 w-full h-full">
   <span className="text-lg font-semibold text-blue-400 uppercase tracking-widest">Engineering</span>
-  <h1 className="text-5xl font-extrabold text-white text-center leading-tight max-w-[900px]">How we reduced build times by 80%</h1>
+  <h1 className="text-5xl font-extrabold text-white text-center leading-tight max-w-[900px]">
+    How we reduced build times by 80%
+  </h1>
   <p className="text-xl text-gray-500 font-medium">March 2026 / 8 min read</p>
 </section>
 ```
@@ -474,11 +499,11 @@ Everything else (speakers, sponsors, descriptions) is secondary.
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Open Graph** | 1200 | 630 | og:image for link previews (Facebook, Discord, Slack, iMessage) |
-| **Twitter Card** | 1200 | 628 | twitter:image for tweet link previews |
-| **WhatsApp Preview** | 1200 | 630 | Link preview in chats |
+| Format               | Width | Height | Use Case                                                        |
+| -------------------- | ----- | ------ | --------------------------------------------------------------- |
+| **Open Graph**       | 1200  | 630    | og:image for link previews (Facebook, Discord, Slack, iMessage) |
+| **Twitter Card**     | 1200  | 628    | twitter:image for tweet link previews                           |
+| **WhatsApp Preview** | 1200  | 630    | Link preview in chats                                           |
 
 ### OG Image Best Practices
 
@@ -498,7 +523,9 @@ OG images appear when someone shares a URL. They render at different sizes depen
       <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
       <span className="text-lg font-bold text-gray-400">acme.com</span>
     </div>
-    <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">How we reduced build times by 80%</h1>
+    <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">
+      How we reduced build times by 80%
+    </h1>
     <p className="text-xl text-gray-500">A deep dive into our new CI/CD pipeline.</p>
   </div>
   <div className="w-[250px] h-[250px] bg-blue-100 rounded-3xl"></div>
@@ -511,10 +538,10 @@ OG images appear when someone shares a URL. They render at different sizes depen
 
 ### Artboard Sizes
 
-| Format | Width | Height | Use Case |
-|--------|-------|--------|----------|
-| **Landscape Certificate** | 1400 | 1000 | Course completion, awards |
-| **A4 Landscape** | 1123 | 794 | Printable certificate |
+| Format                    | Width | Height | Use Case                  |
+| ------------------------- | ----- | ------ | ------------------------- |
+| **Landscape Certificate** | 1400  | 1000   | Course completion, awards |
+| **A4 Landscape**          | 1123  | 794    | Printable certificate     |
 
 ### Certificate Template
 
@@ -524,7 +551,9 @@ OG images appear when someone shares a URL. They render at different sizes depen
     <div className="w-10 h-10 bg-blue-600 rounded-lg"></div>
     <span className="text-2xl font-bold text-gray-900">Acme Academy</span>
   </div>
-  <span className="text-xl text-gray-400 uppercase tracking-widest font-semibold">Certificate of Completion</span>
+  <span className="text-xl text-gray-400 uppercase tracking-widest font-semibold">
+    Certificate of Completion
+  </span>
   <h1 className="text-5xl font-extrabold text-gray-900 text-center">Advanced Design Systems</h1>
   <p className="text-2xl text-gray-500 text-center">Awarded to</p>
   <p className="text-4xl font-bold text-blue-600">Jane Smith</p>
@@ -658,7 +687,6 @@ A single-page professional document that must be scannable in 6 seconds.
 ## Flyers (Detailed Design Guide)
 
 Extends the "Event Posters & Flyers" section above with deeper layout patterns, color psychology, and typographic rules for standalone promotional flyers.
-
 
 ### Core Principles
 
@@ -972,20 +1000,24 @@ Professional business documents — structured, authoritative, and information-r
 ### Document Types
 
 **Report / White Paper:**
+
 - Cover page: Title (text-4xl font-bold), subtitle, author, date, company logo
 - TOC (optional): Section numbers + titles + page refs
 - Sections: Large headers (text-2xl font-bold) + body text (text-sm) + call-out boxes
 
 **Proposal:**
+
 - Cover: Project name + client name + date. Professional and tailored.
 - Problem → Solution → Approach → Timeline → Pricing → Terms
 
 **Brochure:**
+
 - Two or three column layout
 - Feature boxes: bg-muted rounded-xl p-6 with icon + heading + description
 - Back page: contact info, location, website
 
 **One-pager / Fact Sheet:**
+
 - Everything on ONE page. Maximum information density.
 - Header band with title + logo, 2-3 column body with stat boxes
 
@@ -1037,21 +1069,21 @@ Professional business documents — structured, authoritative, and information-r
 
 ### Format Quick Reference
 
-| Asset | Size | Key Rule |
-|-------|------|----------|
-| **Presentation** | 1920x1080 | One idea per slide, min `text-3xl` |
-| **Pitch Deck** | 1920x1080 | 10 slides, big numbers, minimal text |
-| **Event Poster** | 1080x1350 | What + When + Where + CTA |
-| **Email Header** | 600x200 | Brand + one line, 600px max |
-| **Email Hero** | 600x400 | One CTA, simple layout |
-| **Blog Hero** | 1200x675 | Atmospheric, optional text |
-| **OG Image** | 1200x630 | Title + brand, works at 300px |
-| **Certificate** | 1400x1000 | Formal, centered, generous whitespace |
-| **Business Card** | 336x192 / 672x384 | 2 colors max, 3-level hierarchy, front+back |
-| **Resume** | 816x1056 | ONE page, scannable in 6 seconds, one accent |
-| **Flyer** | 816x1056 | Headline PUNCHES, WHAT+WHEN+WHERE+HOW |
-| **Menu** | 816x1056 | Scannable categories, prices visible, appetizing |
-| **Infographic** | 1080x3200 | One key insight, visual data encoding, top-to-bottom |
-| **Invitation** | 672x480 | Emotion first, match formality level exactly |
-| **Newsletter** | 640x1200 | Single column, max 640px, scannable blocks |
-| **Document** | 816x1056 | 5-level hierarchy, professional restraint |
+| Asset             | Size              | Key Rule                                             |
+| ----------------- | ----------------- | ---------------------------------------------------- |
+| **Presentation**  | 1920x1080         | One idea per slide, min `text-3xl`                   |
+| **Pitch Deck**    | 1920x1080         | 10 slides, big numbers, minimal text                 |
+| **Event Poster**  | 1080x1350         | What + When + Where + CTA                            |
+| **Email Header**  | 600x200           | Brand + one line, 600px max                          |
+| **Email Hero**    | 600x400           | One CTA, simple layout                               |
+| **Blog Hero**     | 1200x675          | Atmospheric, optional text                           |
+| **OG Image**      | 1200x630          | Title + brand, works at 300px                        |
+| **Certificate**   | 1400x1000         | Formal, centered, generous whitespace                |
+| **Business Card** | 336x192 / 672x384 | 2 colors max, 3-level hierarchy, front+back          |
+| **Resume**        | 816x1056          | ONE page, scannable in 6 seconds, one accent         |
+| **Flyer**         | 816x1056          | Headline PUNCHES, WHAT+WHEN+WHERE+HOW                |
+| **Menu**          | 816x1056          | Scannable categories, prices visible, appetizing     |
+| **Infographic**   | 1080x3200         | One key insight, visual data encoding, top-to-bottom |
+| **Invitation**    | 672x480           | Emotion first, match formality level exactly         |
+| **Newsletter**    | 640x1200          | Single column, max 640px, scannable blocks           |
+| **Document**      | 816x1056          | 5-level hierarchy, professional restraint            |

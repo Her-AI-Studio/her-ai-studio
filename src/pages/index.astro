@@ -1,59 +1,93 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import zaraImage from "../assets/zara.png";
+import whyBuild from "../assets/why/build.png";
+import whySisterhood from "../assets/why/sisterhood.png";
+import whySkills from "../assets/why/skills.png";
+import stationDiscover from "../assets/stations/discover.png";
+import stationCreate from "../assets/stations/create.png";
+import stationCollaborate from "../assets/stations/collaborate.png";
+import stationShowcase from "../assets/stations/showcase.png";
+import discoverLab from "../assets/discover-lab.png";
 
-const title = "Her AI Studio — A creative AI space for the next generation of women";
+const formspreeId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID ?? "";
+const formspreeUrl = formspreeId ? `https://formspree.io/f/${formspreeId}` : "";
+
+const title = "Her AI Studio, a creative AI space for the next generation of women";
 const description =
-  "Her AI Studio is a free studio program for middle and high school girls building with AI. Where girls become confident creators.";
+  "Her AI Studio is a free studio program for middle and high school girls building with AI. Join the interest list for the first cohort.";
 const ogTitle = "Her AI Studio";
-const ogDescription = "A free creative AI studio for girls in grades 6–12.";
+const ogDescription = "Get updates on a free creative AI studio for girls in grades 6–12.";
 ---
 
 <Layout {title} {description} {ogTitle} {ogDescription}>
 
-  <nav id="studio-nav" aria-label="Main navigation">
+  <nav id="studio-nav" class="studio-nav" aria-label="Main navigation">
     <a href="/" class="nav-logo">Her AI Studio</a>
-    <ul class="nav-links">
+    <ul id="nav-primary" class="nav-links">
       <li><a href="#why">Why</a></li>
+      <li><a href="#discover">Discover</a></li>
       <li><a href="#program">Program</a></li>
-      <li><a href="#gallery">Gallery</a></li>
     </ul>
-    <a href="#join" class="nav-apply">Apply free</a>
+    <div class="nav-trailing">
+      <a href="#join" class="nav-apply">Get updates</a>
+      <button
+        type="button"
+        id="nav-menu-btn"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="nav-primary"
+      >
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr-only">Open menu</span>
+      </button>
+    </div>
   </nav>
+
+  <div
+    id="nav-backdrop"
+    class="nav-backdrop"
+    hidden
+    aria-hidden="true"
+  ></div>
 
   <nav class="room-progress" aria-hidden="true">
     <div class="room-dot active" data-room="door"></div>
     <div class="room-dot" data-room="why"></div>
+    <div class="room-dot" data-room="discover"></div>
     <div class="room-dot" data-room="program"></div>
-    <div class="room-dot" data-room="gallery"></div>
     <div class="room-dot" data-room="join"></div>
   </nav>
 
+  <div id="sr-section" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <main id="main-content">
   <!-- ROOM 1 -->
-  <section id="door" class="studio-room room-door">
+  <section id="door" class="studio-room room-door" aria-labelledby="door-heading">
     <div class="room-inner" style="padding-top:0;padding-bottom:0;">
       <div class="door-grid">
 
         <div>
-          <h1 class="door-h1" data-reveal>
+          <h1 class="door-h1" id="door-heading" data-reveal>
             Her<br><span class="accent">AI</span><br>Studio
           </h1>
           <p class="door-tagline" data-reveal data-delay="1">
-            You don't need to know code.<br>You need to want to create.
+            Show up curious.<br>Imagine it. Build it!
           </p>
           <p class="door-meta" data-reveal data-delay="2">
-            6th–12th grade <span aria-hidden="true">·</span> 100% beginner-friendly <span aria-hidden="true">·</span> Free to apply
+            6-12 grade <span aria-hidden="true">·</span>Always free <span aria-hidden="true">·</span> Beginner-friendly 
           </p>
           <a href="#join" class="door-cta" data-reveal data-delay="3">
-            Enter the studio
+            Get updates
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <div class="scroll-cue" data-reveal data-delay="4">
+          <div class="scroll-cue" data-reveal data-delay="4" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
+            <span>Scroll</span>
           </div>
         </div>
 
@@ -65,7 +99,6 @@ const ogDescription = "A free creative AI studio for girls in grades 6–12.";
             alt="A girl sitting cross-legged on a bean bag, surrounded by floating holographic AI project panels"
             loading="eager"
             fetchpriority="high"
-            style="width:100%;max-width:600px;display:block;"
           />
         </div>
 
@@ -74,145 +107,266 @@ const ogDescription = "A free creative AI studio for girls in grades 6–12.";
   </section>
 
   <!-- ROOM 2 -->
-  <section id="why" class="studio-room room-floor">
+  <section id="why" class="studio-room room-floor" aria-labelledby="why-heading">
     <div class="room-inner">
       <p class="room-label" data-reveal>Why we built this</p>
-      <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2.5rem;max-width:100%;" data-reveal data-delay="1">
+      <h2 id="why-heading" style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2.5rem;max-width:100%;" data-reveal data-delay="1">
         Where girls become<br>confident AI creators.
       </h2>
 
-      <div class="pillars">
-        <div class="pillar-main" data-reveal data-delay="2">
-          <h3 class="pillar-title">Build real things</h3>
-          <p class="pillar-body">
-            Design chatbots, art generators, and apps powered by AI — from your very first session. Not tutorials. Not demos. Yours.
-          </p>
-        </div>
-        <div class="pillars-secondary">
-          <div class="pillar-secondary" data-reveal data-delay="3">
-            <h3 class="pillar-title">A sisterhood</h3>
-            <p class="pillar-body">
+      <div class="why-zigzag">
+        <article class="why-row why-row--media-end" data-reveal data-delay="2">
+          <div class="why-row__text">
+            <h3 class="why-row__title">
+              <span class="why-row__glyph" aria-hidden="true">✦</span>
+              Build real things
+            </h3>
+            <p class="why-row__body">
+              Design chatbots, art generators, and apps powered by AI, from your very first session.
+            </p>
+            
+          </div>
+          <figure class="why-row__figure">
+            <img
+              src={whyBuild.src}
+              width={whyBuild.width}
+              height={whyBuild.height}
+              alt="Three students collaborating at a table with laptops, a tablet, and floating previews of apps and creative tools."
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </article>
+
+        <article class="why-row why-row--media-start" data-reveal data-delay="3">
+          <figure class="why-row__figure">
+            <img
+              src={whySisterhood.src}
+              width={whySisterhood.width}
+              height={whySisterhood.height}
+              alt="Five students gathered around a laptop, learning together in a warm, welcoming space."
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div class="why-row__text">
+            <h3 class="why-row__title">
+              <span class="why-row__glyph why-row__glyph--heart" aria-hidden="true">♡</span>
+              A sisterhood
+            </h3>
+            <p class="why-row__body">
               Learn alongside girls who get it. Mentors, peers, and role models who look like you.
             </p>
           </div>
-          <div class="pillar-secondary" data-reveal data-delay="4">
-            <h3 class="pillar-title">Future-ready skills</h3>
-            <p class="pillar-body">
+        </article>
+
+        <article class="why-row why-row--media-end" data-reveal data-delay="4">
+          <div class="why-row__text">
+            <h3 class="why-row__title">
+              <span class="why-row__glyph why-row__glyph--future" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M3 18c4.5-1 8-4 11.5-8.5S19.5 5.5 21 4"
+                    stroke="currentColor"
+                    stroke-width="1.85"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M3 20.5h18" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" />
+                  <circle cx="21" cy="4" r="2.35" fill="currentColor" />
+                  <path
+                    d="M17.5 3.5 21 4l-1.2 3.2"
+                    stroke="currentColor"
+                    stroke-width="1.35"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              Future-ready skills
+            </h3>
+            <p class="why-row__body">
               Prompt engineering, machine learning intuition, and ethical AI thinking that schools don't teach yet.
             </p>
           </div>
-        </div>
+          <figure class="why-row__figure">
+            <img
+              src={whySkills.src}
+              width={whySkills.width}
+              height={whySkills.height}
+              alt="A student at her desk at night with floating panels about prompts, machine learning, and ethical AI."
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ROOM 3 -->
-  <section id="program" class="studio-room room-benches">
+  <!-- ROOM 3: Discover -->
+  <section id="discover" class="studio-room room-discover" aria-labelledby="discover-heading">
     <div class="room-inner">
-      <p class="room-label" data-reveal>What you'll do here</p>
-      <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:0.75rem;max-width:100%;" data-reveal data-delay="1">
+      <p class="room-label" data-reveal>Discover</p>
+      <div class="discover-grid">
+        <div class="discover-copy">
+          <h2 id="discover-heading" class="discover-h2" data-reveal data-delay="1">
+            Learn deeply.<br /><span class="discover-h2__sub">Then teach someone else.</span>
+          </h2>
+          <p class="discover-lead" data-reveal data-delay="2">
+            We want every girl in this program to level up on a path many great women in AI have walked: go from absorbing ideas to explaining them, from trying prompts to guiding a peer through theirs, from “I get it” to “let me show you.” Leadership here isn’t a title you wait for. It’s a muscle you grow by helping the room rise with you.
+          </p>
+          <p class="discover-kicker" data-reveal data-delay="2">
+            <strong>Standing on broad shoulders.</strong> Women across research, ethics, product, and policy have opened doors in this field. Think of trailblazers like Fei-Fei Li, Joy Buolamwini, and Timnit Gebru alongside countless teachers and mentors whose names never hit a headline. We study their examples not to copy one career, but to remember: the next generation of leaders includes you, and part of your journey is lighting the way for someone behind you.
+          </p>
+         
+        </div>
+        <figure class="discover-figure" data-reveal data-delay="2">
+          <img
+            src={discoverLab.src}
+            width={discoverLab.width}
+            height={discoverLab.height}
+            alt="A mentor presents to a group of students in a neon-lit classroom, with screens about what AI is and portraits of women leaders in the field."
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM 4 -->
+  <section id="program" class="studio-room room-benches" aria-labelledby="program-heading">
+    <div class="room-inner">
+      <p class="room-label" data-reveal>What we're shaping</p>
+      <h2 id="program-heading" style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:0.75rem;max-width:100%;" data-reveal data-delay="1">
         Four stations.<br>Eight weeks.
       </h2>
       <p style="color:var(--muted-foreground);font-size:0.975rem;margin-bottom:2.25rem;max-width:52ch;" data-reveal data-delay="2">
-        No coding background needed — just curiosity and a willingness to make things.
+        We're designing the studio around these beats. Details may evolve as we build the cohort, and we'll share milestones when you join the list.
       </p>
 
       <ol class="workbench-stations">
         <li class="station" data-reveal data-delay="1">
-          <span class="station-num">01</span>
-          <div class="station-title">Discover</div>
-          <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field.</p>
+          <div class="station-text">
+            <span class="sr-only">Station 1 of 4</span>
+            <h3 class="station-title">Discover</h3>
+            <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationDiscover.src}
+              width={stationDiscover.width}
+              height={stationDiscover.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
         </li>
         <li class="station" data-reveal data-delay="2">
-          <span class="station-num">02</span>
-          <div class="station-title">Create</div>
-          <p class="station-body">Build your first AI-powered project — image, text, or voice. Make something no one has made before.</p>
+          <div class="station-text">
+            <span class="sr-only">Station 2 of 4</span>
+            <h3 class="station-title">Create</h3>
+            <p class="station-body">Build your first AI-powered project in image, text, or voice. Make something no one has made before.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationCreate.src}
+              width={stationCreate.width}
+              height={stationCreate.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
         </li>
         <li class="station" data-reveal data-delay="3">
-          <span class="station-num">03</span>
-          <div class="station-title">Collaborate</div>
-          <p class="station-body">Team up on a creative challenge with mentor support. Some of the best ideas need a crew.</p>
+          <div class="station-text">
+            <span class="sr-only">Station 3 of 4</span>
+            <h3 class="station-title">Collaborate</h3>
+            <p class="station-body">Team up on a creative challenge with mentor support. Some of the best ideas need a crew.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationCollaborate.src}
+              width={stationCollaborate.width}
+              height={stationCollaborate.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
         </li>
         <li class="station" data-reveal data-delay="4">
-          <span class="station-num">04</span>
-          <div class="station-title">Showcase</div>
-          <p class="station-body">Present your work at the Studio Showcase to friends, family, and industry guests.</p>
+          <div class="station-text">
+            <span class="sr-only">Station 4 of 4</span>
+            <h3 class="station-title">Showcase</h3>
+            <p class="station-body">Present your work at a studio showcase to friends, family, and industry guests.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationShowcase.src}
+              width={stationShowcase.width}
+              height={stationShowcase.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ROOM 4 -->
-  <section id="gallery" class="studio-room room-gallery">
-    <div class="room-inner">
-      <p class="room-label" data-reveal>What gets made here</p>
-      <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2.25rem;max-width:100%;" data-reveal data-delay="1">
-        Real projects.<br>Real creators.
-      </h2>
-
-      <div class="gallery-wall">
-        <div class="gallery-frame frame-1" data-reveal data-delay="1">
-          <span class="frame-tag">Chatbot</span>
-          <h3 class="frame-title">Luna's Mood Playlist Bot</h3>
-          <blockquote class="frame-quote">
-            "I built a bot that reads your mood and makes you a playlist. My friends use it every day."
-          </blockquote>
-          <cite class="frame-cite">Luna, grade 9</cite>
-        </div>
-
-        <div class="gallery-frame frame-2" data-reveal data-delay="2">
-          <span class="frame-tag">Art Generator</span>
-          <h3 class="frame-title">Amara's AI Portrait Filter</h3>
-          <blockquote class="frame-quote">
-            "I trained it on artists I love. Now it makes portraits in their style. It feels like magic I made myself."
-          </blockquote>
-          <cite class="frame-cite">Amara, grade 11</cite>
-        </div>
-
-        <div class="gallery-frame frame-3" data-reveal data-delay="3">
-          <span class="frame-tag">App</span>
-          <h3 class="frame-title">The Study Buddy App</h3>
-          <blockquote class="frame-quote">
-            "Our team built a study app that notices when you're stressed and adjusts the pace."
-          </blockquote>
-          <cite class="frame-cite">Priya, grade 8</cite>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ROOM 5 -->
-  <section id="join" class="studio-room room-cta">
+  <section id="join" class="studio-room room-cta" aria-labelledby="join-heading">
     <div class="room-inner">
       <div class="cta-layout">
         <div>
-          <p class="room-label cta-label" data-reveal>Apply</p>
-          <h2 class="cta-h2" data-reveal data-delay="1">
-            There's a seat<br>with your<br>name on it.
+          <p class="room-label cta-label" data-reveal>Interest list</p>
+          <h2 class="cta-h2" id="join-heading" data-reveal data-delay="1">
+            Be first to hear<br>when we open<br>the doors.
           </h2>
           <p class="cta-sub" data-reveal data-delay="2">
-            Applications are open for the next cohort. Bring your curiosity — we'll bring everything else.
+            Her AI Studio is still taking shape. Leave your email and we'll send dates, FAQs, and how to apply when the first cohort is ready.
           </p>
-          <div data-reveal data-delay="3" style="display:flex;flex-direction:column;gap:0.5rem;">
-            <p style="font-size:0.9rem;color:oklch(1 0 0 / 0.80);margin:0;">Grades 6–12</p>
-            <p style="font-size:0.9rem;color:oklch(1 0 0 / 0.80);margin:0;">Completely free</p>
-            <p style="font-size:0.9rem;color:oklch(1 0 0 / 0.80);margin:0;">Zero experience needed</p>
+          <div data-reveal data-delay="3" class="cta-bullets">
+            <p>Grades 6–12 (or tell us if you're a parent or educator)</p>
+            <p>Completely free to stay in the loop</p>
+            <p>No experience needed</p>
           </div>
         </div>
 
         <div data-reveal data-delay="2">
-          <form class="apply-form" action="#" method="post" novalidate>
+          <p id="form-status" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+          <form
+            id="interest-form"
+            class="apply-form"
+            method="post"
+            data-formspree-url={formspreeUrl}
+          >
+            <input type="hidden" name="_subject" value="Her AI Studio interest list" />
             <div class="form-field">
               <label for="apply-name">Your name</label>
-              <input type="text" id="apply-name" name="name" placeholder="First name" autocomplete="given-name" required />
+              <input type="text" id="apply-name" name="name" placeholder="First name or nickname" autocomplete="name" required maxlength="120" />
             </div>
             <div class="form-field">
               <label for="apply-email">Email address</label>
-              <input type="email" id="apply-email" name="email" placeholder="you@email.com" autocomplete="email" required />
+              <input type="email" id="apply-email" name="email" placeholder="you@email.com" autocomplete="email" required maxlength="254" />
             </div>
             <div class="form-field">
+              <label for="apply-role">I'm signing up as</label>
+              <select id="apply-role" name="role" required>
+                <option value="">Choose one</option>
+                <option value="student">A student (grades 6–12)</option>
+                <option value="parent">A parent or guardian</option>
+                <option value="educator">An educator</option>
+              </select>
+            </div>
+            <div class="form-field" id="grade-field">
               <label for="apply-grade">What grade are you in?</label>
-              <select id="apply-grade" name="grade" required>
+              <select id="apply-grade" name="grade">
                 <option value="">Select your grade</option>
                 <option value="6">6th grade</option>
                 <option value="7">7th grade</option>
@@ -224,63 +378,264 @@ const ogDescription = "A free creative AI studio for girls in grades 6–12.";
               </select>
             </div>
             <div class="form-field">
-              <label for="apply-create">What do you want to create?</label>
-              <textarea id="apply-create" name="create" placeholder="Tell us in a few sentences — anything goes." rows="3"></textarea>
+              <label for="apply-create">What do you want to create? <span class="label-optional">(optional)</span></label>
+              <textarea id="apply-create" name="message" placeholder="Anything you're curious about or excited to build." rows="4" maxlength="2000"></textarea>
             </div>
-            <button type="submit" class="submit-btn">Apply now — it's free</button>
-            <p class="form-fine-print">We read every application. You'll hear from us within a week.</p>
+            <input
+              type="text"
+              name="_gotcha"
+              class="form-honeypot"
+              tabindex="-1"
+              autocomplete="off"
+              autocapitalize="off"
+              autocorrect="off"
+              spellcheck="false"
+              data-lpignore="true"
+              data-1p-ignore
+              data-bwignore
+              aria-hidden="true"
+            />
+            <button type="submit" class="submit-btn" id="interest-submit">
+              {formspreeUrl ? "Join the interest list" : "Configure Formspree to enable"}
+            </button>
+            <p class="form-fine-print">
+              We respect your inbox. Unsubscribe anytime. If you're under 13, a parent should submit for you.
+            </p>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
+  <footer class="site-footer">
     <div class="studio-footer">
-      <p>© 2026 Her AI Studio</p>
-      <p>A community program for the next generation of women in AI.</p>
+      <div class="footer-brand">
+        <p>© 2026 Her AI Studio</p>
+        <p>A community program for the next generation of women in AI.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#why">Why</a>
+        <a href="#discover">Discover</a>
+        <a href="#program">Program</a>
+        <a href="#join">Interest list</a>
+      </nav>
     </div>
   </footer>
+  </main>
 
-  <script>
-    const revealObserver = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("is-visible"); }),
-      { threshold: 0.12, rootMargin: "0px 0px -32px 0px" }
+  <script is:inline define:vars={{ formspreeUrl }}>
+  const revealObserver = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("is-visible");
+      }),
+    { threshold: 0.12, rootMargin: "0px 0px -32px 0px" },
+  );
+  document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
+
+  const nav = document.getElementById("studio-nav");
+  if (nav) {
+    window.addEventListener(
+      "scroll",
+      () => nav.classList.toggle("nav-scrolled", window.scrollY > 60),
+      { passive: true },
     );
-    document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
+  }
 
-    const nav = document.getElementById("studio-nav");
-    if (nav) {
-      window.addEventListener("scroll", () =>
-        nav.classList.toggle("nav-scrolled", window.scrollY > 60), { passive: true });
-    }
+  const rooms = document.querySelectorAll(".studio-room");
+  const dots = document.querySelectorAll(".room-dot");
+  const srSection = document.getElementById("sr-section");
+  const sectionTitles = {
+    door: "Intro",
+    why: "Why we built this",
+    discover: "Discover: learn, then teach",
+    program: "What we're shaping",
+    join: "Interest list",
+  };
 
-    const rooms = document.querySelectorAll(".studio-room");
-    const dots  = document.querySelectorAll(".room-dot");
-    const roomObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            dots.forEach((d) => d.classList.remove("active"));
-            document.querySelector(`.room-dot[data-room="${e.target.id}"]`)?.classList.add("active");
+  const roomObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          dots.forEach((d) => d.classList.remove("active"));
+          const match = document.querySelector('.room-dot[data-room="' + id + '"]');
+          if (match) match.classList.add("active");
+          if (srSection && sectionTitles[id]) {
+            srSection.textContent = "Section: " + sectionTitles[id];
           }
-        });
-      },
-      { threshold: 0.45 }
-    );
-    rooms.forEach((r) => roomObserver.observe(r));
-
-    const form = document.querySelector(".apply-form") as HTMLFormElement | null;
-    if (form) {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const btn = form.querySelector(".submit-btn") as HTMLButtonElement;
-        if (btn) {
-          btn.textContent = "Application received";
-          btn.style.background = "oklch(1 0 0 / 0.35)";
-          btn.disabled = true;
         }
       });
+    },
+    { threshold: 0.45 },
+  );
+  rooms.forEach((r) => roomObserver.observe(r));
+
+  const menuBtn = document.getElementById("nav-menu-btn");
+  const backdrop = document.getElementById("nav-backdrop");
+  const navPrimary = document.getElementById("nav-primary");
+
+  function setMenuLabel(opened) {
+    const sr = menuBtn && menuBtn.querySelector(".sr-only");
+    if (sr) sr.textContent = opened ? "Close menu" : "Open menu";
+  }
+
+  function closeMenu() {
+    if (!nav || !menuBtn) return;
+    nav.classList.remove("nav-menu-open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    setMenuLabel(false);
+    if (backdrop) {
+      backdrop.hidden = true;
+      backdrop.setAttribute("aria-hidden", "true");
     }
+    document.body.classList.remove("nav-menu-open");
+  }
+
+  function openMenu() {
+    if (!nav || !menuBtn) return;
+    nav.classList.add("nav-menu-open");
+    menuBtn.setAttribute("aria-expanded", "true");
+    setMenuLabel(true);
+    if (backdrop) {
+      backdrop.hidden = false;
+      backdrop.setAttribute("aria-hidden", "false");
+    }
+    document.body.classList.add("nav-menu-open");
+  }
+
+  if (menuBtn && nav && backdrop && navPrimary) {
+    menuBtn.addEventListener("click", () => {
+      if (nav.classList.contains("nav-menu-open")) closeMenu();
+      else openMenu();
+    });
+    backdrop.addEventListener("click", closeMenu);
+    navPrimary.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => closeMenu());
+    });
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+    window.addEventListener("resize", () => {
+      if (window.matchMedia("(min-width: 641px)").matches) closeMenu();
+    });
+  }
+
+  const form = document.getElementById("interest-form");
+  const submitBtn = document.getElementById("interest-submit");
+  const formStatus = document.getElementById("form-status");
+  const roleSelect = document.getElementById("apply-role");
+  const gradeField = document.getElementById("grade-field");
+  const gradeSelect = document.getElementById("apply-grade");
+
+  function syncGradeRequired() {
+    if (!roleSelect || !gradeSelect) return;
+    const isStudent = roleSelect.value === "student";
+    if (gradeField) gradeField.hidden = !isStudent;
+    gradeSelect.required = isStudent;
+    if (!isStudent) gradeSelect.value = "";
+  }
+  if (roleSelect) {
+    roleSelect.addEventListener("change", syncGradeRequired);
+    syncGradeRequired();
+  }
+
+  function setFormStatus(text, isError) {
+    if (!formStatus) return;
+    formStatus.textContent = text;
+    formStatus.classList.toggle("is-error", Boolean(isError));
+  }
+
+  if (form && submitBtn) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!formStatus) return;
+
+      const endpoint = form.getAttribute("data-formspree-url") || "";
+      if (!endpoint) {
+        setFormStatus(
+          "Add PUBLIC_FORMSPREE_FORM_ID to your .env file, then restart the dev server.",
+          true,
+        );
+        formStatus.focus();
+        return;
+      }
+
+      if (roleSelect && roleSelect.value === "student" && gradeSelect && !gradeSelect.value) {
+        gradeSelect.focus();
+        setFormStatus("Please choose your grade.", true);
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      setFormStatus("", false);
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.textContent;
+      submitBtn.textContent = "Sending…";
+
+      const honeypot = form.querySelector('input[name="_gotcha"]');
+      const emailEl = form.querySelector('input[name="email"]');
+      const nameEl = form.querySelector('input[name="name"]');
+      if (honeypot) {
+        const h = honeypot.value.trim();
+        if (h) {
+          const emailVal = (emailEl && emailEl.value ? emailEl.value : "").trim();
+          const nameVal = (nameEl && nameEl.value ? nameEl.value : "").trim();
+          const hl = h.toLowerCase();
+          if (hl === emailVal.toLowerCase() || hl === nameVal.toLowerCase()) {
+            honeypot.value = "";
+          }
+        }
+      }
+
+      const fd = new FormData(form);
+
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" },
+        });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          form.reset();
+          syncGradeRequired();
+          setFormStatus(
+            "You're on the list. Watch your inbox for updates from Her AI Studio.",
+            false,
+          );
+          formStatus.focus();
+        } else if (res.status === 403) {
+          setFormStatus(
+            "That submission could not go through. Try again in a moment or use a different network.",
+            true,
+          );
+          formStatus.focus();
+        } else if (data && data.errors) {
+          const first = Object.keys(data.errors)[0];
+          const msg =
+            first && data.errors[first] && data.errors[first][0]
+              ? data.errors[first][0]
+              : "Something went wrong. Try again in a moment.";
+          setFormStatus(msg, true);
+          formStatus.focus();
+        } else {
+          setFormStatus("We could not send that. Check your connection and try again.", true);
+          formStatus.focus();
+        }
+      } catch {
+        setFormStatus("We could not send that. Check your connection and try again.", true);
+        formStatus.focus();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
+  }
   </script>
 </Layout>

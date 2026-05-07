@@ -11,7 +11,7 @@ export default [
   },
   ...eslintPluginAstro.configs["flat/recommended"],
   {
-    files: ["astro.config.mjs"],
+    files: ["astro.config.mjs", "scripts/**/*.mjs"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
