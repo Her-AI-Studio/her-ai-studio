@@ -504,7 +504,7 @@
 
 .door-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  grid-template-columns: minmax(0, 0.68fr) minmax(0, 1.32fr);
   gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: center;
   min-height: 100svh;
@@ -515,14 +515,19 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  align-self: center;
   background: transparent;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  line-height: 0;
 }
 
 .door-hero-col img {
   width: 100%;
-  max-width: min(820px, 52vw);
+  max-width: min(1040px, 62vw);
   height: auto;
   display: block;
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {
@@ -533,7 +538,7 @@
   .door-hero-col {
     order: -1;
     justify-content: center;
-    max-width: min(440px, 88vw);
+    max-width: min(560px, 94vw);
     margin: 0 auto;
   }
 
@@ -1056,6 +1061,21 @@
   color: oklch(1 0 0 / 0.8);
   margin: 0;
   max-width: 100%;
+}
+
+.cta-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.cta-logo {
+  display: block;
+  width: 100%;
+  max-width: min(320px, 88vw);
+  height: auto;
+  margin-top: 1.75rem;
 }
 
 /* ── Form ─────────────────────────────────────────────────── */

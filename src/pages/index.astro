@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import logoImage from "../assets/logo.png";
+import heroBubble from "../assets/hero-bubble.png";
 import whyBuild from "../assets/why/build.png";
 import whySisterhood from "../assets/why/sisterhood.png";
 import whySkills from "../assets/why/skills.png";
@@ -93,10 +94,10 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
 
         <div class="door-hero-col" data-reveal data-delay="1">
           <img
-            src={logoImage.src}
-            width={logoImage.width}
-            height={logoImage.height}
-            alt=""
+            src={heroBubble.src}
+            width={heroBubble.width}
+            height={heroBubble.height}
+            alt="Illustration of a girl in a hanging bubble chair with a laptop, orbited by a ring of purple stars on a dark background."
             loading="eager"
             fetchpriority="high"
           />
@@ -323,7 +324,7 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
   <section id="join" class="studio-room room-cta" aria-labelledby="join-heading">
     <div class="room-inner">
       <div class="cta-layout">
-        <div>
+        <div class="cta-copy">
           <p class="room-label cta-label" data-reveal>Interest list</p>
           <h2 class="cta-h2" id="join-heading" data-reveal data-delay="1">
             Be first to hear<br>when we open<br>the doors.
@@ -336,6 +337,17 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
             <p>Completely free to stay in the loop</p>
             <p>No experience needed</p>
           </div>
+          <img
+            class="cta-logo"
+            src={logoImage.src}
+            width={logoImage.width}
+            height={logoImage.height}
+            alt="Her AI Studio"
+            loading="lazy"
+            decoding="async"
+            data-reveal
+            data-delay="4"
+          />
         </div>
 
         <div data-reveal data-delay="2">
