@@ -7,7 +7,7 @@ import whySisterhood from "../assets/why/sisterhood.png";
 import whySkills from "../assets/why/skills.png";
 import stationDiscover from "../assets/stations/discover.png";
 import stationCreate from "../assets/stations/create.png";
-import stationCollaborate from "../assets/stations/collaborate.png";
+import stationEngineer from "../assets/stations/engineer.png";
 import stationShowcase from "../assets/stations/showcase.png";
 import discoverLab from "../assets/discover-lab.png";
 
@@ -18,7 +18,7 @@ const title = "Her AI Studio, a creative AI space for the next generation of wom
 const description =
   "Her AI Studio is a free studio program for middle and high school girls building with AI. Join the interest list for the first cohort.";
 const ogTitle = "Her AI Studio";
-const ogDescription = "Get updates on a free creative AI studio for girls in grades 6–12.";
+const ogDescription = "Get updates on a free creative AI studio for girls in grades 9–12.";
 ---
 
 <Layout {title} {description} {ogTitle} {ogDescription}>
@@ -76,7 +76,7 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
             Show up curious.<br>Imagine it. Build it!
           </p>
           <p class="door-meta" data-reveal data-delay="2">
-            6-12 grade <span aria-hidden="true">·</span>Always free <span aria-hidden="true">·</span> Beginner-friendly 
+            For grades 9-12 <span aria-hidden="true">·</span>Always free <span aria-hidden="true">·</span> Beginner-friendly 
           </p>
           <a href="#join" class="door-cta" data-reveal data-delay="3">
             Get updates
@@ -112,7 +112,7 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
     <div class="room-inner">
       <p class="room-label" data-reveal>Why we built this</p>
       <h2 id="why-heading" style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2.5rem;max-width:100%;" data-reveal data-delay="1">
-        Where girls become<br>confident AI creators.
+        Where girls become<br>confident AI creators, builders, and engineers.
       </h2>
 
       <div class="why-zigzag">
@@ -187,7 +187,7 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
               Future-ready skills
             </h3>
             <p class="why-row__body">
-              Prompt engineering, machine learning intuition, and ethical AI thinking that schools don't teach yet.
+              Local AI, prompt engineering, machine learning intuition, and ethical AI thinking that schools don't teach yet.
             </p>
           </div>
           <figure class="why-row__figure">
@@ -241,7 +241,7 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
     <div class="room-inner">
       <p class="room-label" data-reveal>What we're shaping</p>
       <h2 id="program-heading" style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:0.75rem;max-width:100%;" data-reveal data-delay="1">
-        Four stations.<br>Eight weeks.
+        Three stations.<br>Six weeks.
       </h2>
       <p style="color:var(--muted-foreground);font-size:0.975rem;margin-bottom:2.25rem;max-width:52ch;" data-reveal data-delay="2">
         We're designing the studio around these beats. Details may evolve as we build the cohort, and we'll share milestones when you join the list.
@@ -250,9 +250,9 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
       <ol class="workbench-stations">
         <li class="station" data-reveal data-delay="1">
           <div class="station-text">
-            <span class="sr-only">Station 1 of 4</span>
-            <h3 class="station-title">Discover</h3>
-            <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field.</p>
+            <span class="sr-only">Station 1</span>
+            <h3 class="station-title">Beginners: Discover</h3>
+            <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field. Build your first locally-powered AI app.</p>
           </div>
           <figure class="station-sticker">
             <img
@@ -267,9 +267,9 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
         </li>
         <li class="station" data-reveal data-delay="2">
           <div class="station-text">
-            <span class="sr-only">Station 2 of 4</span>
-            <h3 class="station-title">Create</h3>
-            <p class="station-body">Build your first AI-powered project in image, text, or voice. Make something no one has made before.</p>
+            <span class="sr-only">Station 2</span>
+            <h3 class="station-title">Intermediate: Create</h3>
+            <p class="station-body">Build your first AI-powered project bridging hardware and software in image, text, or voice.</p>
           </div>
           <figure class="station-sticker">
             <img
@@ -284,15 +284,15 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
         </li>
         <li class="station" data-reveal data-delay="3">
           <div class="station-text">
-            <span class="sr-only">Station 3 of 4</span>
-            <h3 class="station-title">Collaborate</h3>
-            <p class="station-body">Team up on a creative challenge with mentor support. Some of the best ideas need a crew.</p>
+            <span class="sr-only">Station 3</span>
+            <h3 class="station-title">Advanced: Engineer</h3>
+            <p class="station-body">Build your cyber deck. Learn to program with AI, and use AI to program your hardware.</p>
           </div>
           <figure class="station-sticker">
             <img
-              src={stationCollaborate.src}
-              width={stationCollaborate.width}
-              height={stationCollaborate.height}
+              src={stationEngineer.src}
+              width={stationEngineer.width}
+              height={stationEngineer.height}
               alt=""
               loading="lazy"
               decoding="async"
@@ -301,8 +301,8 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
         </li>
         <li class="station" data-reveal data-delay="4">
           <div class="station-text">
-            <span class="sr-only">Station 4 of 4</span>
-            <h3 class="station-title">Showcase</h3>
+            <span class="sr-only">Bonus: Showcase</span>
+            <h3 class="station-title">Capstone</h3>
             <p class="station-body">Present your work at a studio showcase to friends, family, and industry guests.</p>
           </div>
           <figure class="station-sticker">
@@ -333,7 +333,7 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
             Her AI Studio is still taking shape. Leave your email and we'll send dates, FAQs, and how to apply when the first cohort is ready.
           </p>
           <div data-reveal data-delay="3" class="cta-bullets">
-            <p>Grades 6–12 (or tell us if you're a parent or educator)</p>
+            <p>Grades 9–12 (or tell us if you're a parent or educator)</p>
             <p>Completely free to stay in the loop</p>
             <p>No experience needed</p>
           </div>
@@ -371,7 +371,8 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
               <label for="apply-role">I'm signing up as</label>
               <select id="apply-role" name="role" required>
                 <option value="">Choose one</option>
-                <option value="student">A student (grades 6–12)</option>
+                <option value="under">A student (under 9th grade</option>
+                <option value="student">A student (grades 9–12)</option>
                 <option value="parent">A parent or guardian</option>
                 <option value="educator">An educator</option>
               </select>
@@ -380,9 +381,7 @@ const ogDescription = "Get updates on a free creative AI studio for girls in gra
               <label for="apply-grade">What grade are you in?</label>
               <select id="apply-grade" name="grade">
                 <option value="">Select your grade</option>
-                <option value="6">6th grade</option>
-                <option value="7">7th grade</option>
-                <option value="8">8th grade</option>
+                <option value="under">under 9th grade</option>
                 <option value="9">9th grade</option>
                 <option value="10">10th grade</option>
                 <option value="11">11th grade</option>

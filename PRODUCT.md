@@ -6,7 +6,7 @@ brand
 
 ## Users
 
-Middle and high school girls, grades 6–12, who are curious about AI but aren't sure they belong in tech. They've heard "AI" in school or online, feel excited but intimidated, and need reassurance before they'll commit. Parents and educators may also arrive at this page, but the primary design target is the girl herself.
+High school girls, grades 9–12, who are curious about AI but aren't sure they belong in tech. They've heard "AI" in school or online, feel excited but intimidated, and need reassurance before they'll commit. Parents and educators may also arrive at this page, but the primary design target is the girl herself.
 
 ## Product Purpose
 

@@ -287,17 +287,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  transition:
-    background 0.35s,
-    border-color 0.35s,
-    backdrop-filter 0.35s;
-}
-
-#studio-nav.nav-scrolled {
   background: oklch(0.99 0.008 330 / 0.9);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
+
+
 
 .nav-logo {
   font-family: var(--font-inter);
