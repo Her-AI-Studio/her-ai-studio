@@ -403,6 +403,11 @@
   color: var(--foreground);
 }
 
+.nav-prospectus {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+}
+
 .nav-apply {
   font-weight: 700;
   font-size: 0.95rem;
