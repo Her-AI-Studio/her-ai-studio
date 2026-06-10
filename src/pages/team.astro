@@ -1,0 +1,243 @@
+---
+import Layout from "../layouts/Layout.astro";
+import zaraline from "../assets/zara-line.png";
+import jen from "../assets/jen.jpg";
+
+const title = "Our Team — Her AI Studio";
+const description = "Meet the people building Her AI Studio, a free creative AI program for girls and people who identify as women.";
+
+const team = [
+  {
+    name: "Jen Looper",
+    role: "Founder & Director",
+    bio: "Developer advocate, educator, and community builder passionate about closing the gender gap in AI and tech.",
+    image: jen,
+    imageAlt: "Jen Looper",
+    web: "https://jenlooper.com"
+  },
+  {
+    name: "Coming soon",
+    role: "Curriculum & Learning Lead",
+    bio: "We're building the team. If you're an educator passionate about AI and women in STEM, reach out.",
+    image: zaraline,
+    imageAlt: "",
+  },
+  {
+    name: "Coming soon",
+    role: "Community & Mentorship Lead",
+    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
+    image: zaraline,
+    imageAlt: "",
+  },
+  {
+    name: "Coming soon",
+    role: "Technology Lead",
+    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
+    image: zaraline,
+    imageAlt: "",
+  },
+  {
+    name: "Coming soon",
+    role: "Partnerships & Sponsorships Lead",
+    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
+    image: zaraline,
+    imageAlt: "",
+  },
+  {
+    name: "Coming soon",
+    role: "Operations Lead",
+    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
+    image: zaraline,
+    imageAlt: "",
+  },
+];
+---
+
+<Layout {title} {description}>
+
+  <nav id="studio-nav" class="studio-nav" aria-label="Main navigation">
+    <a href="/" class="nav-logo">Her AI Studio</a>
+    <ul id="nav-primary" class="nav-links">
+      <li><a href="/#why">Why</a></li>
+      <li><a href="/#discover">Discover</a></li>
+      <li><a href="/#program">Program</a></li>
+      <li><a href="/team" class="nav-prospectus" aria-current="page">Team</a></li>
+      <li><a href="/prospectus.pdf" target="_blank" rel="noopener">Prospectus</a></li>
+    </ul>
+    <div class="nav-trailing">
+      <a href="/#join" class="nav-apply">Get updates</a>
+      <button
+        type="button"
+        id="nav-menu-btn"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="nav-primary"
+      >
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr-only">Open menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="nav-backdrop" class="nav-backdrop" hidden aria-hidden="true"></div>
+
+  <main id="main-content">
+    <section class="team-hero">
+      <div class="team-inner">
+        <p class="room-label">The people behind it</p>
+        <h1 class="team-h1">Built by women at the grass roots<br>for the next generation.</h1>
+        <p class="team-lead">
+          Her AI Studio is led by a small, mission-driven team of educators, engineers, and community builders who believe every woman deserves a seat at the AI table.
+        </p>
+      </div>
+    </section>
+
+    <section class="team-grid-section" aria-labelledby="team-members-heading">
+      <div class="team-inner">
+        <h2 id="team-members-heading" class="sr-only">Team members</h2>
+        <ul class="team-grid" role="list">
+          {team.map((member) => (
+            <li class="team-card">
+              <div class="team-card__portrait">
+                {member.image ? (
+                  <img
+                    src={member.image.src}
+                    width={member.image.width}
+                    height={member.image.height}
+                    alt={member.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="team-card__placeholder" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                      <circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="2"/>
+                      <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                )}
+              </div>
+              <div class="team-card__body">
+                <h3 class="team-card__name">{member.name}</h3>
+                <p class="team-card__role">{member.role}</p>
+                <p class="team-card__bio">{member.bio}</p>
+                <p class="team-card__bio"><a class="underline" href="{member.web}">{member.web}</a></p>
+
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="team-board-section" aria-labelledby="board-heading">
+      <div class="team-inner">
+        <p class="room-label">Governance</p>
+        <h2 id="board-heading" class="team-board-h2">Board of Directors</h2>
+        <p class="team-board-lead">
+          Her AI Studio is governed by an independent board committed to our mission of equity, access, and excellence in AI education.
+        </p>
+        <ul class="team-board-list" role="list">
+          {[1, 2, 3].map(() => (
+            <li class="team-board-card">
+              <div class="team-board-card__avatar" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <p class="team-board-card__name">Coming soon</p>
+                <p class="team-board-card__title">Board Member</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="team-board-note">
+          We are actively recruiting founding board members with expertise in education, AI, nonprofit management, and fundraising. <a href="/#join">Reach out if you're interested.</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="team-join-section">
+      <div class="team-inner team-join-inner">
+        <div>
+          <h2 class="team-join-h2">Want to be part of this?</h2>
+          <p class="team-join-body">
+            We're looking for mentors, advisors, curriculum contributors, and community partners. Hardware is expensive! We need sponsors! If you're passionate about women in AI, let's talk.
+          </p>
+        </div>
+        <a href="/#join" class="team-join-cta">
+          Get in touch
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="studio-footer">
+        <div class="footer-brand">
+          <p>© 2026 Her AI Studio</p>
+          <p>A 501(c)(3) nonprofit registered in Massachusetts, USA. EIN 42-3042277</p>
+          <p>A community program for the next generation of women in AI.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/#why">Why</a>
+          <a href="/#discover">Discover</a>
+          <a href="/#program">Program</a>
+          <a href="/team">Team</a>
+          <a href="/#join">Interest list</a>
+          <a href="https://discord.gg/jRkR2t4UpC" target="_blank" rel="noopener" class="footer-discord">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+            Join our Discord
+          </a>
+        </nav>
+      </div>
+    </footer>
+  </main>
+
+  <script is:inline>
+    const nav = document.getElementById("studio-nav");
+    if (nav) {
+      window.addEventListener("scroll", () =>
+        nav.classList.toggle("nav-scrolled", window.scrollY > 60), { passive: true }
+      );
+    }
+
+    const menuBtn = document.getElementById("nav-menu-btn");
+    const backdrop = document.getElementById("nav-backdrop");
+    const navPrimary = document.getElementById("nav-primary");
+
+    function closeMenu() {
+      if (!nav || !menuBtn) return;
+      nav.classList.remove("nav-menu-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      const sr = menuBtn.querySelector(".sr-only");
+      if (sr) sr.textContent = "Open menu";
+      if (backdrop) { backdrop.hidden = true; backdrop.setAttribute("aria-hidden", "true"); }
+      document.body.classList.remove("nav-menu-open");
+    }
+
+    function openMenu() {
+      if (!nav || !menuBtn) return;
+      nav.classList.add("nav-menu-open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      const sr = menuBtn.querySelector(".sr-only");
+      if (sr) sr.textContent = "Close menu";
+      if (backdrop) { backdrop.hidden = false; backdrop.setAttribute("aria-hidden", "false"); }
+      document.body.classList.add("nav-menu-open");
+    }
+
+    if (menuBtn && nav && backdrop && navPrimary) {
+      menuBtn.addEventListener("click", () => {
+        if (nav.classList.contains("nav-menu-open")) closeMenu(); else openMenu();
+      });
+      backdrop.addEventListener("click", closeMenu);
+      navPrimary.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+      window.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+      window.addEventListener("resize", () => { if (window.matchMedia("(min-width: 641px)").matches) closeMenu(); });
+    }
+  </script>
+</Layout>
