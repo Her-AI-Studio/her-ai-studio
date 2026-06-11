@@ -1577,6 +1577,243 @@
   transform: translateY(-2px);
 }
 
+/* ── Sponsors page ────────────────────────────────────────── */
+.sponsors-hero {
+  padding: 10rem 0 5rem;
+  background: var(--background);
+}
+
+.sponsors-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.2s;
+}
+
+.sponsors-hero-cta:hover {
+  text-decoration-color: var(--primary);
+}
+
+.sponsors-tiers-section {
+  padding: 4rem 0 6rem;
+  background: oklch(0.97 0.012 340);
+  border-top: 1px solid var(--border);
+}
+
+.sponsors-tier {
+  background: var(--card);
+  border-radius: 1.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.sponsors-tier:last-child {
+  margin-bottom: 0;
+}
+
+.sponsors-tier__header {
+  padding: 0.65rem 1.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.sponsors-tier__label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.tier-founding .sponsors-tier__header  { background: oklch(0.56 0.23 291); }
+.tier-founding .sponsors-tier__label   { color: white; }
+.tier-program  .sponsors-tier__header  { background: oklch(0.62 0.17 232); }
+.tier-program  .sponsors-tier__label   { color: white; }
+.tier-hardware .sponsors-tier__header  { background: oklch(0.6 0.16 145); }
+.tier-hardware .sponsors-tier__label   { color: white; }
+.tier-software .sponsors-tier__header  { background: oklch(0.58 0.19 268); }
+.tier-software .sponsors-tier__label   { color: white; }
+.tier-community .sponsors-tier__header { background: var(--muted); }
+.tier-community .sponsors-tier__label  { color: var(--muted-foreground); }
+
+.sponsors-tier__body {
+  padding: 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto;
+  gap: 0.5rem 2rem;
+  align-items: start;
+}
+
+.sponsors-tier__desc {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 56ch;
+  grid-column: 1;
+}
+
+.sponsors-tier__perks {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  grid-column: 1;
+}
+
+.sponsors-tier__perks li {
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.sponsors-tier__check {
+  color: var(--primary);
+  font-size: 0.6rem;
+  flex-shrink: 0;
+}
+
+.sponsors-tier__current {
+  grid-column: 1;
+  margin-top: 0.75rem;
+}
+
+.sponsors-tier__current-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  margin: 0 0 0.5rem;
+}
+
+.sponsors-tier__sponsor-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sponsors-tier__sponsor-card {
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-lift);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sponsors-tier__sponsor-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sponsors-tier__sponsor-logo {
+  height: 40px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  display: block;
+}
+
+.sponsors-tier__sponsor-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 0.45rem 1rem;
+  border: 1.5px solid var(--primary);
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.sponsors-tier__sponsor-visit:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.sponsors-tier__sponsor-blurb {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 72ch;
+}
+
+.sponsors-tier__cta {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: center;
+  justify-self: end;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 0.65rem 1.25rem;
+  border: 2px solid var(--primary);
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sponsors-tier__cta:hover {
+  background: var(--primary);
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .sponsors-tier__body {
+    grid-template-columns: 1fr;
+  }
+  .sponsors-tier__cta {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    margin-top: 1rem;
+  }
+}
+
+.sponsors-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.sponsors-cta-secondary {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: oklch(1 0 0 / 0.8);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ── Error / utility pages ────────────────────────────────── */
 .error-page {
   min-height: 100svh;
