@@ -57,7 +57,8 @@
   --input: oklch(0.97 0.006 270);
   --ring: oklch(0.56 0.23 291);
 
-  /* Font */
+  /* Fonts */
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   /* Gradients — violet → indigo → sky blue (mirrors image's own color flow) */
@@ -102,15 +103,17 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-inter);
+    font-family: var(--font-display);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.025em;
     color: var(--foreground);
+    text-wrap: balance;
   }
 
   p {
     max-width: 68ch;
+    text-wrap: pretty;
   }
 
   :focus-visible {
@@ -291,12 +294,18 @@
   backdrop-filter: blur(18px) saturate(1.6);
   -webkit-backdrop-filter: blur(18px) saturate(1.6);
   border-bottom: 1px solid oklch(0.82 0.08 291 / 0.35);
+  transition: background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
 }
 
-
+#studio-nav.nav-scrolled {
+  background: oklch(0.93 0.05 291 / 0.88);
+  backdrop-filter: blur(24px) saturate(2);
+  -webkit-backdrop-filter: blur(24px) saturate(2);
+  border-bottom-color: oklch(0.82 0.08 291 / 0.55);
+}
 
 .nav-logo {
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 1rem;
   color: var(--foreground);
@@ -422,6 +431,7 @@
 }
 
 .nav-apply {
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
@@ -567,7 +577,7 @@
 }
 
 .door-lead-h1 {
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(2.75rem, 6vw, 5rem);
   line-height: 1.1;
@@ -601,8 +611,10 @@
 
 .door-cta {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.05rem;
   text-decoration: none;
@@ -610,15 +622,17 @@
   border-radius: 999px;
   background: var(--gradient-hero);
   color: white;
-  box-shadow: var(--shadow-glow);
+  box-shadow: var(--shadow-lift);
   transition:
     opacity 0.2s,
-    transform 0.2s;
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .door-cta:hover {
   opacity: 0.9;
   transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
 }
 
 .scroll-cue {
@@ -712,7 +726,7 @@
   align-items: center;
   gap: 0.4rem;
   margin: 0;
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.3rem, 2.5vw, 1.65rem);
   letter-spacing: -0.02em;
@@ -755,31 +769,17 @@
   max-width: 38ch;
 }
 
-.why-row__tagline {
-  margin: 0.2rem 0 0;
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
-  font-weight: 700;
-  color: var(--why-text-fg);
-  line-height: 1.35;
-}
-
-.why-row__tagline strong {
-  color: var(--primary);
-  font-weight: 800;
-}
-
 .why-row__figure {
   margin: 0;
   grid-column: 2;
   grid-row: 1;
-  align-self: center;
+  align-self: stretch;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-end;
   padding: 0;
   min-height: 0;
-  height: auto;
   background: var(--why-fill);
 }
 
@@ -791,11 +791,11 @@
 
 .why-row__figure img {
   display: block;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
-  max-height: var(--why-art-max-h);
-  object-fit: contain;
+  max-height: none;
+  object-fit: cover;
   object-position: right center;
 }
 
@@ -815,6 +815,15 @@
     grid-column: 1 !important;
     grid-row: 1 !important;
     height: auto;
+    align-self: auto;
+    align-items: center;
+  }
+
+  .why-row__figure img {
+    width: auto;
+    height: auto;
+    max-height: var(--why-art-max-h);
+    object-fit: contain;
   }
 
   .why-row__text {
@@ -843,7 +852,7 @@
 
 .discover-h2 {
   margin: 0 0 1rem;
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(2.1rem, 4.5vw, 3.25rem);
   letter-spacing: -0.03em;
@@ -862,37 +871,16 @@
 
 .discover-lead,
 .discover-kicker {
-  margin: 0 0 1rem;
+  margin: 2rem 0 1.15rem;
   font-size: clamp(1rem, 1.6vw, 1.15rem);
   line-height: 1.6;
   color: var(--muted-foreground);
   max-width: 52ch;
 }
 
-.discover-kicker {
-  margin-bottom: 1.15rem;
-}
-
 .discover-kicker strong {
   color: var(--foreground);
   font-weight: 800;
-}
-
-.discover-points {
-  margin: 0;
-  padding-left: 1.15rem;
-  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
-  line-height: 1.55;
-  color: var(--muted-foreground);
-  max-width: 50ch;
-}
-
-.discover-points li {
-  margin-bottom: 0.45rem;
-}
-
-.discover-points li:last-child {
-  margin-bottom: 0;
 }
 
 .discover-figure {
@@ -974,7 +962,7 @@
 
 .station .station-title {
   margin: 0;
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(1.1rem, 1.8vw, 1.3rem);
   line-height: 1.25;
@@ -1080,6 +1068,18 @@
   color: oklch(1 0 0 / 0.8);
   margin: 0;
   max-width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.cta-bullets p::before {
+  content: "✦";
+  font-size: 0.65em;
+  color: oklch(1 0 0 / 0.5);
+  flex-shrink: 0;
+  position: relative;
+  top: -0.05em;
 }
 
 .cta-copy {
@@ -1212,7 +1212,7 @@
   color: var(--primary);
   border: none;
   border-radius: 999px;
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
@@ -1278,7 +1278,8 @@
   color: var(--foreground);
 }
 
-.footer-discord {
+.footer-discord,
+.footer-linkedin {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -1327,7 +1328,7 @@
 }
 
 .team-h1 {
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(2.75rem, 6vw, 5rem);
   line-height: 1.1;
@@ -1416,7 +1417,7 @@
 }
 
 .team-card__name {
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.2rem;
   letter-spacing: -0.02em;
@@ -1449,7 +1450,7 @@
 }
 
 .team-board-h2 {
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   letter-spacing: -0.03em;
@@ -1539,7 +1540,7 @@
 }
 
 .team-join-h2 {
-  font-family: var(--font-inter);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   letter-spacing: -0.03em;
@@ -1560,14 +1561,15 @@
   align-items: center;
   gap: 0.5rem;
   font-weight: 700;
+  font-family: var(--font-display);
   font-size: 1.05rem;
   text-decoration: none;
   padding: 0.875rem 2rem;
   border-radius: 999px;
   background: var(--primary);
   color: white;
-  box-shadow: var(--shadow-glow);
-  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: var(--shadow-lift);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1575,6 +1577,7 @@
 .team-join-cta:hover {
   opacity: 0.9;
   transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
 }
 
 /* ── Sponsors page ────────────────────────────────────────── */
@@ -1809,7 +1812,7 @@
 .sponsors-cta-secondary {
   font-size: 0.95rem;
   font-weight: 600;
-  color: oklch(1 0 0 / 0.8);
+  color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 3px;
 }

@@ -1,0 +1,71 @@
+---
+interface Props {
+  currentPath?: string;
+}
+const { currentPath = '/' } = Astro.props;
+const p = currentPath === '/' ? '' : '/';
+---
+<nav id="studio-nav" class="studio-nav" aria-label="Main navigation">
+  <a href="/" class="nav-logo">Her AI Studio</a>
+  <ul id="nav-primary" class="nav-links">
+    <li><a href={`${p}#why`}>Why</a></li>
+    <li><a href={`${p}#discover`}>Discover</a></li>
+    <li><a href={`${p}#program`}>Program</a></li>
+    <li><a href="/team" aria-current={currentPath === '/team' ? 'page' : undefined}>Team</a></li>
+    <li><a href="/sponsors" aria-current={currentPath === '/sponsors' ? 'page' : undefined}>Sponsors</a></li>
+    <li><a href="/prospectus.pdf" target="_blank" rel="noopener">Prospectus</a></li>
+  </ul>
+  <div class="nav-trailing">
+    <a href={`${p}#join`} class="nav-apply">Join the list</a>
+    <button
+      type="button"
+      id="nav-menu-btn"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="nav-primary"
+    >
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span class="sr-only">Open menu</span>
+    </button>
+  </div>
+</nav>
+<div id="nav-backdrop" class="nav-backdrop" hidden aria-hidden="true"></div>
+
+<script is:inline>
+  const nav = document.getElementById("studio-nav");
+  if (nav) {
+    window.addEventListener("scroll", () =>
+      nav.classList.toggle("nav-scrolled", window.scrollY > 60), { passive: true }
+    );
+  }
+  const menuBtn = document.getElementById("nav-menu-btn");
+  const backdrop = document.getElementById("nav-backdrop");
+  const navPrimary = document.getElementById("nav-primary");
+  function closeMenu() {
+    if (!nav || !menuBtn) return;
+    nav.classList.remove("nav-menu-open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    const sr = menuBtn.querySelector(".sr-only");
+    if (sr) sr.textContent = "Open menu";
+    if (backdrop) { backdrop.hidden = true; backdrop.setAttribute("aria-hidden", "true"); }
+    document.body.classList.remove("nav-menu-open");
+  }
+  function openMenu() {
+    if (!nav || !menuBtn) return;
+    nav.classList.add("nav-menu-open");
+    menuBtn.setAttribute("aria-expanded", "true");
+    const sr = menuBtn.querySelector(".sr-only");
+    if (sr) sr.textContent = "Close menu";
+    if (backdrop) { backdrop.hidden = false; backdrop.setAttribute("aria-hidden", "false"); }
+    document.body.classList.add("nav-menu-open");
+  }
+  if (menuBtn && nav && backdrop && navPrimary) {
+    menuBtn.addEventListener("click", () => {
+      if (nav.classList.contains("nav-menu-open")) closeMenu(); else openMenu();
+    });
+    backdrop.addEventListener("click", closeMenu);
+    navPrimary.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+    window.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+    window.addEventListener("resize", () => { if (window.matchMedia("(min-width: 641px)").matches) closeMenu(); });
+  }
+</script>

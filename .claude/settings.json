@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:schematik.io)"
+      "WebFetch(domain:schematik.io)",
+      "Bash(sed -n '58,90p' /Users/jenlooper/her-ai-studio/src/pages/team.astro)",
+      "Bash(sed -n '65,90p' /Users/jenlooper/her-ai-studio/src/pages/sponsors.astro)",
+      "Bash(npm run *)",
+      "Bash(node /Users/jenlooper/.claude/skills/impeccable/scripts/load-context.mjs)",
+      "Read(//Users/jenlooper/.claude/skills/impeccable/reference/**)",
+      "Read(//Users/jenlooper/.agents/skills/impeccable/reference/**)"
     ]
   }
 }
