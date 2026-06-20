@@ -3,20 +3,19 @@ interface Props {
   currentPath?: string;
 }
 const { currentPath = '/' } = Astro.props;
-const p = currentPath === '/' ? '' : '/';
 ---
 <nav id="studio-nav" class="studio-nav" aria-label="Main navigation">
   <a href="/" class="nav-logo">Her AI Studio</a>
   <ul id="nav-primary" class="nav-links">
-    <li><a href={`${p}#why`}>Why</a></li>
-    <li><a href={`${p}#discover`}>Discover</a></li>
-    <li><a href={`${p}#program`}>Program</a></li>
+    <li><a href="/why" aria-current={currentPath === '/why' ? 'page' : undefined}>Why</a></li>
+    <li><a href="/discover" aria-current={currentPath === '/discover' ? 'page' : undefined}>Discover</a></li>
+    <li><a href="/program" aria-current={currentPath === '/program' ? 'page' : undefined}>Program</a></li>
     <li><a href="/team" aria-current={currentPath === '/team' ? 'page' : undefined}>Team</a></li>
     <li><a href="/sponsors" aria-current={currentPath === '/sponsors' ? 'page' : undefined}>Sponsors</a></li>
     <li><a href="/prospectus.pdf" target="_blank" rel="noopener">Prospectus</a></li>
   </ul>
   <div class="nav-trailing">
-    <a href={`${p}#join`} class="nav-apply">Join the list</a>
+    <a href="/join" class="nav-apply">Join the list</a>
     <button
       type="button"
       id="nav-menu-btn"

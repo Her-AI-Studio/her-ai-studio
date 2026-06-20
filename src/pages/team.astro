@@ -18,37 +18,23 @@ const team = [
     web: "https://jenlooper.com"
   },
   {
-    name: "Coming soon",
-    role: "Curriculum & Learning Lead",
-    bio: "We're building the team. If you're an educator passionate about AI and women in STEM, reach out.",
-    image: zaraline,
-    imageAlt: "",
-  },
-  {
-    name: "Coming soon",
-    role: "Community & Mentorship Lead",
-    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
-    image: zaraline,
-    imageAlt: "",
-  },
-  {
-    name: "Coming soon",
-    role: "Technology Lead",
-    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
-    image: zaraline,
-    imageAlt: "",
-  },
-  {
-    name: "Coming soon",
+    name: "Laylah Bulman",
     role: "Partnerships & Sponsorships Lead",
-    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
+    bio: "Bio coming soon",
     image: zaraline,
     imageAlt: "",
   },
   {
-    name: "Coming soon",
+    name: "Ifeoma Nwosu",
+    role: "Community & Mentorship Lead",
+    bio: "Bio coming soon",
+    image: zaraline,
+    imageAlt: "",
+  },
+  {
+    name: "Jess Lee",
     role: "Operations Lead",
-    bio: "We're building the team. If you work in AI, nonprofits, or STEM outreach, we'd love to talk.",
+    bio: "Bio coming soon.",
     image: zaraline,
     imageAlt: "",
   },
@@ -132,7 +118,36 @@ const team = [
           ))}
         </ul>
         <p class="team-board-note">
-          We are actively recruiting founding board members with expertise in education, AI, nonprofit management, and fundraising. <a href="/#join">Reach out if you're interested.</a>
+          We are actively recruiting founding board members with expertise in education, AI, nonprofit management, and fundraising. <a href="/join">Reach out if you're interested.</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="team-board-section" aria-labelledby="curriculum-heading">
+      <div class="team-inner">
+        <p class="room-label">Curriculum</p>
+        <h2 id="curriculum-heading" class="team-board-h2">Curriculum Committee</h2>
+        <p class="team-board-lead">
+          A group of educators, engineers, and AI practitioners who shape what gets taught and how. We're assembling this committee now.
+        </p>
+        <ul class="team-board-list" role="list">
+          {[1, 2, 3, 4].map(() => (
+            <li class="team-board-card">
+              <div class="team-board-card__avatar" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <p class="team-board-card__name">Coming soon</p>
+                <p class="team-board-card__title">Curriculum Committee Member</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="team-board-note">
+          We're looking for educators and practitioners with expertise in AI, computer science, and project-based learning. <a href="/join">Get in touch.</a>
         </p>
       </div>
     </section>
@@ -145,7 +160,7 @@ const team = [
             We're looking for mentors, advisors, curriculum contributors, and community partners. Hardware is expensive! We need sponsors! If you're passionate about women in AI, let's talk.
           </p>
         </div>
-        <a href="/#join" class="team-join-cta">
+        <a href="/join" class="team-join-cta">
           Get in touch
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>

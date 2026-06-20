@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import stationDiscover from "../assets/stations/discover.png";
+import stationCreate from "../assets/stations/create.png";
+import stationEngineer from "../assets/stations/engineer.png";
+import stationShowcase from "../assets/stations/showcase.png";
+
+const title = "Program — Her AI Studio";
+const description = "Three stations, six weeks. Her AI Studio's curriculum takes you from AI beginner to capstone builder.";
+---
+
+<Layout {title} {description}>
+
+  <Nav currentPath="/program" />
+
+  <main id="main-content">
+  <section id="program" class="studio-room room-benches" aria-labelledby="program-heading">
+    <div class="room-inner">
+      <p class="room-label" data-reveal>What we're shaping</p>
+      <h2 id="program-heading" style="font-size:clamp(2.5rem,5.5vw,4rem);margin-bottom:0.75rem;max-width:100%;" data-reveal data-delay="1">
+        Three stations.<br>Six weeks.
+      </h2>
+      <p style="color:var(--muted-foreground);font-size:1.1rem;margin-bottom:2.25rem;max-width:52ch;" data-reveal data-delay="2">
+        We're designing the studio around these beats. Details may evolve as we build the cohort, and we'll share milestones when you join the list.
+      </p>
+
+      <ol class="workbench-stations">
+        <li class="station" data-reveal data-delay="1">
+          <div class="station-text">
+            <span class="sr-only">Station 1</span>
+            <h3 class="station-title">Beginners: Discover</h3>
+            <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field. Build your first locally-powered AI app.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationDiscover.src}
+              width={stationDiscover.width}
+              height={stationDiscover.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </li>
+        <li class="station" data-reveal data-delay="2">
+          <div class="station-text">
+            <span class="sr-only">Station 2</span>
+            <h3 class="station-title">Intermediate: Create</h3>
+            <p class="station-body">Build your first AI-powered project bridging hardware and software in image, text, or voice.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationCreate.src}
+              width={stationCreate.width}
+              height={stationCreate.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </li>
+        <li class="station" data-reveal data-delay="3">
+          <div class="station-text">
+            <span class="sr-only">Station 3</span>
+            <h3 class="station-title">Advanced: Engineer</h3>
+            <p class="station-body">Build your cyberdeck: your own AI-powered device. No programming experience needed.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationEngineer.src}
+              width={stationEngineer.width}
+              height={stationEngineer.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </li>
+        <li class="station" data-reveal data-delay="4">
+          <div class="station-text">
+            <span class="sr-only">Bonus: Showcase</span>
+            <h3 class="station-title">Capstone</h3>
+            <p class="station-body">Present your work at a studio showcase to friends, family, and industry guests.</p>
+          </div>
+          <figure class="station-sticker">
+            <img
+              src={stationShowcase.src}
+              width={stationShowcase.width}
+              height={stationShowcase.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <Footer currentPath="/program" />
+  </main>
+
+</Layout>

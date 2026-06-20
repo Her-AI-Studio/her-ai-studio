@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import discoverLab from "../assets/discover-lab.png";
+
+const title = "Discover — Her AI Studio";
+const description = "Learn deeply, then teach someone else. Study the women who built AI and discover your own path in the field.";
+---
+
+<Layout {title} {description}>
+
+  <Nav currentPath="/discover" />
+
+  <main id="main-content">
+  <section id="discover" class="studio-room room-discover" aria-labelledby="discover-heading">
+    <div class="room-inner">
+      <p class="room-label" data-reveal>Discover</p>
+      <div class="discover-grid">
+        <div class="discover-copy">
+          <h2 id="discover-heading" class="discover-h2" data-reveal data-delay="1">
+            Learn deeply.<br /><span class="discover-h2__sub">Then teach someone else.</span>
+          </h2>
+          <p class="discover-lead" data-reveal data-delay="2">
+            In this program, you'll walk a path the women who built this field have already walked: go from figuring things out to explaining them, from trying prompts to guiding someone through theirs, from "I get it" to "let me show you." Leadership here isn't a title you wait for. It's a muscle you grow by helping the room rise with you.
+          </p>
+          <p class="discover-kicker" data-reveal data-delay="2">
+            <strong>Women who opened the door.</strong> Joy Buolamwini was a grad student when she proved facial recognition software was biased against darker skin; her research changed how companies worldwide build AI. Fei-Fei Li spent years building a massive dataset so computers could learn to see the world. Timnit Gebru co-authored research that made powerful AI labs deeply uncomfortable. You'll study what they built and why it mattered, not to follow one career path, but because the next generation of leaders in this field is you.
+          </p>
+        </div>
+        <figure class="discover-figure" data-reveal data-delay="2">
+          <img
+            src={discoverLab.src}
+            width={discoverLab.width}
+            height={discoverLab.height}
+            alt="A mentor presents to a group of students in a neon-lit classroom, with screens about what AI is and portraits of women leaders in the field."
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <Footer currentPath="/discover" />
+  </main>
+
+</Layout>

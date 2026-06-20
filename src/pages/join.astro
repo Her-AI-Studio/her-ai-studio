@@ -1,0 +1,205 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import bubbleZara from "../assets/hero-bubble.png";
+
+const formspreeId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID ?? "";
+const formspreeUrl = formspreeId ? `https://formspree.io/f/${formspreeId}` : "";
+
+const title = "Join the Interest List — Her AI Studio";
+const description = "Leave your email and be first to know when the first cohort opens: dates, details, and how to apply.";
+---
+
+<Layout {title} {description}>
+
+  <Nav currentPath="/join" />
+
+  <main id="main-content">
+  <section id="join" class="studio-room room-cta" aria-labelledby="join-heading">
+    <div class="room-inner">
+      <div class="cta-layout">
+        <div class="cta-copy">
+          <p class="room-label cta-label" data-reveal>Interest list</p>
+          <h2 class="cta-h2" id="join-heading" data-reveal data-delay="1">
+            Talk to us!
+          </h2>
+          <p class="cta-sub" data-reveal data-delay="2">
+            The first cohort is coming. Leave your email and we'll send you the date, the details, and how to apply. You'll be first to know.
+          </p>
+          <div data-reveal data-delay="3" class="cta-bullets">
+            <p>Built at the grass roots</p>
+            <p>Completely free to stay in the loop</p>
+            <p>No experience needed</p>
+          </div>
+          <img
+            class="cta-logo"
+            src={bubbleZara.src}
+            width={bubbleZara.width}
+            height={bubbleZara.height}
+            alt="Her AI Studio"
+            loading="lazy"
+            decoding="async"
+            data-reveal
+            data-delay="4"
+          />
+        </div>
+
+        <div data-reveal data-delay="2">
+          <p id="form-status" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+          <form
+            id="interest-form"
+            class="apply-form"
+            method="post"
+            data-formspree-url={formspreeUrl}
+          >
+            <input type="hidden" name="_subject" value="Her AI Studio interest list" />
+            <div class="form-field">
+              <label for="apply-name">Your name</label>
+              <input type="text" id="apply-name" name="name" placeholder="Full name" autocomplete="name" required maxlength="120" />
+            </div>
+            <div class="form-field">
+              <label for="apply-email">Email address</label>
+              <input type="email" id="apply-email" name="email" placeholder="you@email.com" autocomplete="email" required maxlength="254" />
+            </div>
+            <div class="form-field">
+              <label for="apply-role">I'm a(n):</label>
+              <select id="apply-role" name="role" required>
+                <option value="">Choose one</option>
+                <option value="under">Student (under 9th grade)</option>
+                <option value="student">Student (grades 9–12 or College)</option>
+                <option value="parent">Parent or guardian</option>
+                <option value="educator">Educator</option>
+                <option value="sponsor">Potential Sponsor</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="apply-create">What do you want to tell us? <span class="label-optional">(optional)</span></label>
+              <textarea id="apply-create" name="message" placeholder="Reach out! We're eager to hear your thoughts." rows="4" maxlength="2000"></textarea>
+            </div>
+            <input
+              type="text"
+              name="_gotcha"
+              class="form-honeypot"
+              tabindex="-1"
+              autocomplete="off"
+              autocapitalize="off"
+              autocorrect="off"
+              spellcheck="false"
+              data-lpignore="true"
+              data-1p-ignore
+              data-bwignore
+              aria-hidden="true"
+            />
+            <button type="submit" class="submit-btn" id="interest-submit">
+              {formspreeUrl ? "Join the interest list" : "Configure Formspree to enable"}
+            </button>
+            <p class="form-fine-print">
+              We respect your inbox. Unsubscribe anytime. If you're under 13, a parent should submit for you.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer currentPath="/join" />
+  </main>
+
+  <script is:inline define:vars={{ formspreeUrl }}>
+  const form = document.getElementById("interest-form");
+  const submitBtn = document.getElementById("interest-submit");
+  const formStatus = document.getElementById("form-status");
+  function setFormStatus(text, isError) {
+    if (!formStatus) return;
+    formStatus.textContent = text;
+    formStatus.classList.toggle("is-error", Boolean(isError));
+  }
+
+  if (form && submitBtn) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!formStatus) return;
+
+      const endpoint = form.getAttribute("data-formspree-url") || "";
+      if (!endpoint) {
+        setFormStatus(
+          "Add PUBLIC_FORMSPREE_FORM_ID to your .env file, then restart the dev server.",
+          true,
+        );
+        formStatus.focus();
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      setFormStatus("", false);
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.textContent;
+      submitBtn.textContent = "Sending…";
+
+      const honeypot = form.querySelector('input[name="_gotcha"]');
+      const emailEl = form.querySelector('input[name="email"]');
+      const nameEl = form.querySelector('input[name="name"]');
+      if (honeypot) {
+        const h = honeypot.value.trim();
+        if (h) {
+          const emailVal = (emailEl && emailEl.value ? emailEl.value : "").trim();
+          const nameVal = (nameEl && nameEl.value ? nameEl.value : "").trim();
+          const hl = h.toLowerCase();
+          if (hl === emailVal.toLowerCase() || hl === nameVal.toLowerCase()) {
+            honeypot.value = "";
+          }
+        }
+      }
+
+      const fd = new FormData(form);
+
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" },
+        });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          form.reset();
+          setFormStatus(
+            "You're on the list! We'll email you when the first cohort opens: dates, details, and how to apply.",
+            false,
+          );
+          formStatus.focus();
+        } else if (res.status === 403) {
+          setFormStatus(
+            "That submission could not go through. Try again in a moment or use a different network.",
+            true,
+          );
+          formStatus.focus();
+        } else if (data && data.errors) {
+          const first = Object.keys(data.errors)[0];
+          const msg =
+            first && data.errors[first] && data.errors[first][0]
+              ? data.errors[first][0]
+              : "Something went wrong. Try again in a moment.";
+          setFormStatus(msg, true);
+          formStatus.focus();
+        } else {
+          setFormStatus("We could not send that. Check your connection and try again.", true);
+          formStatus.focus();
+        }
+      } catch {
+        setFormStatus("We could not send that. Check your connection and try again.", true);
+        formStatus.focus();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
+  }
+  </script>
+
+</Layout>
