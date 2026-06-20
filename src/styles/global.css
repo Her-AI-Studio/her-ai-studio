@@ -1439,19 +1439,12 @@
 }
 
 .team-card__portrait {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
   background: var(--muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .team-card__portrait img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
   display: block;
 }
 
