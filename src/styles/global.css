@@ -832,37 +832,55 @@
 }
 
 .why-row__figure {
-  margin: 0;
+  margin: clamp(0.5rem, 1.2vw, 0.85rem) 0;
   grid-column: 2;
   grid-row: 1;
-  align-self: stretch;
-  position: relative;
+  align-self: center;
+  justify-self: end;
   display: flex;
-  align-items: stretch;
-  justify-content: flex-end;
+  align-items: center;
   padding: 0;
-  min-height: 0;
-  background: var(--why-fill);
+  position: relative;
+  background: oklch(0.91 0.048 300);
+  border-radius: 999px 0 0 999px;
+  overflow: visible;
+}
+
+/* Offset border on the curved (inner) side only */
+.why-row__figure::before {
+  content: '';
+  position: absolute;
+  inset: -5px 1px -5px -5px;
+  border: 2px solid oklch(0.76 0.10 295);
+  border-right: none;
+  border-radius: 999px 0 0 999px;
+  pointer-events: none;
 }
 
 /* Row art hugs the text column: right (default) | left (media-start) | right */
 .why-row--media-start .why-row__figure {
   grid-column: 1;
-  justify-content: flex-start;
+  justify-self: start;
+  border-radius: 0 999px 999px 0;
+}
+
+.why-row--media-start .why-row__figure::before {
+  inset: -5px -5px -5px 1px;
+  border: 2px solid oklch(0.76 0.10 295);
+  border-left: none;
+  border-radius: 0 999px 999px 0;
 }
 
 .why-row__figure img {
   display: block;
-  width: 100%;
-  height: 100%;
+  height: clamp(180px, 22vw, 260px);
+  width: auto;
   max-width: 100%;
-  max-height: none;
-  object-fit: cover;
-  object-position: right center;
+  border-radius: 999px 0 0 999px;
 }
 
 .why-row--media-start .why-row__figure img {
-  object-position: left center;
+  border-radius: 0 999px 999px 0;
 }
 
 @media (max-width: 768px) {
@@ -876,16 +894,22 @@
   .why-row__figure {
     grid-column: 1 !important;
     grid-row: 1 !important;
-    height: auto;
-    align-self: auto;
+    justify-self: center !important;
+    border-radius: 999px !important;
     align-items: center;
   }
 
+  .why-row__figure::before {
+    inset: -5px !important;
+    border: 2px solid oklch(0.76 0.10 295) !important;
+    border-radius: 999px !important;
+  }
+
   .why-row__figure img {
+    height: var(--why-art-max-h);
     width: auto;
-    height: auto;
-    max-height: var(--why-art-max-h);
-    object-fit: contain;
+    max-width: 100%;
+    border-radius: 999px !important;
   }
 
   .why-row__text {
