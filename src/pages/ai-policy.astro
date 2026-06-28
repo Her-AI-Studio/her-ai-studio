@@ -1,0 +1,163 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Her AI Studio, Inc. AI Policy";
+const description =
+    "Our AI policy outlines the responsible and ethical use of artificial intelligence at Her AI Studio, Inc.";
+---
+
+<Layout {title} {description}>
+    <Nav currentPath="/ai-policy" />
+
+    <main id="main-content">
+        <section id="ai-policy" class="studio-room room-discover" aria-labelledby="policy-heading">
+            <div class="room-inner">
+                <p class="room-label" data-reveal>AI Policy</p>
+                <div class="discover-copy policy-copy">
+                    <h2 id="policy-heading" class="discover-h2" data-reveal data-delay="1">
+                        Responsible and Ethical Use of AI
+                    </h2>
+                    <p class="discover-lead" data-reveal data-delay="2">
+                        This policy establishes guidelines for the responsible and ethical use of
+                        artificial intelligence at Her AI Studio, Inc. A clear AI policy ensures
+                        that technology serves our mission while protecting the rights, privacy,
+                        and dignity of the high school women we empower.
+                    </p>
+
+                    <div class="policy-grid" data-reveal data-delay="3">
+                        <article class="policy-card">
+                            <h3 class="policy-card__title">AI Use</h3>
+                            <p class="policy-card__body">
+                                AI tools will be deployed to improve internal operations, enhance
+                                educational services for beneficiaries, and provide data-driven
+                                insights into program effectiveness. Administrative tasks,
+                                scheduling, and communications will be streamlined through AI
+                                automation. Educational tools, personalized learning experiences,
+                                and mentorship matching will be enhanced to better serve students.
+                                Student progress tracking, program effectiveness analysis, and
+                                engagement pattern monitoring will be conducted to continuously
+                                improve our offerings.
+                            </p>
+                        </article>
+
+                        <article class="policy-card">
+                            <h3 class="policy-card__title">Interactions with Beneficiaries</h3>
+                            <p class="policy-card__body">
+                                AI tools will interact directly with high school women participants
+                                through learning platforms and personalized recommendations, while
+                                also supporting staff in program management and administrative
+                                tasks. All AI systems that interface with students will be designed
+                                with age-appropriate safeguards and clear communication about their
+                                AI-driven nature. Human educators and mentors will maintain
+                                meaningful involvement in all student interactions, ensuring that
+                                technology enhances rather than replaces human connection and
+                                guidance.
+                            </p>
+                        </article>
+
+                        <article class="policy-card">
+                            <h3 class="policy-card__title">Data Collection Practices</h3>
+                            <p class="policy-card__body">
+                                Personal data including names, contact information, and demographic
+                                information will be collected and protected according to applicable
+                                privacy regulations. Educational data such as learning progress,
+                                skill assessments, and project work will be gathered to personalize
+                                learning experiences and measure program impact. All data collection
+                                will be transparent, with clear communication to students and their
+                                guardians about what information is collected, how it is used, and
+                                how long it is retained. Data minimization principles will be
+                                followed, collecting only what is necessary to fulfill educational
+                                and operational purposes.
+                            </p>
+                        </article>
+
+                        <article class="policy-card">
+                            <h3 class="policy-card__title">Ethical Risks and Concerns</h3>
+                            <p class="policy-card__body">
+                                Bias mitigation will be prioritized to ensure AI tools do not
+                                disadvantage any groups of students based on race, socioeconomic
+                                status, learning style, or other characteristics. Privacy and data
+                                protection measures will safeguard student information through
+                                encryption, secure storage, and strict access controls. Transparency
+                                and accountability will be maintained by clearly communicating how
+                                AI is used and ensuring responsible parties are identified for all
+                                AI-driven processes. Equity and inclusion will be promoted by
+                                ensuring all students have equal access to and benefit from AI
+                                tools, with regular assessments to identify and address disparities.
+                                Human oversight will be implemented for all AI-generated decisions
+                                or recommendations that impact student learning, opportunities, or
+                                program participation.
+                            </p>
+                        </article>
+
+                        <article class="policy-card policy-card--wide">
+                            <h3 class="policy-card__title">Accountability for AI Decisions</h3>
+                            <p class="policy-card__body">
+                                All staff members collectively share responsibility for ensuring AI
+                                tools are used ethically and in alignment with Her AI Studio, Inc.'s
+                                mission. Every team member who interacts with AI systems must
+                                understand their role in maintaining fairness, transparency, and
+                                student-centered practices. Regular team discussions and training
+                                will reinforce shared accountability and create a culture of
+                                responsible AI use.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <Footer currentPath="/ai-policy" />
+    </main>
+</Layout>
+
+<style>
+    .policy-copy {
+        max-width: 100%;
+    }
+
+    .policy-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .policy-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        box-shadow: var(--shadow-card);
+    }
+
+    .policy-card--wide {
+        grid-column: 1 / -1;
+    }
+
+    .policy-card__title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.75rem;
+    }
+
+    .policy-card__body {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: var(--muted-foreground);
+    }
+
+    @media (max-width: 700px) {
+        .policy-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .policy-card--wide {
+            grid-column: 1;
+        }
+    }
+</style>
