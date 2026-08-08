@@ -6,6 +6,10 @@ import jen from "../assets/jen.webp";
 import laylah from "../assets/laylah.jpg"
 import jess from "../assets/jess.jpg"
 import ifeoma from "../assets/ifeoma.jpg"
+import tom from "../assets/tom.jpg"
+import zhaopeng from "../assets/zhaopeng.jpg"
+import francesca from "../assets/francesca.jpg"
+import jim from "../assets/jim.jpg"
 
 
 const title = "Our Team — Her AI Studio";
@@ -40,6 +44,39 @@ const team = [
     bio: "Jess Lee is an entrepreneur and community builder serving as Founder-in-Residence at Major League Hacking (MLH), which she joined following its acquisition of DEV – the global developer community she co-founded and scaled into one of the largest, most inclusive spaces for software developers. Having also served as DEV’s COO, and earlier as a nonprofit product manager and marketer, Jess brings a rare combination of operational, technical, and mission-driven experience to her work. As a coding bootcamp graduate herself, she is deeply committed to building accessible, supportive spaces where aspiring builders, especially those from underrepresented backgrounds, can learn, connect, and thrive. Based in Rochester, NY, Jess is excited to bring that same energy to helping girls find their footing in AI.",
     image: jess,
     imageAlt: "Jess Lee",
+  },
+];
+
+const board = [
+  
+  
+  {
+    name: "Tom Ball",
+    role: "Fouding Partner: Micro:bit Innovation and Research Lab",
+    bio: "Tom Ball is a 2011 ACM Fellow known for his contributions to software analysis and defect detection. Since 2015 he has helped bring the BBC micro:bit to market (10M+ worldwide), co-created the Microsoft MakeCode platform and the Jacdac plug-and-play system, and now works on micro:bit apps at Lancaster University.",
+    image: tom,
+    imageAlt: "Tom Ball",
+  },
+  {
+    name: "Jim Bennett",
+    role: "Principal Developer Experience Engineer: Arize AI",
+    bio: "Jim is a Developer Experience Engineer, global conference speaker, meetup and community organizer, and author of books on mobile development and IoT. He's currently a Microsoft MVP for AI and Developer Tools.",
+    image: jim,
+    imageAlt: "Jim Bennett",
+  },
+  {
+    name: "Zhaopeng Ji",
+    role: "AVP for Financial Services: MGH Institute of Health Professions",
+    bio: "Zhaopeng is a talented executive level financial professional with extensive non-profit experience in finance, budget, audit, tax and risk management.",
+    image: zhaopeng,
+    imageAlt: "Zhaopeng Ji",
+  },
+  {
+    name: "Francesca Lazzeri",
+    role: "Principal Group Director, Data & Applied AI Science & Forward Deployed AI Engineering: Microsoft",
+    bio: "Francesca leads a Data & Applied AI engineering organization at Microsoft, where her teams build enterprise AI platforms end to end, from data foundations and knowledge graphs to production agents, focused on proving that what they ship is reliable enough to trust in production.",
+    image: francesca,
+    imageAlt: "Francesca Lazzeri",
   },
 ];
 ---
@@ -104,34 +141,48 @@ const team = [
         <p class="team-board-lead">
           Her AI Studio is governed by an independent board committed to our mission of equity, access, and excellence in AI education.
         </p>
-        <ul class="team-board-list" role="list">
-          {[1, 2, 3].map(() => (
-            <li class="team-board-card">
-              <div class="team-board-card__avatar" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="2"/>
-                  <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+        <ul class="board-list" role="list">
+          {board.map((member) => (
+            <li class="board-card">
+              <div class="board-card__media" aria-hidden="true">
+                {member.image ? (
+                  <img
+                    src={member.image.src}
+                    width={member.image.width}
+                    height={member.image.height}
+                    alt={member.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="board-card__placeholder">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                      <circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="2"/>
+                      <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                )}
               </div>
-              <div>
-                <p class="team-board-card__name">Coming soon</p>
-                <p class="team-board-card__title">Board Member</p>
+              <div class="board-card__body">
+                <div class="board-card__head">
+                  <h3 class="board-card__name">{member.name}</h3>
+                  <p class="board-card__title">{member.role}</p>
+                </div>
+                <p class="board-card__bio">{member.bio}</p>
               </div>
             </li>
           ))}
         </ul>
-        <p class="team-board-note">
-          We are actively recruiting founding board members with expertise in education, AI, nonprofit management, and fundraising. <a href="/join">Reach out if you're interested.</a>
-        </p>
+     
       </div>
     </section>
 
     <section class="team-board-section" aria-labelledby="curriculum-heading">
       <div class="team-inner">
-        <p class="room-label">Curriculum</p>
-        <h2 id="curriculum-heading" class="team-board-h2">Curriculum Committee</h2>
+        <p class="room-label">Youth</p>
+        <h2 id="curriculum-heading" class="team-board-h2">Youth Board</h2>
         <p class="team-board-lead">
-          A group of educators, engineers, and AI practitioners who shape what gets taught and how. We're assembling this committee now.
+          We're looking for young leaders to join our youth board and help shape the future of AI education for girls and women. 
         </p>
         <ul class="team-board-list" role="list">
           {[1, 2, 3, 4].map(() => (
@@ -142,35 +193,15 @@ const team = [
                   <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div>
-                <p class="team-board-card__name">Coming soon</p>
-                <p class="team-board-card__title">Curriculum Committee Member</p>
-              </div>
+              
             </li>
           ))}
         </ul>
-        <p class="team-board-note">
-          We're looking for educators and practitioners with expertise in AI, computer science, and project-based learning. <a href="/join">Get in touch.</a>
-        </p>
+       
       </div>
     </section>
 
-    <section class="team-join-section">
-      <div class="team-inner team-join-inner">
-        <div>
-          <h2 class="team-join-h2">Want to be part of this?</h2>
-          <p class="team-join-body">
-            We're looking for mentors, advisors, curriculum contributors, and community partners. Hardware is expensive! We need sponsors! If you're passionate about women in AI, let's talk.
-          </p>
-        </div>
-        <a href="/join" class="team-join-cta">
-          Get in touch
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </section>
+  
 
     <Footer currentPath="/team" />
   </main>

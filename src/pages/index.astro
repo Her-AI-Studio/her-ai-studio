@@ -4,6 +4,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import logoImage from "../assets/logo.png";
 import cyberdeckImage from "../assets/cyberdeck.png";
+import discoverLab from "../assets/discover-lab.png";
 import whyBuild from "../assets/why/build.png";
 import whySisterhood from "../assets/why/sisterhood.png";
 import whySkills from "../assets/why/skills.png";
@@ -32,7 +33,7 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
             Build AI Better. Build Better AI.
           </p>
           <p class="door-meta" data-reveal data-delay="2">
-            For grades 9-12 <span aria-hidden="true">·</span>Always free <span aria-hidden="true">·</span> Beginner-friendly <span aria-hidden="true">·</span> Physical AI built for girls, by girls.
+            For grades 9-12 <span aria-hidden="true">·</span>Always free <span aria-hidden="true">·</span> Beginner-friendly <span aria-hidden="true">·</span> Build your cyberdeck!
           </p>
           
           <a href="/join" class="door-cta" data-reveal data-delay="4">
@@ -95,6 +96,35 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
           />
         </figure>
 
+      </div>
+    </div>
+  </section>
+
+  <section id="discover" class="studio-room room-discover" aria-labelledby="discover-heading">
+    <div class="room-inner">
+      <p class="room-label" data-reveal>Discover</p>
+      <div class="discover-grid">
+        <div class="discover-copy">
+          <h2 id="discover-heading" class="discover-h2" data-reveal data-delay="1">
+            Learn deeply.<br /><span class="discover-h2__sub">Then teach someone else.</span>
+          </h2>
+          <p class="discover-lead" data-reveal data-delay="2">
+            In this program, you'll walk a path the women who built this field have already walked: go from figuring things out to explaining them, from trying prompts to guiding someone through theirs, from "I get it" to "let me show you." Leadership here isn't a title you wait for. It's a muscle you grow by helping the room rise with you.
+          </p>
+          <p class="discover-kicker" data-reveal data-delay="2">
+            <strong>Women who opened the door.</strong> Joy Buolamwini was a grad student when she proved facial recognition software was biased against darker skin; her research changed how companies worldwide build AI. Fei-Fei Li spent years building a massive dataset so computers could learn to see the world. Timnit Gebru co-authored research that made powerful AI labs deeply uncomfortable. You'll study what they built and why it mattered, not to follow one career path, but because the next generation of leaders in this field is you.
+          </p>
+        </div>
+        <figure class="discover-figure" data-reveal data-delay="2">
+          <img
+            src={discoverLab.src}
+            width={discoverLab.width}
+            height={discoverLab.height}
+            alt="A mentor presents to a group of students in a neon-lit classroom, with screens about what AI is and portraits of women leaders in the field."
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       </div>
     </div>
   </section>

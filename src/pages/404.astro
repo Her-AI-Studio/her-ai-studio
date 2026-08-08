@@ -1,17 +1,54 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import lostImage from "../assets/lost.webp";
+
 
 const title = "Page not found — Her AI Studio";
 const description = "The page you're looking for doesn't exist or has been moved.";
 ---
 
 <Layout {title} {description}>
-  <main id="main-content" class="error-page">
-    <h1>404</h1>
-    <h2>Page not found</h2>
-    <p>
-      The page you're looking for doesn't exist or has been moved. Head back to the studio home.
-    </p>
-    <a href="/" class="error-cta">Back to Her AI Studio</a>
+
+  <Nav currentPath="/" />
+
+  <main id="main-content">
+  <section id="not-found" class="studio-room room-404" aria-labelledby="not-found-heading">
+    <div class="room-inner room-404-inner">
+      <p class="room-label" data-reveal>404 · Off the map</p>
+      <h1 id="not-found-heading" class="door-lead-h1" data-reveal data-delay="1">
+        This page wandered off
+      </h1>
+
+      <img
+        class="error-image"
+        src={lostImage.src}
+        width={lostImage.width}
+        height={lostImage.height}
+        alt="A lost explorer in the studio"
+        loading="eager"
+        decoding="async"
+        data-reveal
+        data-delay="2"
+      />
+
+      <p class="door-tagline error-copy" data-reveal data-delay="3">
+        The page you're looking for doesn't exist or has been moved. Let's get you back to the studio.
+      </p>
+
+      <div class="error-actions" data-reveal data-delay="4">
+        <a href="/" class="door-cta">
+          Back to Her AI Studio
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <Footer currentPath="/" />
   </main>
+
 </Layout>
+
