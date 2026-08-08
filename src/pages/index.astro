@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import Join from "../components/Join.astro";
 import logoImage from "../assets/logo.png";
 import cyberdeckImage from "../assets/cyberdeck.png";
 import discoverLab from "../assets/discover-lab.png";
@@ -208,6 +209,31 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
               decoding="async"
             />
           </figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="interest" class="studio-room room-cta" aria-labelledby="interest-heading">
+    <div class="room-inner">
+      <div class="cta-layout">
+        <div class="cta-copy">
+          <p class="room-label cta-label" data-reveal>Interest list</p>
+          <h2 class="cta-h2" id="interest-heading" data-reveal data-delay="1">
+            Join the interest list
+          </h2>
+          <p class="cta-sub" data-reveal data-delay="2">
+            The first cohort is coming. Leave your email and we'll send you the date, the details, and how to apply. You'll be first to know.
+          </p>
+          <div class="cta-bullets" data-reveal data-delay="3">
+            <p>Built at the grass roots</p>
+            <p>Completely free to stay in the loop</p>
+            <p>No experience needed</p>
+          </div>
+        </div>
+
+        <article class="cta-form-col" data-reveal data-delay="2">
+          <Join />
         </article>
       </div>
     </div>

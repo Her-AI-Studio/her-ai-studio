@@ -7,11 +7,12 @@ const { currentPath = '/' } = Astro.props;
 <nav id="studio-nav" class="studio-nav" aria-label="Main navigation">
   <a href="/" class="nav-logo">Her AI Studio</a>
   <ul id="nav-primary" class="nav-links">
+    <li><a href="/program" aria-current={currentPath === '/program' ? 'page' : undefined}>Program</a></li>
     <li><a href="/team" aria-current={currentPath === '/team' ? 'page' : undefined}>Team</a></li>
     <li><a href="/sponsors" aria-current={currentPath === '/sponsors' ? 'page' : undefined}>Sponsors</a></li>
     <li><a href="/prospectus.pdf" target="_blank" rel="noopener">Prospectus</a></li>
     <li><a href="/parents-educators" aria-current={currentPath === '/parents-educators' ? 'page' : undefined}>Parents & Educators</a></li>
-    <li><a href="https://givebutter.com/her-ai-studio-inc-kit-palooza-xfurca">Donate</a></li>
+    <li><a href="https://givebutter.com/her-ai-studio-inc-kit-palooza-xfurca" target="_blank" rel="noopener">Donate</a></li>
   </ul>
   <div class="nav-trailing">
     <a href="/join" class="nav-apply">Join the list</a>

@@ -10,7 +10,7 @@ High school girls, grades 9–12, who are curious about AI but aren't sure they 
 
 ## Product Purpose
 
-Her AI Studio is taking shape as a free, cohort-based program for girls to learn to create with AI (chatbots, art generators, apps) in a community of peers and mentors who look like them. **Right now the site collects interest** via Formspree so we can notify people when dates, details, and applications are ready. Success looks like a curious girl or a supportive adult joining the list without friction.
+Her AI Studio is taking shape as a free, cohort-based program for girls to learn to create with AI (chatbots, art generators, apps) in a community of peers and mentors who look like them. **Right now the site collects interest** via a Google Form so we can notify people when dates, details, and applications are ready. Success looks like a curious girl or a supportive adult joining the list without friction.
 
 ## Brand Personality
 

@@ -1140,6 +1140,8 @@
   }
 }
 
+
+
 .room-cta .cta-h2 {
   font-size: clamp(2.75rem, 6vw, 4.75rem);
   color: #fff;
@@ -1183,6 +1185,16 @@
   flex-direction: column;
   align-items: flex-start;
   min-width: 0;
+}
+
+.cta-form-col {
+  min-width: 0;
+  align-self: stretch;
+}
+
+.cta-form-col .apply-form {
+  flex: 1;
+  width: 100%;
 }
 
 .cta-logo {
