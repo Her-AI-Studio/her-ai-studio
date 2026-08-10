@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
 import jen from "../assets/jen.webp";
 import laylah from "../assets/laylah.jpg"
 import jess from "../assets/jess.jpg"
@@ -104,11 +105,11 @@ const board = [
             <li class="team-card">
               <div class="team-card__portrait">
                 {member.image ? (
-                  <img
-                    src={member.image.src}
-                    width={member.image.width}
-                    height={member.image.height}
+                  <Image
+                    src={member.image}
                     alt={member.imageAlt}
+                    widths={[320, 480, 640, 800, 1000]}
+                    sizes="(max-width: 560px) 92vw, (min-width: 1200px) 560px, 46vw"
                     loading="lazy"
                     decoding="async"
                   />
@@ -146,11 +147,11 @@ const board = [
             <li class="board-card">
               <div class="board-card__media" aria-hidden="true">
                 {member.image ? (
-                  <img
-                    src={member.image.src}
-                    width={member.image.width}
-                    height={member.image.height}
+                  <Image
+                    src={member.image}
                     alt={member.imageAlt}
+                    widths={[240, 320, 480, 800]}
+                    sizes="(min-width: 641px) 240px, 92vw"
                     loading="lazy"
                     decoding="async"
                   />

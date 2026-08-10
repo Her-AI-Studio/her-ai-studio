@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
 import lostImage from "../assets/lost.webp";
 
 
@@ -21,12 +22,12 @@ const description = "The page you're looking for doesn't exist or has been moved
         This page wandered off
       </h1>
 
-      <img
-        class="error-image"
-        src={lostImage.src}
-        width={lostImage.width}
-        height={lostImage.height}
+      <Image
+        src={lostImage}
         alt="A lost explorer in the studio"
+        class="error-image"
+        widths={[480, 640, 1024]}
+        sizes="(max-width: 640px) 92vw, 50vw"
         loading="eager"
         decoding="async"
         data-reveal

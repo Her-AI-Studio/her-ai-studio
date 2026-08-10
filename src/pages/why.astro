@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
 import whyBuild from "../assets/why/build.png";
 import whySisterhood from "../assets/why/sisterhood.png";
 import whySkills from "../assets/why/skills.png";
@@ -34,10 +35,10 @@ const description = "Where girls and women become confident AI creators, builder
             </p>
           </div>
           <figure class="why-row__figure">
-            <img
-              src={whyBuild.src}
-              width={whyBuild.width}
-              height={whyBuild.height}
+            <Image
+              src={whyBuild}
+              width={526}
+              height={324}
               alt="Three students collaborating at a table with laptops, a tablet, and floating previews of apps and creative tools."
               loading="lazy"
               decoding="async"
@@ -47,10 +48,10 @@ const description = "Where girls and women become confident AI creators, builder
 
         <article class="why-row why-row--media-start" data-reveal data-delay="3">
           <figure class="why-row__figure">
-            <img
-              src={whySisterhood.src}
-              width={whySisterhood.width}
-              height={whySisterhood.height}
+            <Image
+              src={whySisterhood}
+              width={650}
+              height={306}
               alt="Five students gathered around a laptop, learning together in a warm, welcoming space."
               loading="lazy"
               decoding="async"
@@ -97,10 +98,10 @@ const description = "Where girls and women become confident AI creators, builder
             </p>
           </div>
           <figure class="why-row__figure">
-            <img
-              src={whySkills.src}
-              width={whySkills.width}
-              height={whySkills.height}
+            <Image
+              src={whySkills}
+              width={515}
+              height={342}
               alt="A student at her desk at night with floating panels about prompts, machine learning, and ethical AI."
               loading="lazy"
               decoding="async"

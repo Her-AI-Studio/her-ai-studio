@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
 import schematikLogo from "../assets/sponsors/schematik.png";
 
 const title = "Sponsors — Her AI Studio";
@@ -113,10 +114,10 @@ const tiers = [
                       <li class="sponsors-tier__sponsor-card">
                         <div class="sponsors-tier__sponsor-top">
                           {s.logo && (
-                            <img
-                              src={s.logo.src}
-                              width={s.logo.width}
-                              height={s.logo.height}
+                            <Image
+                              src={s.logo}
+                              width={120}
+                              height={120}
                               alt={s.name}
                               loading="lazy"
                               decoding="async"

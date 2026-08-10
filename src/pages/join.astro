@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
 import RosieZara from "../assets/zara-rosie.png";
 
 const title = "Join the Interest List — Her AI Studio";
@@ -29,12 +30,12 @@ const description = "Leave your email and be first to know when the first cohort
             <p>Completely free to stay in the loop</p>
             <p>No experience needed</p>
           </div>
-          <img
-            class="cta-logo"
-            src={RosieZara.src}
-            width={RosieZara.width}
-            height={RosieZara.height}
+          <Image
+            src={RosieZara}
             alt="Her AI Studio"
+            class="cta-logo"
+            widths={[240, 320, 480, 640]}
+            sizes="min(320px, 88vw)"
             loading="lazy"
             decoding="async"
             data-reveal

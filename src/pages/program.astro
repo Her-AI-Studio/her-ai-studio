@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
 import stationDiscover from "../assets/stations/discover.png";
 import stationCreate from "../assets/stations/create.png";
 import stationEngineer from "../assets/stations/engineer.png";
@@ -34,10 +35,10 @@ const description = "Three stations, six weeks. Her AI Studio's curriculum takes
             <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field. Build your first locally-powered AI app.</p>
           </div>
           <figure class="station-sticker">
-            <img
-              src={stationDiscover.src}
-              width={stationDiscover.width}
-              height={stationDiscover.height}
+            <Image
+              src={stationDiscover}
+              width={419}
+              height={498}
               alt=""
               loading="lazy"
               decoding="async"
@@ -51,10 +52,10 @@ const description = "Three stations, six weeks. Her AI Studio's curriculum takes
             <p class="station-body">Build your first AI-powered project bridging hardware and software in image, text, or voice.</p>
           </div>
           <figure class="station-sticker">
-            <img
-              src={stationCreate.src}
-              width={stationCreate.width}
-              height={stationCreate.height}
+            <Image
+              src={stationCreate}
+              width={376}
+              height={481}
               alt=""
               loading="lazy"
               decoding="async"
@@ -68,10 +69,10 @@ const description = "Three stations, six weeks. Her AI Studio's curriculum takes
             <p class="station-body">Build your cyberdeck: your own AI-powered device. No programming experience needed.</p>
           </div>
           <figure class="station-sticker">
-            <img
-              src={stationEngineer.src}
-              width={stationEngineer.width}
-              height={stationEngineer.height}
+            <Image
+              src={stationEngineer}
+              width={353}
+              height={450}
               alt=""
               loading="lazy"
               decoding="async"
@@ -85,10 +86,10 @@ const description = "Three stations, six weeks. Her AI Studio's curriculum takes
             <p class="station-body">Present your work at a studio showcase to friends, family, and industry guests.</p>
           </div>
           <figure class="station-sticker">
-            <img
-              src={stationShowcase.src}
-              width={stationShowcase.width}
-              height={stationShowcase.height}
+            <Image
+              src={stationShowcase}
+              width={374}
+              height={443}
               alt=""
               loading="lazy"
               decoding="async"

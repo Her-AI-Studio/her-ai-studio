@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import Join from "../components/Join.astro";
+import { Image, getImage } from "astro:assets";
 import logoImage from "../assets/logo.png";
 import cyberdeckImage from "../assets/cyberdeck.png";
 import discoverLab from "../assets/discover-lab.png";
@@ -15,9 +16,29 @@ const description =
   "Her AI Studio is a free studio program for girls and people who identify as women building with AI. Join the interest list for the first cohort.";
 const ogTitle = "Her AI Studio";
 const ogDescription = "Get updates on a free creative AI studio for women in grades 9–12.";
+
+// Responsive config for the LCP (hero) image. Kept in one place so the
+// preload in <head> always matches the <Image> srcset/sizes.
+const heroImageWidths = [480, 640, 875];
+const heroImageSizes = "(max-width: 769px) min(560px, 94vw), 40vw";
+const heroImage = await getImage({
+  src: logoImage,
+  widths: heroImageWidths,
+  sizes: heroImageSizes,
+});
 ---
 
 <Layout {title} {description} {ogTitle} {ogDescription}>
+
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={heroImage.src}
+    imagesrcset={heroImage.srcSet.attribute}
+    imagesizes={heroImageSizes}
+    fetchpriority="high"
+  />
 
   <Nav currentPath="/" />
 
@@ -46,13 +67,12 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
         </div>
 
         <div class="door-hero-col" data-reveal data-delay="1">
-          <img
-            src={logoImage.src}
-            width={logoImage.width}
-            height={logoImage.height}
+          <Image
+            src={logoImage}
             alt="Illustration of a girl in a hanging bubble chair with a laptop, orbited by a ring of purple stars on a dark background."
-            loading="eager"
-            fetchpriority="high"
+            widths={heroImageWidths}
+            sizes={heroImageSizes}
+            priority
           />
         </div>
 
@@ -87,11 +107,11 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
         </div>
 
         <figure class="cyberdeck-figure" data-reveal data-delay="1">
-          <img
-            src={cyberdeckImage.src}
-            width={cyberdeckImage.width}
-            height={cyberdeckImage.height}
+          <Image
+            src={cyberdeckImage}
             alt="Your own cyberdeck"
+            widths={[480, 720, 960, 1402]}
+            sizes="(max-width: 769px) 94vw, 52vw"
             loading="lazy"
             decoding="async"
           />
@@ -117,11 +137,11 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
           </p>
         </div>
         <figure class="discover-figure" data-reveal data-delay="2">
-          <img
-            src={discoverLab.src}
-            width={discoverLab.width}
-            height={discoverLab.height}
+          <Image
+            src={discoverLab}
             alt="A mentor presents to a group of students in a neon-lit classroom, with screens about what AI is and portraits of women leaders in the field."
+            widths={[400, 560, 751]}
+            sizes="(max-width: 900px) min(520px, 92vw), 46vw"
             loading="lazy"
             decoding="async"
           />
@@ -149,10 +169,10 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
             </p>
           </div>
           <figure class="why-row__figure">
-            <img
-              src={whyBuild.src}
-              width={whyBuild.width}
-              height={whyBuild.height}
+            <Image
+              src={whyBuild}
+              width={526}
+              height={324}
               alt="Three students collaborating at a table with laptops, a tablet, and floating previews of apps and creative tools."
               loading="lazy"
               decoding="async"
@@ -162,10 +182,10 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
 
         <article class="why-row why-row--media-start" data-reveal data-delay="3">
           <figure class="why-row__figure">
-            <img
-              src={whySisterhood.src}
-              width={whySisterhood.width}
-              height={whySisterhood.height}
+            <Image
+              src={whySisterhood}
+              width={650}
+              height={306}
               alt="Five students gathered around a laptop, learning together in a warm, welcoming space."
               loading="lazy"
               decoding="async"
@@ -200,10 +220,10 @@ const ogDescription = "Get updates on a free creative AI studio for women in gra
             </p>
           </div>
           <figure class="why-row__figure">
-            <img
-              src={whySkills.src}
-              width={whySkills.width}
-              height={whySkills.height}
+            <Image
+              src={whySkills}
+              width={515}
+              height={342}
               alt="A student at her desk at night with floating panels about prompts, machine learning, and ethical AI."
               loading="lazy"
               decoding="async"
