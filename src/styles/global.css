@@ -566,13 +566,21 @@
   font-weight: 600;
   color: var(--muted-foreground);
   letter-spacing: 0.02em;
-  margin-bottom: 1.75rem;
+  margin-bottom: 0.75rem;
   max-width: 100%;
 }
 
 .door-meta span {
   margin: 0 0.4em;
   opacity: 0.45;
+}
+
+.door-mission {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  max-width: min(48ch, 100%);
+  margin: 0 0 1.75rem;
 }
 
 .door-inclusion {

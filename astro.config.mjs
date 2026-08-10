@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import tailwindcss from "@tailwindcss/postcss";
+import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 
 // Absolute URLs for Open Graph (set to your production origin).
@@ -14,11 +14,7 @@ export default defineConfig({
     inlineStylesheets: "always",
   },
   vite: {
-    css: {
-      postcss: {
-        plugins: [tailwindcss()],
-      },
-    },
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
