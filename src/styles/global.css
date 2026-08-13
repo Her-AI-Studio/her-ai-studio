@@ -1280,6 +1280,48 @@
   background: #fff;
 }
 
+/* ── Join the list (pop-new-window CTA) ───────────────────── */
+.join-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-height: 180px;
+}
+
+.join-popup-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 1.05rem 2.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--foreground);
+  cursor: pointer;
+  box-shadow: var(--shadow-lift);
+  white-space: nowrap;
+  transition:
+    opacity 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.join-popup-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.join-popup-btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;

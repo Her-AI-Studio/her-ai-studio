@@ -2,8 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import { Image } from "astro:assets";
-import RosieZara from "../assets/zara-rosie.png";
+import Join from "../components/Join.astro";
 
 const title = "Join the Interest List — Her AI Studio";
 const description = "Leave your email and be first to know when the first cohort opens: dates, details, and how to apply.";
@@ -22,6 +21,7 @@ const description = "Leave your email and be first to know when the first cohort
           <h2 class="cta-h2" id="join-heading" data-reveal data-delay="1">
             Talk to us!
           </h2>
+          
           <p class="cta-sub" data-reveal data-delay="2">
             The first cohort is coming. Leave your email and we'll send you the date, the details, and how to apply. You'll be first to know.
           </p>
@@ -30,31 +30,10 @@ const description = "Leave your email and be first to know when the first cohort
             <p>Completely free to stay in the loop</p>
             <p>No experience needed</p>
           </div>
-          <Image
-            src={RosieZara}
-            alt="Her AI Studio"
-            class="cta-logo"
-            widths={[240, 320, 480, 640]}
-            sizes="min(320px, 88vw)"
-            loading="lazy"
-            decoding="async"
-            data-reveal
-            data-delay="4"
-          />
+         
         </div>
 
-        <div class="google-form" data-reveal data-delay="2">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs2lV5106vJvtM-BLR6b9A6xZiRNw5C2Wyg/viewform?embedded=true"
-            width="640"
-            height="1297"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-            title="Her AI Studio contact and interest form"
-            loading="lazy"
-          >Loading…</iframe>
-        </div>
+        <Join />
       </div>
     </div>
   </section>

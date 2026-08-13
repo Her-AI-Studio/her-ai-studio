@@ -1,12 +1,55 @@
-<div class="google-form" data-reveal data-delay="2">
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs2lV5106vJvtM-BLR6b9A6xZiRNw5C2Wyg/viewform?embedded=true"
-    width="640"
-    height="1297"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0"
-    title="Her AI Studio contact and interest form"
-    loading="lazy"
-  >Loading…</iframe>
+---
+// Standalone (non-embedded) Google Form. Opening this URL in its own window
+// renders the full-width form instead of squeezing it into an iframe.
+const FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs2lV5106vJvtM-BLR6b9A6xZiRNw5C2Wyg/viewform";
+const POPUP_WIDTH = 780;
+const POPUP_HEIGHT = 920;
+---
+
+<div class="join-popup" data-reveal data-delay="2">
+  <button
+    type="button"
+    class="join-popup-btn"
+    data-join-open
+    aria-haspopup="dialog"
+  >
+    <span>Join the interest list</span>
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M3 8h10M9 4l4 4-4 4"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
 </div>
+
+<script>
+  const JOIN_FORM_URL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs2lV5106vJvtM-BLR6b9A6xZiRNw5C2Wyg/viewform";
+  const WIDTH = 780;
+  const HEIGHT = 920;
+
+  function openJoinForm() {
+    const left = Math.max(0, Math.round((window.screen.availWidth - WIDTH) / 2));
+    const top = Math.max(0, Math.round((window.screen.availHeight - HEIGHT) / 2));
+    window.open(
+      JOIN_FORM_URL,
+      "her-ai-studio-join",
+      `popup=yes,noopener=yes,width=${WIDTH},height=${HEIGHT},left=${left},top=${top}`,
+    );
+  }
+
+  document.querySelectorAll("[data-join-open]").forEach((btn) => {
+    btn.addEventListener("click", openJoinForm);
+  });
+</script>
