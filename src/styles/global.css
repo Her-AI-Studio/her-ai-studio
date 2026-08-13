@@ -1673,7 +1673,6 @@
   font-size: clamp(1rem, 1.6vw, 1.1rem);
   color: var(--muted-foreground);
   line-height: 1.65;
-  max-width: 52ch;
   margin: 0 0 2.5rem;
 }
 
