@@ -1,106 +1,123 @@
 ---
+import "../styles/workshop.css";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
-import stationDiscover from "../assets/stations/discover.png";
-import stationCreate from "../assets/stations/create.png";
-import stationEngineer from "../assets/stations/engineer.png";
-import stationShowcase from "../assets/stations/showcase.png";
+import studentsPhoto from "../assets/paris-skulk.png";
 
 const title = "Program — Her AI Studio";
-const description = "Three stations, six weeks. Her AI Studio's curriculum takes you from AI beginner to capstone builder.";
+const description = "Three weeks. Learn it, build it, show it. Her AI Studio's cadence takes you from AI fundamentals to a capstone showcase.";
+
+const studentsImageWidths = [320, 480, 640, 800, 1000];
+const studentsImageSizes = "(max-width: 860px) min(520px, 90vw), 42vw";
+
+const weeks = [
+  {
+    title: "Learn",
+    body: "AI engineering fundamentals, delivered through our web-based curriculum. No hardware yet: understand how models actually work, and meet the women who've shaped this field before you.",
+  },
+  {
+    title: "Build",
+    body: "Wire up your AI kit and put what you learned into practice. This is the hands-on week: real hardware, real code, mentored by college engineers.",
+  },
+  {
+    title: "Showcase",
+    body: "Finish your capstone project and present it at a studio showcase to friends, family, and industry guests.",
+  },
+];
 ---
 
 <Layout {title} {description}>
 
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap"
+  />
+
   <Nav currentPath="/program" />
 
-  <main id="main-content">
-  <section id="program" class="studio-room room-benches" aria-labelledby="program-heading">
-    <div class="room-inner">
-      <p class="room-label" data-reveal>What we're shaping</p>
-      <h2 id="program-heading" style="font-size:clamp(2.5rem,5.5vw,4rem);margin-bottom:0.75rem;max-width:100%;" data-reveal data-delay="1">
-        Three stations.<br>Six weeks.
-      </h2>
-      <p style="color:var(--muted-foreground);font-size:1.1rem;margin-bottom:2.25rem;max-width:52ch;" data-reveal data-delay="2">
-        We're designing the studio around these beats. Details may evolve as we build the cohort, and we'll share milestones when you join the list.
-      </p>
+  <main id="main-content" class="ws">
 
-      <ol class="workbench-stations">
-        <li class="station" data-reveal data-delay="1">
-          <div class="station-text">
-            <span class="sr-only">Station 1</span>
-            <h3 class="station-title">Beginners: Discover</h3>
-            <p class="station-body">What is AI really? Demystify the tech and meet women already shaping the field. Build your first locally-powered AI app.</p>
-          </div>
-          <figure class="station-sticker">
-            <Image
-              src={stationDiscover}
-              width={419}
-              height={498}
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </li>
-        <li class="station" data-reveal data-delay="2">
-          <div class="station-text">
-            <span class="sr-only">Station 2</span>
-            <h3 class="station-title">Intermediate: Create</h3>
-            <p class="station-body">Build your first AI-powered project bridging hardware and software in image, text, or voice.</p>
-          </div>
-          <figure class="station-sticker">
-            <Image
-              src={stationCreate}
-              width={376}
-              height={481}
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </li>
-        <li class="station" data-reveal data-delay="3">
-          <div class="station-text">
-            <span class="sr-only">Station 3</span>
-            <h3 class="station-title">Advanced: Engineer</h3>
-            <p class="station-body">Build your cyberdeck: your own AI-powered device. No programming experience needed.</p>
-          </div>
-          <figure class="station-sticker">
-            <Image
-              src={stationEngineer}
-              width={353}
-              height={450}
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </li>
-        <li class="station" data-reveal data-delay="4">
-          <div class="station-text">
-            <span class="sr-only">Bonus: Showcase</span>
-            <h3 class="station-title">Capstone</h3>
-            <p class="station-body">Present your work at a studio showcase to friends, family, and industry guests.</p>
-          </div>
-          <figure class="station-sticker">
-            <Image
-              src={stationShowcase}
-              width={374}
-              height={443}
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </li>
-      </ol>
-    </div>
-  </section>
+    <section class="ws-section program-hero-section" aria-labelledby="program-heading">
+      <div class="ws-shell program-grid">
+        <div class="program-copy">
+          <p class="ws-eyebrow ws-eyebrow--blue">// What we're shaping</p>
+          <h1 id="program-heading" class="ws-h2">Learn it. Build it. Show it.</h1>
+          <p class="ws-body ws-body--wide">
+            We're designing the studio around this cadence: one week of learning, one week of building, one week to showcase what you made. Details may evolve as we build the cohort, and we'll share milestones when you join the list.
+          </p>
 
-  <Footer currentPath="/program" />
+          <ol class="ws-principles ws-principles--light">
+            {weeks.map((week, i) => (
+              <li>
+                <span class="ws-index" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h2 class="ws-principle-title">Week {i + 1}: {week.title}</h2>
+                  <p class="ws-body">{week.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <figure class="program-figure">
+          <div class="ws-photo ws-photo--tilt-right">
+            <div class="ws-photo-frame">
+              <Image
+                src={studentsPhoto}
+                alt="Four women sit side by side at a long table, laptops open, wiring up hardware kits together during a workshop session."
+                widths={studentsImageWidths}
+                sizes={studentsImageSizes}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <p class="ws-photo-note pt-10">a group of hardware hackers learning together at a Vue Vixens workshop, the nonprofit that came before this one ↑</p>
+        </figure>
+      </div>
+    </section>
+
+    <Footer currentPath="/program" />
   </main>
 
 </Layout>
+
+<style>
+  .program-hero-section {
+    padding-top: 4rem;
+    border-bottom: none;
+  }
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .program-copy,
+  .program-figure {
+    min-width: 0;
+  }
+
+  .program-copy .ws-principles {
+    max-width: 62ch;
+  }
+
+  .program-figure {
+    margin: 0.5rem 0 0 auto;
+    max-width: 420px;
+  }
+
+  @media (max-width: 860px) {
+    .program-grid {
+      grid-template-columns: 1fr;
+    }
+    .program-figure {
+      margin: 0 auto;
+    }
+  }
+</style>

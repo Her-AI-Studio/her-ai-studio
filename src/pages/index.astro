@@ -1,31 +1,42 @@
 ---
+import "../styles/workshop.css";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import Join from "../components/Join.astro";
 import { Image, getImage } from "astro:assets";
-import logoImage from "../assets/text-logo.png";
 import cyberdeckImage from "../assets/cyberdeck.png";
-import discoverLab from "../assets/discover-lab.png";
-import whyBuild from "../assets/why/build.png";
-import whySisterhood from "../assets/why/sisterhood.png";
-import whySkills from "../assets/why/skills.png";
+import kitImage from "../assets/kit.jpg";
+import journalImage from "../assets/journal.jpg";
+import bloomImage from "../assets/bloom.jpg";
+import partsImage from "../assets/parts.png";
+import circuitHeart from "../assets/circuit-heart.svg?raw";
 
-const title = "Her AI Studio, a creative AI space for the next generation of women";
+const title = "Her AI Studio: cohort-based workshops with AI kits for girls who build AI, not just use it";
 const description =
-  "Her AI Studio is a free studio program for girls and people who identify as women building with AI. Join the interest list for the first cohort.";
+  "Free workshop series where high school girls in grades 9–12 design, wire, and code their own AI-powered cyberdeck, mentored by college engineers. Join the interest list for the first cohort.";
 const ogTitle = "Her AI Studio";
-const ogDescription = "Get updates on a free creative AI studio for women in grades 9–12.";
+const ogDescription = "Real hardware. Real code. A free workshop for girls who build AI.";
 
-// Responsive config for the LCP (hero) image. Kept in one place so the
-// preload in <head> always matches the <Image> srcset/sizes.
-const heroImageWidths = [480, 640, 875];
-const heroImageSizes = "(max-width: 769px) min(560px, 94vw), 40vw";
+const heroImageWidths = [480, 720, 960, 1402];
+const heroImageSizes = "(max-width: 860px) min(560px, 92vw), 44vw";
 const heroImage = await getImage({
-  src: logoImage,
+  src: cyberdeckImage,
   widths: heroImageWidths,
   sizes: heroImageSizes,
 });
+
+const kitImageWidths = [320, 480, 640, 800];
+const kitImageSizes = "(max-width: 860px) min(420px, 88vw), 34vw";
+
+const showcaseImageWidths = [320, 480, 640, 800];
+const showcaseImageSizes = "(max-width: 700px) min(420px, 88vw), 42vw";
+
+const partsImageWidths = [320, 480, 640, 800];
+const partsImageSizes = "(max-width: 860px) min(480px, 90vw), 460px";
+
+const tickerWords = ["Connect", "Join", "Make", "Play", "Train", "Build", "Break", "Debug", "Share", "Ship", "Teach"];
+
+const JOIN_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs2lV5106vJvtM-BLR6b9A6xZiRNw5C2Wyg/viewform";
 ---
 
 <Layout {title} {description} {ogTitle} {ogDescription}>
@@ -39,228 +50,822 @@ const heroImage = await getImage({
     imagesizes={heroImageSizes}
     fetchpriority="high"
   />
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap"
+  />
 
   <Nav currentPath="/" />
 
-  <main id="main-content">
-  <section id="door" class="studio-room room-door" aria-labelledby="door-heading">
-    <div class="room-inner" style="padding-top:0;padding-bottom:0;">
-      <div class="door-grid">
+  <main id="main-content" class="ws">
 
-        <div>
-          <h1 id="door-heading" class="door-lead-h1" data-reveal>
-            A Creative AI Studio
+    <!-- Hero -->
+    <section class="ws-hero" aria-labelledby="hero-heading">
+      <div class="ws-shell ws-hero-grid">
+        <div class="ws-hero-copy">
+          <p class="ws-eyebrow ws-eyebrow--blue">// A studio for girls who build</p>
+          <h1 id="hero-heading" class="ws-wordmark">
+            <span>Her</span><span>AI</span><span>Studio</span>
           </h1>
-        
-          <p class="door-meta" data-reveal data-delay="2">
-            For grades 9-12 <span aria-hidden="true">·</span>Always free <span aria-hidden="true">·</span> Beginner-friendly <span aria-hidden="true">·</span> Build your cyberdeck!
+          <div class="ws-wordmark-rule" aria-hidden="true"></div>
+          <p class="ws-tagline">
+            <span class="ws-highlight ws-highlight--blue">Make</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--pink">Play</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--orange">Build</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--blue">Break</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--pink">Share</span>
           </p>
-          <p class="door-mission" data-reveal data-delay="3">
-            Her AI Studio is a Massachusetts 501(c)(3) nonprofit delivering free, beginner-friendly AI engineering and hardware education to high school girls, because the future of AI should be built by everyone. Build AI Better, Build Better AI!
+          <p class="ws-lead">
+            Free cohort-based workshops where high school girls in grades 9–12 design, wire, and code their own
+            AI-powered cyberdeck. Real hardware, real code, mentored by female college engineers only a few
+            years ahead of them. Powered by our AI Kits running local models on Arduino-based hardware. Dream it, Build it.
           </p>
-          
-          <a href="/join" class="door-cta" data-reveal data-delay="4">
-            Join the list
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-
-        <div class="door-hero-col" data-reveal data-delay="1">
-          <Image
-            src={logoImage}
-            alt="Illustration of a girl in a hanging bubble chair with a laptop, orbited by a ring of purple stars on a dark background."
-            widths={heroImageWidths}
-            sizes={heroImageSizes}
-            priority
-          />
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="cyberdeck" class="studio-room room-cyberdeck" aria-labelledby="cyberdeck-heading">
-    <div class="room-inner">
-      <div class="cyberdeck-grid">
-
-        <div class="cyberdeck-copy">
-          <p class="room-label" data-reveal>What you'll build</p>
-          <h2 id="cyberdeck-heading" class="cyberdeck-h2" data-reveal data-delay="1">
-            Your<br>cyberdeck
-          </h2>
-          <p class="cyberdeck-body" data-reveal data-delay="2">
-            Apply to join one of our in-person cohorts. By the end of six weeks, you'll earn your builder kit to build your custom cyberdeck: a pocket-sized AI computer built inside a case. You'll wire it up, program it, and take it home at the end of the program. Run it offline, with local models, using data you control and manage.
-          </p>
-          <ul class="cyberdeck-specs" aria-label="What's inside" data-reveal data-delay="3">
-            <li>Arduino-powered brain</li>
-            <li>Mini bluetooth keyboard</li>
-            <li>Local AI Models</li>
-            <li>Yours to keep</li>
-          </ul>
-          <a href="/program" class="cyberdeck-cta" data-reveal data-delay="4">
-            See the curriculum
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-
-        <figure class="cyberdeck-figure" data-reveal data-delay="1">
-          <Image
-            src={cyberdeckImage}
-            alt="Your own cyberdeck"
-            widths={[480, 720, 960, 1402]}
-            sizes="(max-width: 769px) 94vw, 52vw"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="discover" class="studio-room room-discover" aria-labelledby="discover-heading">
-    <div class="room-inner">
-      <p class="room-label" data-reveal>Discover</p>
-      <div class="discover-grid">
-        <div class="discover-copy">
-          <h2 id="discover-heading" class="discover-h2" data-reveal data-delay="1">
-            Learn deeply.<br /><span class="discover-h2__sub">Then teach someone else.</span>
-          </h2>
-          <p class="discover-lead" data-reveal data-delay="2">
-            In this program, you'll walk a path the women who built this field have already walked: go from figuring things out to explaining them, from trying prompts to guiding someone through theirs, from "I get it" to "let me show you." Leadership here isn't a title you wait for. It's a muscle you grow by helping the room rise with you.
-          </p>
-          <p class="discover-kicker" data-reveal data-delay="2">
-            <strong>Women who opened the door.</strong> Joy Buolamwini was a grad student when she proved facial recognition software was biased against darker skin; her research changed how companies worldwide build AI. Fei-Fei Li spent years building a massive dataset so computers could learn to see the world. Timnit Gebru co-authored research that made powerful AI labs deeply uncomfortable. You'll study what they built and why it mattered, not to follow one career path, but because the next generation of leaders in this field is you.
-          </p>
-        </div>
-        <figure class="discover-figure" data-reveal data-delay="2">
-          <Image
-            src={discoverLab}
-            alt="A mentor presents to a group of students in a neon-lit classroom, with screens about what AI is and portraits of women leaders in the field."
-            widths={[400, 560, 751]}
-            sizes="(max-width: 900px) min(520px, 92vw), 46vw"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section id="why" class="studio-room room-floor" aria-labelledby="why-heading">
-    <div class="room-inner">
-      <p class="room-label" data-reveal>Why we built this</p>
-      <h2 id="why-heading" style="font-size:clamp(2.5rem,5.5vw,4rem);margin-bottom:2.5rem;max-width:100%;" data-reveal data-delay="1">
-        Where girls and women become<br>confident AI creators, builders, and engineers.
-      </h2>
-
-      <div class="why-zigzag">
-        <article class="why-row why-row--media-end" data-reveal data-delay="2">
-          <div class="why-row__text">
-            <h3 class="why-row__title">
-              <span class="why-row__glyph" aria-hidden="true">✦</span>
-              Build real things
-            </h3>
-            <p class="why-row__body">
-              Work with real hardware to build your own cyberdeck: a pocket-sized AI device you design and program yourself.
-            </p>
-          </div>
-          <figure class="why-row__figure">
-            <Image
-              src={whyBuild}
-              width={526}
-              height={324}
-              alt="Three students collaborating at a table with laptops, a tablet, and floating previews of apps and creative tools."
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </article>
-
-        <article class="why-row why-row--media-start" data-reveal data-delay="3">
-          <figure class="why-row__figure">
-            <Image
-              src={whySisterhood}
-              width={650}
-              height={306}
-              alt="Five students gathered around a laptop, learning together in a warm, welcoming space."
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-          <div class="why-row__text">
-            <h3 class="why-row__title">
-              <span class="why-row__glyph why-row__glyph--heart" aria-hidden="true">♡</span>
-              A sisterhood
-            </h3>
-            <p class="why-row__body">
-              Learn alongside the people who get it. Mentors, peers, and role models who look like you.
-            </p>
-          </div>
-        </article>
-
-        <article class="why-row why-row--media-end" data-reveal data-delay="4">
-          <div class="why-row__text">
-            <h3 class="why-row__title">
-              <span class="why-row__glyph why-row__glyph--future" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 18c4.5-1 8-4 11.5-8.5S19.5 5.5 21 4" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M3 20.5h18" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/>
-                  <circle cx="21" cy="4" r="2.35" fill="currentColor"/>
-                  <path d="M17.5 3.5 21 4l-1.2 3.2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="ws-primary-cta">
+            <div class="join-popup">
+              <a href={JOIN_FORM_URL} target="_blank" rel="noopener" class="join-popup-btn">
+                <span>Join the interest list</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-              </span>
-              Future-ready skills
-            </h3>
-            <p class="why-row__body">
-              Local AI, prompt engineering, machine learning intuition, and ethical AI thinking that schools don't teach yet.
-            </p>
-          </div>
-          <figure class="why-row__figure">
-            <Image
-              src={whySkills}
-              width={515}
-              height={342}
-              alt="A student at her desk at night with floating panels about prompts, machine learning, and ethical AI."
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="interest" class="studio-room room-cta" aria-labelledby="interest-heading">
-    <div class="room-inner">
-      <div class="cta-layout">
-        <div class="cta-copy">
-          <p class="room-label cta-label" data-reveal>Interest list</p>
-          <h2 class="cta-h2" id="interest-heading" data-reveal data-delay="1">
-            Join the interest list
-          </h2>
-          <p class="cta-sub" data-reveal data-delay="2">
-            The first cohort is coming. Leave your email and we'll send you the date, the details, and how to apply. You'll be first to know.
-          </p>
-          <div class="cta-bullets" data-reveal data-delay="3">
-            <p>Built at the grass roots</p>
-            <p>Completely free to stay in the loop</p>
-            <p>No experience needed</p>
+              </a>
+            </div>
           </div>
         </div>
 
-        <article class="cta-form-col" data-reveal data-delay="2">
-          <Join />
-        </article>
+        <figure class="ws-hero-figure">
+          <div class="ws-photo">
+            <div class="ws-photo-frame">
+              <Image
+                src={cyberdeckImage}
+                alt="An open, heart-shaped cyberdeck case with a keyboard, exposed wiring, and a screen showing a live terminal session: 'aurora&gt; help', a command list, and system info for an Arduino-based device."
+                widths={heroImageWidths}
+                sizes={heroImageSizes}
+                priority
+              />
+              <span class="ws-tape ws-tape--pink" aria-hidden="true"></span>
+              <span class="ws-tag ws-tag--lime ws-tag--corner ws-tag--top">Prototype</span>
+              <span class="ws-tag ws-tag--blue ws-tag--corner ws-tag--bottom">Powered by custom AI models</span>
+            </div>
+          </div>
+          <p class="ws-photo-status">Prototype of an Arduino-powered cyberdeck</p>
+          <p class="ws-photo-note">yours won't look like this one. that's the point ↑</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="ws-ticker" aria-hidden="true">
+      <div class="ws-ticker-track">
+        {[...tickerWords, ...tickerWords].map((word, index) => (
+          <Fragment>
+            {index > 0 && <span class="ws-ticker-heart" set:html={circuitHeart} />}
+            <span>{word}</span>
+          </Fragment>
+        ))}
       </div>
     </div>
-  </section>
 
-  <Footer currentPath="/" />
+    <!-- What you'll build -->
+    <section class="ws-section" aria-labelledby="build-heading">
+      <div class="ws-shell ws-build-grid">
+        <div class="ws-build-copy">
+          <p class="ws-eyebrow ws-eyebrow--blue">What you'll build</p>
+          <h2 id="build-heading" class="ws-h2">Kits for builders.</h2>
+          <p class="ws-body ws-body--wide">
+            While we build, we're also sourcing our kits. Take a look at some of what's included. And don't forget the software and custom AI model that power the board, trained by you!
+          </p>
+          <ul class="ws-spec-list" aria-label="What's inside">
+            <li class="ws-tag ws-tag--blue">Arduino Uno Q</li>
+            <li class="ws-tag ws-tag--pink">Camera</li>
+            <li class="ws-tag ws-tag--lime">Microphone</li>
+            <li class="ws-tag ws-tag--orange">USB hub</li>
+            <li class="ws-tag ws-tag--blue">Bluetooth keyboard</li>
+            <li class="ws-tag ws-tag--pink">Bluetooth mouse</li>
+            <li class="ws-tag ws-tag--lime">HDMI mini monitor</li>
+            <li class="ws-tag ws-tag--orange">Hidden power bank</li>
+            <li class="ws-tag ws-tag--blue">Yours to keep</li>
+          </ul>
+        </div>
+
+        <figure class="ws-build-figure">
+          <div class="ws-photo ws-photo--alt">
+            <div class="ws-photo-frame">
+              <Image
+                src={kitImage}
+                alt="An AI kit prototype: a small touchscreen running a browser, a bluetooth keyboard, and an exposed Arduino board wired together with USB hub cables on a desk."
+                widths={kitImageWidths}
+                sizes={kitImageSizes}
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="ws-tape ws-tape--blue" aria-hidden="true"></span>
+              <span class="ws-tag ws-tag--orange ws-tag--corner ws-tag--top">Currently Sourcing</span>
+            </div>
+          </div>
+          <p class="ws-photo-status">AI KIT: ARDUINO UNO Q, HDMI MINI MONITOR, BLUETOOTH KEYBOARD</p>
+          <p class="ws-photo-note">still figuring out the perfect case ↑</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Sample builds -->
+    <section class="ws-section" aria-labelledby="showcase-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--pink">// Sample builds</p>
+        <h2 id="showcase-heading" class="ws-h2">Same kit. Different disguise.</h2>
+        <p class="ws-body ws-body--wide">
+          Every kit runs the same board and screen underneath. What goes around them is entirely up
+          to you. Here are two examples where we've hidden one in plain sight.
+        </p>
+        <div class="ws-showcase-grid">
+          <figure class="ws-showcase-item">
+            <div class="ws-photo ws-photo--tilt-left">
+              <div class="ws-photo-frame">
+                <Image
+                  src={journalImage}
+                  alt="A hollowed-out hardcover book with a touchscreen embedded in the pages, showing a 'My Secret Journal' web app with a date, title, and a text entry. A small keyboard sits beside it."
+                  widths={showcaseImageWidths}
+                  sizes={showcaseImageSizes}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="ws-tape ws-tape--lime" aria-hidden="true"></span>
+                <span class="ws-tag ws-tag--blue ws-tag--corner ws-tag--top">Hollow book</span>
+              </div>
+            </div>
+            <figcaption>
+              <h3 class="ws-showcase-title">Secret Journal</h3>
+              <p class="ws-body">
+                A private journal hidden inside a hollowed-out book. Opens locally in the
+                browser. No account, no cloud, no one reading over your shoulder.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure class="ws-showcase-item">
+            <div class="ws-photo ws-photo--tilt-right">
+              <div class="ws-photo-frame">
+                <Image
+                  src={bloomImage}
+                  alt="A floral zippered case open outdoors near green leaves, holding a small touchscreen, a keyboard, and a wired Arduino board tucked into fabric pockets."
+                  widths={showcaseImageWidths}
+                  sizes={showcaseImageSizes}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="ws-tape ws-tape--orange" aria-hidden="true"></span>
+                <span class="ws-tag ws-tag--lime ws-tag--corner ws-tag--top">Field-ready</span>
+              </div>
+            </div>
+            <figcaption>
+              <h3 class="ws-showcase-title">B.L.O.O.M.</h3>
+              <p class="ws-body">
+                "Bridging Local Observations, Openly Mapped": an offline cyberdeck for capturing field notes, zipped into a repurposed makeup train case that
+                holds up outside. No signal required. Capture picture, chat with an LLM about your observations, with the option to send your note to a community web site. Read the writeup <a href="https://www.hackster.io/agent-hawking-1/b-l-o-o-m-a-community-cyberdeck-for-your-field-notes-8dba4c" target="_blank" rel="noopener noreferrer">here</a>.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- The cyberdeck explained + four principles -->
+    <section class="ws-block-dark" aria-labelledby="how-heading">
+      <div class="ws-shell ws-how-grid">
+        <div class="ws-how-copy">
+          <p class="ws-eyebrow ws-eyebrow--lime">// The AI kit</p>
+          <h2 id="how-heading" class="ws-h2 ws-h2--dark ws-h2--xl">
+            A cyberdeck with a <span class="ws-highlight ws-highlight--pink">heartbeat</span>.
+          </h2>
+          <p class="ws-body ws-body--dark">
+            An AI cyberdeck is a small computer you wire into a case you choose, running a language model
+            directly on the hardware. Nothing leaves the device unless you decide to send it
+            somewhere. Cyberdecks can be purpose built or host a variety of apps, but the core is always the same: a keyboard, a board, and a screen. The elements below are what make it all work.
+          </p>
+          <figure class="ws-parts-photo">
+            <div class="ws-photo ws-photo--on-dark ws-photo--tilt-left">
+              <div class="ws-photo-frame">
+                <span class="ws-tape ws-tape--pink ws-tape--top-center" aria-hidden="true"></span>
+                <Image
+                  src={partsImage}
+                  alt="A labeled diagram of the AI kit's parts inside its case, with callout lines pointing to each one: Arduino Uno Q, camera, USB hub, microphone, Bluetooth keyboard, Bluetooth mouse, HDMI mini monitor, and a hidden power bank at the bottom."
+                  widths={partsImageWidths}
+                  sizes={partsImageSizes}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </figure>
+
+         
+
+        </div>
+
+        <ol class="ws-principles">
+          <li>
+            <span class="ws-index" aria-hidden="true">01</span>
+            <div>
+              <h3 class="ws-principle-title ws-principle-title--dark">Keyboard</h3>
+              <p class="ws-body ws-body--dark">
+                A Bluetooth keyboard, paired straight to the board. This is where a prompt
+                starts.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="ws-index" aria-hidden="true">02</span>
+            <div>
+              <h3 class="ws-principle-title ws-principle-title--dark">Board</h3>
+              <p class="ws-body ws-body--dark">
+                An Arduino Uno Q. The model lives here and runs the your code locally.
+          
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="ws-index" aria-hidden="true">03</span>
+            <div>
+              <h3 class="ws-principle-title ws-principle-title--dark">Screen</h3>
+              <p class="ws-body ws-body--dark">
+                An HDMI mini monitor. Whatever the model writes back shows up here, nowhere
+                else.
+              </p>
+            </div>
+          </li>
+           <li>
+            <span class="ws-index" aria-hidden="true">04</span>
+            <div>
+              <h3 class="ws-principle-title ws-principle-title--dark">Camera</h3>
+              <p class="ws-body ws-body--dark">
+                A tiny camera, the "eyes" of your cyberdeck. It can be used for computer vision tasks, like object recognition or image classification.
+              </p>
+            </div>
+          </li>
+           <li>
+            <span class="ws-index" aria-hidden="true">05</span>
+            <div>
+              <h3 class="ws-principle-title ws-principle-title--dark">Microphone</h3>
+              <p class="ws-body ws-body--dark">
+                A microphone, the "ears" of your cyberdeck. It can be used for audio processing tasks, like speech recognition or sound classification.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Studio principles -->
+    <section class="ws-section" aria-labelledby="principles-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--orange">//How we run this</p>
+        <h2 id="principles-heading" class="ws-h2">Three things we don't compromise on.</h2>
+        <ol class="ws-principles ws-principles--light">
+          <li>
+            <span class="ws-index" aria-hidden="true">01</span>
+            <div>
+              <h3 class="ws-principle-title">Technical authorship</h3>
+              <p class="ws-body">
+                It's her build. Not "inspired by," not "helped with"; designed, trained, and coded by
+                her, start to finish.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="ws-index" aria-hidden="true">02</span>
+            <div>
+              <h3 class="ws-principle-title">Honesty about failure</h3>
+              <p class="ws-body">
+                Building includes breaking things. A version that doesn't work the first time isn't a
+                setback. It's the normal shape of the process.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="ws-index" aria-hidden="true">03</span>
+            <div>
+              <h3 class="ws-principle-title">Peer mentorship</h3>
+              <p class="ws-body">
+                Our cohort instructors are college engineers a few years ahead of our cohort students, not distant experts. Nothing
+                about how the tech or the program works is hidden from you. Industry experts are standing by, though, if you need us!
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="ws-section" aria-labelledby="mission-heading">
+      <div class="ws-shell ws-mission-grid">
+        <div class="ws-mission-icon-col">
+          <span class="ws-heart-icon" aria-hidden="true" set:html={circuitHeart} />
+          <span class="ws-tag ws-tag--orange ws-tag--tilt">Free, always</span>
+        </div>
+        <div>
+          <p class="ws-eyebrow ws-eyebrow--pink">// Why this exists</p>
+          <h2 id="mission-heading" class="ws-h2">Not a pipeline. A studio.</h2>
+          <p class="ws-body ws-body--wide">
+            The girls here are the <span class="ws-highlight ws-highlight--pink">authors</span> of
+            their work. The mentoring, the mission, and the statistics are just why the doors opened.
+          </p>
+          <p class="ws-body ws-body--wide">
+            Fewer women build AI every year. We think that's a problem. So we will build a different
+            narrative.
+          </p>
+          <p class="ws-body ws-body--wide">
+            Her AI Studio is a Massachusetts 501(c)(3) nonprofit. We give high school girls in grades
+            9–12 free access to the hardware, software, and mentorship it takes to build a real AI
+            device from scratch. No experience is required, and for our cohort students, no cost, ever.
+          </p>
+          <p class="ws-handwritten">make ai better by making better ai</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="ws-section" aria-labelledby="faq-heading">
+      <div class="ws-shell ws-shell--narrow">
+        <p class="ws-eyebrow ws-eyebrow--blue">// Questions</p>
+        <h2 id="faq-heading" class="ws-h2">Before you ask.</h2>
+        <dl class="ws-faq-list">
+          <div class="ws-faq-item">
+            <dt class="ws-principle-title">What if I can't join a cohort?</dt>
+            <dd class="ws-body">
+              You can still build on your own. Our shop is coming soon. Once it's live, you'll be
+              able to buy a kit and follow the same curriculum solo. It's free and open either way;
+              a cohort just adds mentors and a group to build alongside.
+            </dd>
+          </div>
+          <div class="ws-faq-item">
+            <dt class="ws-principle-title">Is Her AI Studio actually free?</dt>
+            <dd class="ws-body">
+              The program is, always, provided at no cost, ever, for cohort students. If you're selected for a cohort, congratulations! Consider yourself blessed with a scholarship. Kits bought solo through
+              our shop are the one thing that costs something, since real parts aren't free to make.
+              The curriculum itself is never behind a paywall.
+            </dd>
+          </div>
+          <div class="ws-faq-item">
+            <dt class="ws-principle-title">Do I need any experience?</dt>
+            <dd class="ws-body">
+              No. That's true whether you're learning alongside a cohort or building solo from a kit. We've designed a course that will teach you everything you need to know, from wiring to coding to training your own AI model. The only prerequisite is curiosity.
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Three ways in -->
+    <section class="ws-section ws-cta-section" aria-labelledby="involved-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--blue">// Three ways in</p>
+        <h2 id="involved-heading" class="ws-h2">Come build something loud</h2>
+        <div class="ws-paths-grid">
+          <div class="ws-path-col">
+            <span class="ws-tag ws-tag--blue">Grades 9–12</span>
+            <h3 class="ws-principle-title">Students</h3>
+            <p class="ws-body">Stay tuned to join a cohort as we prepare our launch.</p>
+            <div class="ws-primary-cta ws-primary-cta--compact">
+              <div class="join-popup">
+                <a href={JOIN_FORM_URL} target="_blank" rel="noopener" class="join-popup-btn">
+                  <span>Join the interest list</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ws-path-col">
+            <span class="ws-tag ws-tag--pink">College engineers</span>
+            <h3 class="ws-principle-title">Instructors</h3>
+            <p class="ws-body">Would you like to be considered as a paid cohort instructor?</p>
+            <a href="https://discord.gg/aBvM6CsWYG" target="_blank" rel="noopener" class="ws-text-link">
+              Connect with us on Discord →
+            </a>
+          </div>
+          <div class="ws-path-col">
+            <span class="ws-tag ws-tag--lime">Real parts cost real money</span>
+            <h3 class="ws-principle-title">Sponsor</h3>
+            <p class="ws-body">Every kit costs something real. Got budget? Donate or sponsor!</p>
+            <a href="/sponsors" class="ws-text-link">See sponsorship tiers →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer currentPath="/" />
   </main>
 
 </Layout>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────────── */
+  .ws-hero {
+    padding-top: 6rem;
+    border-bottom: 1px solid var(--ws-border);
+  }
+
+  .ws-hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .ws-wordmark {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+    margin: 0 0 0.75rem;
+  }
+
+  .ws-wordmark-rule {
+    width: min(22rem, 60%);
+    height: 0.5rem;
+    background: var(--ws-acid);
+    margin: 0 0 1.5rem;
+  }
+
+  .ws-tagline {
+    font-family: var(--ws-font-body);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0 0 1.75rem;
+    color: var(--ws-ink-muted);
+  }
+
+  .ws-tagline-sep {
+    display: inline-block;
+    margin: 0 0.35em;
+    color: var(--ws-border);
+  }
+
+  .ws-lead {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--ws-ink-muted);
+    max-width: 46ch;
+    margin: 0 0 2rem;
+  }
+
+  .ws-fine-print {
+    font-size: 0.85rem;
+    color: var(--ws-ink-muted);
+    margin: 0.75rem 0 0;
+  }
+
+  /* Grid items don't shrink below their content's intrinsic width by default,
+     which lets a long bold headline blow out the track and cause horizontal
+     page overflow once these grids collapse to one column on narrow viewports. */
+  .ws-hero-copy,
+  .ws-hero-figure,
+  .ws-build-copy,
+  .ws-build-figure,
+  .ws-how-copy,
+  .ws-principles,
+  .ws-mission-icon-col,
+  .ws-mission-grid > div,
+  .ws-path-col {
+    min-width: 0;
+  }
+
+  .ws-hero-figure {
+    margin: 0 0 0 auto;
+    max-width: 420px;
+  }
+
+  @media (max-width: 860px) {
+    .ws-hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .ws-hero-figure {
+      order: -1;
+      margin: 0 auto;
+    }
+  }
+
+  /* ── Primary CTA (student path — plain text-link variant) ────────── */
+  .ws-primary-cta--compact :global(.join-popup-btn) {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    color: var(--ws-ink);
+    font-family: var(--ws-font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ws-primary-cta--compact :global(.join-popup-btn span) {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-underline-offset: 3px;
+  }
+
+  .ws-primary-cta--compact :global(.join-popup-btn:hover) {
+    transform: none;
+    box-shadow: none;
+    opacity: 0.65;
+  }
+
+  /* ── Ticker ───────────────────────────────────────────── */
+  .ws-ticker {
+    background: var(--ws-ink);
+    overflow: hidden;
+    padding: 0.65rem 0;
+  }
+
+  .ws-ticker-track {
+    display: flex;
+    gap: 2.5rem;
+    width: max-content;
+    animation: ws-ticker-scroll 30s linear infinite;
+  }
+
+  .ws-ticker-track span {
+    font-family: var(--ws-font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ws-acid);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .ws-ticker-track .ws-ticker-heart {
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    flex: 0 0 1.5em;
+    color: var(--ws-hot);
+    vertical-align: middle;
+  }
+
+  .ws-ticker-heart :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @keyframes ws-ticker-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ws-ticker-track {
+      animation: none;
+    }
+  }
+
+  /* ── Sections ─────────────────────────────────────────── */
+  .ws-build-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .ws-build-figure {
+    margin: 0 0 0 auto;
+    max-width: 360px;
+  }
+
+  .ws-photo--alt {
+    transform: rotate(2deg);
+  }
+
+  @media (max-width: 860px) {
+    .ws-build-grid {
+      grid-template-columns: 1fr;
+    }
+    .ws-build-figure {
+      order: -1;
+      margin: 0 auto;
+    }
+  }
+
+  .ws-showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    margin-top: 2.5rem;
+  }
+
+  .ws-showcase-item {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .ws-showcase-item .ws-photo {
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ws-showcase-title {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .ws-showcase-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .ws-spec-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .ws-aside {
+    margin: 2rem 0 0;
+    max-width: 60ch;
+  }
+
+  .ws-aside-label {
+    display: block;
+    font-family: var(--ws-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ws-flare-ink);
+    margin: 0 0 0.4rem;
+  }
+
+  .ws-aside p {
+    font-style: italic;
+    color: var(--ws-ink-muted);
+    margin: 0;
+  }
+
+  /* ── Dark block: how it works + code + principles ────── */
+  .ws-block-dark {
+    background: var(--ws-ink);
+  }
+
+  .ws-how-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .ws-how-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .ws-parts-photo {
+    max-width: 460px;
+    margin: 1.75rem 0;
+  }
+
+  .ws-parts-caption {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: var(--ws-font-mono);
+    font-size: 0.72rem;
+    color: var(--ws-on-black-muted);
+  }
+
+  .ws-code {
+    margin: 1.75rem 0 0;
+    border: 1px solid oklch(1 0 0 / 0.12);
+    background: oklch(0.12 0.012 60);
+  }
+
+  .ws-code-label {
+    font-family: var(--ws-font-mono);
+    font-size: 0.72rem;
+    color: var(--ws-on-black-muted);
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid oklch(1 0 0 / 0.12);
+  }
+
+  .ws-code pre {
+    margin: 0;
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-family: var(--ws-font-mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--ws-acid);
+  }
+
+  .ws-code-comment {
+    opacity: 0.65;
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────── */
+  .ws-faq-list {
+    margin: 2.5rem 0 0;
+  }
+
+  .ws-faq-item {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--ws-border);
+  }
+
+  .ws-faq-item:last-child {
+    border-bottom: 1px solid var(--ws-border);
+  }
+
+  .ws-faq-item dd {
+    margin: 0;
+  }
+
+  /* ── Mission ──────────────────────────────────────────── */
+  .ws-mission-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .ws-mission-icon-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ws-heart-icon {
+    display: inline-block;
+    width: 90px;
+    height: auto;
+    color: var(--ws-electric);
+    animation: ws-beat 2.4s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .ws-heart-icon :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @keyframes ws-beat {
+    0%, 100% { transform: scale(1); }
+    12% { transform: scale(1.12); }
+    24% { transform: scale(1); }
+    36% { transform: scale(1.08); }
+    48% { transform: scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ws-heart-icon {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .ws-mission-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Three ways in ────────────────────────────────────── */
+  .ws-paths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .ws-path-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1.75rem;
+    border: 1.5px solid var(--ws-ink);
+  }
+
+  .ws-path-col .ws-principle-title {
+    font-size: 1.4rem;
+  }
+
+  .ws-cta-section {
+    border-bottom: none;
+  }
+
+  @media (max-width: 860px) {
+    .ws-paths-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

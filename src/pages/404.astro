@@ -1,10 +1,8 @@
 ---
+import "../styles/workshop.css";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import { Image } from "astro:assets";
-import lostImage from "../assets/lost.webp";
-
 
 const title = "Page not found — Her AI Studio";
 const description = "The page you're looking for doesn't exist or has been moved.";
@@ -14,42 +12,49 @@ const description = "The page you're looking for doesn't exist or has been moved
 
   <Nav currentPath="/" />
 
-  <main id="main-content">
-  <section id="not-found" class="studio-room room-404" aria-labelledby="not-found-heading">
-    <div class="room-inner room-404-inner">
-      <p class="room-label" data-reveal>404 · Off the map</p>
-      <h1 id="not-found-heading" class="door-lead-h1" data-reveal data-delay="1">
-        This page wandered off
-      </h1>
-
-      <Image
-        src={lostImage}
-        alt="A lost explorer in the studio"
-        class="error-image"
-        widths={[480, 640, 1024]}
-        sizes="(max-width: 640px) 92vw, 50vw"
-        loading="eager"
-        decoding="async"
-        data-reveal
-        data-delay="2"
-      />
-
-      <p class="door-tagline error-copy" data-reveal data-delay="3">
-        The page you're looking for doesn't exist or has been moved. Let's get you back to the studio.
-      </p>
-
-      <div class="error-actions" data-reveal data-delay="4">
-        <a href="/" class="door-cta">
-          Back to Her AI Studio
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+  <main id="main-content" class="ws">
+    <section class="ws-section not-found-section" aria-labelledby="not-found-heading">
+      <div class="ws-shell">
+        <p class="not-found-numeral" aria-hidden="true">404</p>
+        <p class="ws-eyebrow">Off the map</p>
+        <h1 id="not-found-heading" class="ws-h2">This page wandered off.</h1>
+        <p class="ws-body ws-body--wide">
+          The page you're looking for doesn't exist or has been moved. Let's get you back to the studio.
+        </p>
+        <div class="ws-primary-cta">
+          <div class="join-popup">
+            <a href="/" class="join-popup-btn">
+              <span>Back to Her AI Studio</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-  <Footer currentPath="/" />
+    </section>
+
+    <Footer currentPath="/" />
   </main>
 
 </Layout>
 
+<style>
+  .not-found-section {
+    padding-top: 4rem;
+    border-bottom: none;
+  }
+
+  .not-found-numeral {
+    font-family: var(--ws-font-display);
+    font-size: clamp(6rem, 20vw, 12rem);
+    line-height: 0.8;
+    letter-spacing: -0.03em;
+    color: var(--ws-electric);
+    margin: 0 0 1rem;
+  }
+
+  .not-found-section .ws-primary-cta {
+    margin-top: 2rem;
+  }
+</style>

@@ -1,4 +1,5 @@
 ---
+import "../styles/workshop.css";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -11,11 +12,14 @@ import tom from "../assets/tom.jpg"
 import zhaopeng from "../assets/zhaopeng.jpg"
 import francesca from "../assets/francesca.jpg"
 import jim from "../assets/jim.jpg"
-import zaraLine from "../assets/zara-line.png"
-
+import circuitHeart from "../assets/circuit-heart.svg?raw";
 
 const title = "Our Team — Her AI Studio";
 const description = "Meet the people building Her AI Studio, a free creative AI program for girls and people who identify as women.";
+
+const teamImageWidths = [320, 480, 640, 800];
+const teamImageSizes = "(max-width: 700px) min(540px, 90vw), 45vw";
+const tagColors = ["blue", "pink", "orange"];
 
 const team = [
   {
@@ -23,7 +27,7 @@ const team = [
     role: "Founder & Director",
     bio: "Developer advocate, educator, and community builder passionate about closing the gender gap in AI and tech, Jen is the Director of Developer Relations at Cloudinary, and previously led educational and student programs at Microsoft and AWS. She also founded Vue Vixens, later branded as Front-End Foxes, educating thousands of women from 2018-2023. An educator technologist, Jen is passionate about building communities that are equitable, educational, and fun!",
     image: jen,
-    imageAlt: "Jen Looper",
+    imageAlt: "Jen Looper smiling outdoors on a wooden bench, wearing a cream blazer over a blue top, with trees in the background.",
     web: "https://jenlooper.com"
   },
   {
@@ -31,54 +35,52 @@ const team = [
     role: "Partnerships & Sponsorships Lead",
     bio: "Laylah Bulman leads partnerships and sponsorships for Her AI Studio. She started in the classroom and has spent her career building learning products for young people, at LEGO Education, at NASEF, where she helped scale scholastic esports globally, and now in leading learning content at Minecraft. At Minecraft Education, she built partnerships with TeachAI, 4-H, and NASA, including the Artemis Missions worlds and an AI literacy program that reached 1.4 million learners. She loves to dream and invent and is a creator at heart.",
     image: laylah,
-    imageAlt: "Laylah Bulman",
+    imageAlt: "Laylah Bulman smiling in a studio portrait, wearing a black top against a muted green backdrop.",
   },
   {
     name: "Ifeoma Nwosu",
     role: "Community & Mentorship Lead",
     bio: "Ifeoma is a software engineer passionate about seeing women and girls well represented in technology. That passion stems from challenges she faced early in her own career. She has spoken at technical conferences and has volunteered and mentored through organisations dedicated to advancing women in tech, including Code First Girls, She Code Africa, and Front-End Foxes, where she served as Community Lead for the Nigerian branch and bootcamp instructor during COVID for EMEA learners online. Her love of teaching also led her to become a LinkedIn Learning author. When she's not writing code, you'll find her behind a camera, hiking, or playing tennis.",
-    image: ifeoma, 
-    imageAlt: "Ifeoma Nwosu",
+    image: ifeoma,
+    imageAlt: "Ifeoma Nwosu smiling outdoors on a path, arms crossed, wearing a white button-front shirt.",
   },
   {
     name: "Jess Lee",
     role: "Operations Lead",
-    bio: "Jess Lee is an entrepreneur and community builder serving as Founder-in-Residence at Major League Hacking (MLH), which she joined following its acquisition of DEV – the global developer community she co-founded and scaled into one of the largest, most inclusive spaces for software developers. Having also served as DEV’s COO, and earlier as a nonprofit product manager and marketer, Jess brings a rare combination of operational, technical, and mission-driven experience to her work. As a coding bootcamp graduate herself, she is deeply committed to building accessible, supportive spaces where aspiring builders, especially those from underrepresented backgrounds, can learn, connect, and thrive. Based in Rochester, NY, Jess is excited to bring that same energy to helping girls find their footing in AI.",
+    bio: "Jess Lee is an entrepreneur and community builder serving as Founder-in-Residence at Major League Hacking (MLH), which she joined following its acquisition of DEV – the global developer community she co-founded and scaled into one of the largest, most inclusive spaces for software developers. Having also served as DEV's COO, and earlier as a nonprofit product manager and marketer, Jess brings a rare combination of operational, technical, and mission-driven experience to her work. As a coding bootcamp graduate herself, she is deeply committed to building accessible, supportive spaces where aspiring builders, especially those from underrepresented backgrounds, can learn, connect, and thrive. Based in Rochester, NY, Jess is excited to bring that same energy to helping girls find their footing in AI.",
     image: jess,
-    imageAlt: "Jess Lee",
+    imageAlt: "Jess Lee smiling in a wood-paneled room, wearing glasses and a tan blazer, seated in a wooden chair.",
   },
 ];
 
 const board = [
-  
-  
   {
     name: "Tom Ball",
-    role: "Fouding Partner: Micro:bit Innovation and Research Lab",
+    role: "Founding Partner: Micro:bit Innovation and Research Lab",
     bio: "Tom Ball is a 2011 ACM Fellow known for his contributions to software analysis and defect detection. Since 2015 he has helped bring the BBC micro:bit to market (10M+ worldwide), co-created the Microsoft MakeCode platform and the Jacdac plug-and-play system, and now works on micro:bit apps at Lancaster University.",
     image: tom,
-    imageAlt: "Tom Ball",
+    imageAlt: "Tom Ball smiling indoors, with curly gray hair and a patterned collared shirt.",
   },
   {
     name: "Jim Bennett",
     role: "Principal Developer Experience Engineer: Arize AI",
     bio: "Jim is a Developer Experience Engineer, global conference speaker, meetup and community organizer, and author of books on mobile development and IoT. He's currently a Microsoft MVP for AI and Developer Tools.",
     image: jim,
-    imageAlt: "Jim Bennett",
+    imageAlt: "Jim Bennett in a close-up portrait lit in blue and orange against a dark background.",
   },
   {
     name: "Zhaopeng Ji",
     role: "AVP for Financial Services: MGH Institute of Health Professions",
     bio: "Zhaopeng is a talented executive level financial professional with extensive non-profit experience in finance, budget, audit, tax and risk management.",
     image: zhaopeng,
-    imageAlt: "Zhaopeng Ji",
+    imageAlt: "Zhaopeng Ji smiling indoors, wearing a black floral-patterned top and teardrop earrings.",
   },
   {
     name: "Francesca Lazzeri",
     role: "Principal Group Director, Data & Applied AI Science & Forward Deployed AI Engineering: Microsoft",
     bio: "Francesca leads a Data & Applied AI engineering organization at Microsoft, where her teams build enterprise AI platforms end to end, from data foundations and knowledge graphs to production agents, focused on proving that what they ship is reliable enough to trust in production.",
     image: francesca,
-    imageAlt: "Francesca Lazzeri",
+    imageAlt: "Francesca Lazzeri smiling in front of a brick wall, wearing a black turtleneck and pearl earrings.",
   },
 ];
 ---
@@ -87,136 +89,247 @@ const board = [
 
   <Nav currentPath="/team" />
 
-  <main id="main-content">
-    <section class="team-hero">
-      <div class="team-inner">
-        <p class="room-label">The people behind it</p>
-        <h1 class="team-h1">Built by women at the grass roots<br>for the next generation.</h1>
-        <p class="team-lead">
+  <main id="main-content" class="ws">
+
+
+
+    <!-- Studio team -->
+    <section class="ws-section team-hero-section" aria-labelledby="team-members-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--blue">// Studio team</p>
+        <h1 id="team-members-heading" class="ws-h2">Meet the people building this.</h1>
+        <p class="ws-body ws-body--wide">
           Her AI Studio is led by a small, mission-driven team of educators, engineers, and community builders who believe every woman deserves a seat at the AI table.
         </p>
-      </div>
-    </section>
-
-    <section class="team-grid-section" aria-labelledby="team-members-heading">
-      <div class="team-inner">
-        <h2 id="team-members-heading" class="sr-only">Team members</h2>
         <ul class="team-grid" role="list">
-          {team.map((member) => (
+          {team.map((member, i) => (
             <li class="team-card">
-              <div class="team-card__portrait">
-                {member.image ? (
+              <div class:list={["ws-photo", i % 2 === 0 ? "ws-photo--tilt-left" : "ws-photo--tilt-right"]}>
+                <div class="ws-photo-frame">
                   <Image
                     src={member.image}
                     alt={member.imageAlt}
-                    widths={[320, 480, 640, 800, 1000]}
-                    sizes="(max-width: 560px) 92vw, (min-width: 1200px) 560px, 46vw"
+                    widths={teamImageWidths}
+                    sizes={teamImageSizes}
                     loading="lazy"
                     decoding="async"
                   />
-                ) : (
-                  <div class="team-card__placeholder" aria-hidden="true">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                      <circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="2"/>
-                      <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                )}
+                </div>
               </div>
-              <div class="team-card__body">
-                <h3 class="team-card__name">{member.name}</h3>
-                <p class="team-card__role">{member.role}</p>
-                <p class="team-card__bio">{member.bio}</p>
-                {member.web && <p class="team-card__bio"><a class="underline" href={member.web}>{member.web}</a></p>}
-
-              </div>
+              <span class:list={["ws-tag", `ws-tag--${tagColors[i % tagColors.length]}`]}>{member.role}</span>
+              <h2 class="ws-principle-title">{member.name}</h2>
+              <p class="ws-body">{member.bio}</p>
+              {member.web && (
+                <a class="ws-text-link" href={member.web} target="_blank" rel="noopener">{member.web.replace("https://", "")} →</a>
+              )}
             </li>
           ))}
         </ul>
       </div>
     </section>
 
-    <section class="team-board-section" aria-labelledby="board-heading">
-      <div class="team-inner">
-        <p class="room-label">Governance</p>
-        <h2 id="board-heading" class="team-board-h2">Board of Directors</h2>
-        <p class="team-board-lead">
+    <!-- Board of Directors -->
+    <section class="ws-section" aria-labelledby="board-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow">// Governance</p>
+        <h2 id="board-heading" class="ws-h2">Board of Directors</h2>
+        <p class="ws-body ws-body--wide">
           Her AI Studio is governed by an independent board committed to our mission of equity, access, and excellence in AI education.
         </p>
-        <ul class="board-list" role="list">
-          {board.map((member) => (
+        <ul class="board-grid" role="list">
+          {board.map((member, i) => (
             <li class="board-card">
-              <div class="board-card__media" aria-hidden="true">
-                {member.image ? (
+              <div class:list={["ws-photo", i % 2 === 0 ? "ws-photo--tilt-left" : "ws-photo--tilt-right"]}>
+                <div class="ws-photo-frame">
                   <Image
                     src={member.image}
                     alt={member.imageAlt}
-                    widths={[240, 320, 480, 800]}
-                    sizes="(min-width: 641px) 240px, 92vw"
+                    widths={[240, 320, 480]}
+                    sizes="(max-width: 560px) 90vw, (max-width: 860px) 45vw, 23vw"
                     loading="lazy"
                     decoding="async"
                   />
-                ) : (
-                  <div class="board-card__placeholder">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                      <circle cx="20" cy="16" r="7" stroke="currentColor" stroke-width="2"/>
-                      <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                )}
-              </div>
-              <div class="board-card__body">
-                <div class="board-card__head">
-                  <h3 class="board-card__name">{member.name}</h3>
-                  <p class="board-card__title">{member.role}</p>
                 </div>
-                <p class="board-card__bio">{member.bio}</p>
               </div>
+              <h3 class="ws-principle-title">{member.name}</h3>
+              <p class="board-card-title">{member.role}</p>
+              <p class="ws-body">{member.bio}</p>
             </li>
           ))}
         </ul>
-     
       </div>
     </section>
 
-    <section class="team-board-section" aria-labelledby="curriculum-heading">
-      <div class="team-inner">
-        <p class="room-label">Youth</p>
-        <h2 id="curriculum-heading" class="team-board-h2">Youth Board</h2>
-        <p class="team-board-lead">
-          We're looking for young leaders to join our youth board and help shape the future of AI education for girls and women. Fill out  <a href="https://forms.gle/Lvps3a6CeJWMUcdw5" class="underline link"target="_blank">the application form</a> before the end of August, 2026, to apply.
+    <!-- Youth Board -->
+    <section class="ws-section team-final-section" aria-labelledby="curriculum-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--pink">// Youth</p>
+        <h2 id="curriculum-heading" class="ws-h2">Youth Board</h2>
+        <p class="ws-body ws-body--wide">
+          We're looking for young leaders to join our youth board and help shape the future of AI education for girls and women. Fill out{" "}
+          <a href="https://forms.gle/Lvps3a6CeJWMUcdw5" class="ws-text-link" target="_blank" rel="noopener">the application form →</a>{" "}
+          before the end of August, 2026, to apply.
         </p>
-        <ul class="board-list" role="list">
-          {[1, 2, 3, 4].map(() => (
-            <li class="board-card">
-              <div class="board-card__media" aria-hidden="true">
-                <Image
-                  src={zaraLine}
-                  alt=""
-                  widths={[240, 320, 480]}
-                  sizes="(min-width: 641px) 240px, 100vw"
-                  loading="lazy"
-                  decoding="async"
-                />
+        <ul class="youth-grid" role="list">
+          {[1, 2, 3, 4].map((_, i) => (
+            <li class="youth-card">
+              <div class:list={["ws-photo", i % 2 === 0 ? "ws-photo--tilt-left" : "ws-photo--tilt-right"]}>
+                <div class="ws-photo-frame youth-card-art" aria-hidden="true" set:html={circuitHeart} />
               </div>
-              <div class="board-card__body">
-                <div class="board-card__head">
-                  <h3 class="board-card__name">Open seat</h3>
-                  <p class="board-card__title">Youth Board Member</p>
-                </div>
-                <p class="board-card__bio">
-                  We're looking for young leaders to join our youth board and help shape the future of AI education for girls and women.
-                </p>
-              </div>
+              <span class="ws-tag ws-tag--lime">Open seat</span>
+              <h3 class="ws-principle-title">Youth Board Member</h3>
+              <p class="ws-body">
+                We're looking for young leaders to join our youth board and help shape the future of AI education for girls and women.
+              </p>
             </li>
           ))}
         </ul>
-       
       </div>
     </section>
-
-  
 
     <Footer currentPath="/team" />
   </main>
 </Layout>
+
+<style>
+  /* ── Hero headroom ────────────────────────────────────── */
+  .team-hero-section {
+    padding-top: 4rem;
+  }
+
+  /* ── Studio team ──────────────────────────────────────── */
+  .team-grid {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .team-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .team-card .ws-photo {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .team-card .ws-text-link {
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 700px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Board of Directors ───────────────────────────────── */
+  .board-grid {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 2rem;
+    align-items: start;
+  }
+
+  .board-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .board-card .ws-photo {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .board-card-title {
+    font-family: var(--ws-font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--ws-ink-muted);
+    margin: 0 0 0.85rem;
+  }
+
+  @media (max-width: 860px) {
+    .board-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .board-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Youth Board ──────────────────────────────────────── */
+  .team-final-section {
+    border-bottom: none;
+  }
+
+  .youth-grid {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 2rem;
+  }
+
+  .youth-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .youth-card .ws-photo {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .youth-card-art {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--ws-paper-deep);
+    border: 1px solid var(--ws-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.75rem;
+    color: var(--ws-ink-muted);
+  }
+
+  .youth-card-art :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 860px) {
+    .youth-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .youth-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

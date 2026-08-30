@@ -1,0 +1,420 @@
+/*
+ * Workshop design system — the "gritty materials-lab" direction for Her AI
+ * Studio, modeled on the ai-forge-femme Lovable reference. Shared primitives
+ * live here (tokens, typography, tags, taped-photo treatment, buttons); each
+ * page keeps its own section-specific layout CSS in its own <style> block.
+ *
+ * Values below are lifted directly from the Lovable mockup's design-token
+ * stylesheet (paper/ink/electric/hot/acid/flare). The *-ink variants are an
+ * accessibility correction: --hot and --flare only hit ~2.8-3:1 against paper
+ * when used as plain text (verified against WCAG AA 4.5:1), because they're
+ * designed as filled backgrounds paired with dark ink text, not standalone
+ * text colors. The *-ink variants hold the same hue/chroma at a lower
+ * lightness so colored words/labels on paper stay legible.
+ */
+
+.ws {
+  --ws-paper: oklch(0.963 0.019 92);
+  --ws-paper-deep: oklch(0.921 0.03 90);
+  --ws-ink: oklch(0.19 0.012 60);
+  --ws-ink-muted: oklch(0.46 0.02 70);
+  --ws-border: oklch(0.19 0.012 60 / 18%);
+  --ws-on-black: oklch(0.975 0.015 92);
+  --ws-on-black-muted: oklch(0.72 0.02 80);
+
+  --ws-electric: oklch(0.52 0.253 268);
+  --ws-electric-foreground: oklch(0.98 0.01 92);
+  --ws-hot: oklch(0.68 0.229 6);
+  --ws-hot-foreground: oklch(0.16 0.01 60);
+  --ws-hot-ink: oklch(0.5 0.22 6);
+  --ws-acid: oklch(0.918 0.208 122);
+  --ws-acid-foreground: oklch(0.16 0.01 60);
+  --ws-acid-ink: oklch(0.48 0.15 122);
+  --ws-flare: oklch(0.685 0.216 38);
+  --ws-flare-ink: oklch(0.55 0.19 38);
+
+  --ws-radius: 0.25rem;
+  --ws-shadow-sticker: 2px 3px 0 var(--ws-ink);
+  --ws-shadow-print: 12px 12px 0 var(--ws-ink);
+
+  --ws-font-display: "Archivo Black", "Arial Black", sans-serif;
+  --ws-font-body: "Archivo", system-ui, sans-serif;
+  --ws-font-mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
+  --ws-font-hand: "Caveat", cursive;
+
+  background-color: var(--ws-paper);
+  background-image:
+    linear-gradient(oklch(0.19 0.012 60 / 5%) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.19 0.012 60 / 5%) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--ws-ink);
+  font-family: var(--ws-font-body);
+}
+
+.ws ::selection {
+  background: var(--ws-acid);
+  color: var(--ws-ink);
+}
+
+.ws h1,
+.ws h2 {
+  font-family: var(--ws-font-display);
+  text-transform: uppercase;
+  line-height: 0.84;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.ws h3 {
+  font-family: var(--ws-font-body);
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.ws p {
+  max-width: none;
+}
+
+.ws-shell {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.ws-shell--narrow {
+  max-width: 760px;
+}
+
+.ws-eyebrow {
+  font-family: var(--ws-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ws-ink-muted);
+  margin: 0 0 0.75rem;
+}
+
+.ws-eyebrow--blue { color: var(--ws-electric); }
+.ws-eyebrow--pink { color: var(--ws-hot-ink); }
+/* --lime is bright acid: only safe as light text on a dark block (e.g. .ws-block-dark).
+   Use --lime-ink instead wherever the eyebrow sits directly on the paper background. */
+.ws-eyebrow--lime { color: var(--ws-acid); }
+.ws-eyebrow--lime-ink { color: var(--ws-acid-ink); }
+.ws-eyebrow--orange { color: var(--ws-flare-ink); }
+
+.ws-h2 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  margin: 0 0 1.25rem;
+}
+
+.ws-h2--dark {
+  color: var(--ws-on-black);
+}
+
+.ws-h2--xl {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ws-highlight {
+  font-weight: inherit;
+}
+
+.ws-highlight--blue { color: var(--ws-electric); }
+.ws-highlight--pink { color: var(--ws-hot-ink); }
+.ws-highlight--orange { color: var(--ws-flare-ink); }
+/* --lime is bright acid: only safe as light text on a dark block. Use --lime-ink on paper. */
+.ws-highlight--lime { color: var(--ws-acid); }
+.ws-highlight--lime-ink { color: var(--ws-acid-ink); }
+
+.ws-body {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ws-ink-muted);
+  max-width: 62ch;
+  margin: 0;
+}
+
+.ws-body + .ws-body {
+  margin-top: 1rem;
+}
+
+.ws-body--wide {
+  max-width: 72ch;
+}
+
+.ws-body--dark {
+  color: var(--ws-on-black-muted);
+}
+
+/* Inline links inside running body copy — distinct from .ws-text-link, which
+   is a standalone CTA-style link, not text embedded in a paragraph. */
+.ws-body a {
+  color: var(--ws-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ws-electric);
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+
+.ws-body a:hover {
+  opacity: 0.65;
+}
+
+.ws-body a:focus-visible {
+  outline: 2px solid var(--ws-electric);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+.ws-body--dark a {
+  color: var(--ws-on-black);
+  text-decoration-color: var(--ws-acid);
+}
+
+.ws-body code {
+  font-family: var(--ws-font-mono);
+  font-size: 0.9em;
+  color: var(--ws-flare-ink);
+}
+
+.ws-body--dark code {
+  color: var(--ws-acid);
+}
+
+/* ── Tags (sticky-note chips, reused for spec lists, photo corners, CTA labels) ── */
+.ws-tag {
+  display: inline-block;
+  font-family: var(--ws-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.4rem 0.85rem;
+  border: 1.5px solid var(--ws-ink);
+  box-shadow: var(--ws-shadow-sticker);
+}
+
+.ws-tag--blue { background: var(--ws-electric); color: var(--ws-electric-foreground); }
+.ws-tag--pink { background: var(--ws-hot); color: var(--ws-hot-foreground); }
+.ws-tag--orange { background: var(--ws-flare); color: var(--ws-ink); }
+.ws-tag--lime { background: var(--ws-acid); color: var(--ws-acid-foreground); }
+
+.ws-tag--corner {
+  position: absolute;
+  font-size: 0.7rem;
+}
+
+.ws-tag--top {
+  top: -0.9rem;
+  left: 1.25rem;
+  transform: rotate(-4deg);
+}
+
+.ws-tag--bottom {
+  bottom: -0.9rem;
+  right: 1rem;
+  transform: rotate(3deg);
+}
+
+.ws-tag--tilt {
+  transform: rotate(-3deg);
+  margin-top: 1rem;
+}
+
+/* A strip of washi tape peeking out from behind the front sticker — translucent
+   with torn-paper dashed edges, not another solid label. */
+.ws-tape {
+  position: absolute;
+  top: -1.1rem;
+  left: 0.75rem;
+  transform: rotate(-9deg);
+  width: 2.75rem;
+  height: 1rem;
+  border-left: 1px dashed oklch(0.19 0.012 60 / 0.3);
+  border-right: 1px dashed oklch(0.19 0.012 60 / 0.3);
+}
+
+.ws-tape--pink { background: oklch(0.68 0.229 6 / 0.55); }
+.ws-tape--blue { background: oklch(0.52 0.253 268 / 0.5); }
+.ws-tape--lime { background: oklch(0.918 0.208 122 / 0.55); }
+.ws-tape--orange { background: oklch(0.685 0.216 38 / 0.5); }
+
+/* Tape laid straight across the top edge, like a photo taped to a board,
+   rather than peeking from behind a corner tag. */
+.ws-tape--top-center {
+  top: -0.8rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 5rem;
+  height: 1.3rem;
+}
+
+/* ── Photo treatment (taped-photo card used across the site) ─────────── */
+.ws-photo {
+  position: relative;
+  transform: rotate(-2deg);
+  background: var(--ws-paper);
+  border: 1.5px solid var(--ws-ink);
+  padding: 0.75rem 0.75rem 1.25rem;
+  box-shadow: var(--ws-shadow-print);
+}
+
+.ws-photo-frame {
+  position: relative;
+}
+
+.ws-photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ws-photo-status {
+  font-family: var(--ws-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: var(--ws-ink-muted);
+  margin: 1.25rem 0 0.35rem;
+}
+
+.ws-photo-note {
+  font-family: var(--ws-font-hand);
+  font-size: 1.3rem;
+  color: var(--ws-electric);
+  margin: 0;
+  transform: rotate(-1deg);
+}
+
+.ws-photo--tilt-left {
+  transform: rotate(-1.5deg);
+}
+
+.ws-photo--tilt-right {
+  transform: rotate(1.5deg);
+}
+
+/* A taped photo sitting on a dark block needs a light-colored border and
+   shadow instead of ink — an ink outline would vanish against near-black. */
+.ws-photo--on-dark {
+  border-color: var(--ws-acid);
+  box-shadow: 12px 12px 0 var(--ws-acid);
+}
+
+/* ── Primary CTA (restyled Join popup button) ─────────────────────────── */
+.ws-primary-cta .join-popup {
+  justify-content: flex-start;
+  align-self: flex-start;
+  min-height: auto;
+}
+
+.ws-primary-cta .join-popup-btn {
+  font-family: var(--ws-font-body);
+  font-weight: 700;
+  background: var(--ws-acid);
+  color: var(--ws-acid-foreground);
+  border: 1.5px solid var(--ws-ink);
+  border-radius: var(--ws-radius);
+  box-shadow: none;
+  padding: 0.9rem 2rem;
+}
+
+.ws-primary-cta .join-popup-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ws-ink);
+}
+
+.ws-primary-cta .join-popup-btn:focus-visible {
+  outline: 3px solid var(--ws-ink);
+  outline-offset: 3px;
+}
+
+/* ── Text link (standalone CTA-style link, e.g. "See sponsorship tiers →") ── */
+.ws-text-link {
+  font-family: var(--ws-font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ws-ink);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 3px;
+}
+
+.ws-text-link:focus-visible {
+  outline: 2px solid var(--ws-electric);
+  outline-offset: 3px;
+}
+
+/* ── Sections ──────────────────────────────────────────────────────────── */
+.ws-section {
+  border-bottom: 1px solid var(--ws-border);
+}
+
+/* ── Numbered list pattern (studio principles, kit parts, etc.) ───────── */
+.ws-principles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ws-principles li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid oklch(1 0 0 / 0.12);
+}
+
+.ws-principles li:last-child {
+  border-bottom: 1px solid oklch(1 0 0 / 0.12);
+}
+
+.ws-principles--light {
+  margin-top: 2.5rem;
+}
+
+.ws-principles--light li,
+.ws-principles--light li:last-child {
+  border-color: var(--ws-border);
+}
+
+.ws-index {
+  font-family: var(--ws-font-mono);
+  font-size: 1.5rem;
+  color: var(--ws-flare);
+}
+
+.ws-principles--light .ws-index {
+  color: var(--ws-flare-ink);
+}
+
+.ws-principle-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+}
+
+.ws-principle-title--dark {
+  color: var(--ws-on-black);
+}
+
+.ws-handwritten {
+  font-family: var(--ws-font-hand);
+  font-size: 1.35rem;
+  color: var(--ws-flare-ink);
+  margin: 1.5rem 0 0;
+  transform: rotate(-1deg);
+}
+
+@media (max-width: 640px) {
+  .ws-shell {
+    padding: 3.5rem 1.5rem;
+  }
+  .ws-principles li {
+    grid-template-columns: 2.5rem 1fr;
+  }
+}

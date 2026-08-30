@@ -1,4 +1,5 @@
 ---
+import "../styles/workshop.css";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -8,6 +9,10 @@ import schematikLogo from "../assets/sponsors/schematik.png";
 const title = "Sponsors — Her AI Studio";
 const description = "Her AI Studio is made possible by sponsors who believe in equitable access to AI education for women and girls.";
 
+const JOIN_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs2lV5106vJvtM-BLR6b9A6xZiRNw5C2Wyg/viewform";
+
+const tierColors = ["blue", "pink", "lime", "orange", "blue"];
+
 const tiers = [
   {
     id: "founding",
@@ -15,16 +20,14 @@ const tiers = [
     description: "Founding Partners make the entire program possible. Their investment funds cohorts, curriculum, and the infrastructure needed to reach students who would otherwise be left out.",
     perks: ["Named cohort sponsorship", "Logo on all program materials", "Founding Partner badge on site", "Direct impact reporting", "Featured in all press releases"],
     cta: "Become a Founding Partner",
-    accent: "tier-founding",
     sponsors: [],
   },
   {
     id: "program",
     label: "Program Sponsor",
-    description: "Program Sponsors fund specific tracks — a six-week cohort, a discover lab, or a showcase event. Your support is tied directly to a student outcome.",
+    description: "Program Sponsors fund specific tracks: a cohort, a discover lab, or a showcase event. Your support is tied directly to a student outcome.",
     perks: ["Logo on program page", "Sponsor card in student workbooks", "Quarterly impact updates", "Social recognition"],
     cta: "Sponsor a Program",
-    accent: "tier-program",
     sponsors: [],
   },
   {
@@ -33,7 +36,6 @@ const tiers = [
     description: "Hardware is the biggest barrier for students in our program. Hardware Sponsors donate kits or funds to put real devices in students' hands.",
     perks: ["Logo in hardware kit inserts", "Recognition at showcase events", "Sponsor spotlight post", "Annual impact report"],
     cta: "Donate Hardware or Kits",
-    accent: "tier-hardware",
     sponsors: [],
   },
   {
@@ -42,11 +44,10 @@ const tiers = [
     description: "Software Sponsors provide tools, platforms, and subscriptions that power what students build. From AI APIs to design tools, these contributions make the curriculum possible.",
     perks: ["Logo on curriculum pages", "Tool spotlight in student onboarding", "Recognition on website", "Social media mention"],
     cta: "Donate Software Access",
-    accent: "tier-software",
     sponsors: [
       {
         name: "Schematik",
-        description: "Schematik is an AI-powered IDE built to make hardware prototyping accessible to everyone. Whether you're wiring up an Arduino, programming an ESP32, or building your first Pico project, Schematik's AI assistant guides you from idea to working circuit — no deep electronics expertise required. It's exactly the kind of tool that puts hardware creation in reach of students who have never held a soldering iron.",
+        description: "Schematik is an AI-powered IDE built to make hardware prototyping accessible to everyone. Whether you're wiring up an Arduino, programming an ESP32, or building your first Pico project, Schematik's AI assistant guides you from idea to working circuit, no deep electronics expertise required. It's exactly the kind of tool that puts hardware creation in reach of students who have never held a soldering iron.",
         url: "https://schematik.io",
         logo: schematikLogo,
       },
@@ -58,7 +59,6 @@ const tiers = [
     description: "Community Supporters contribute in-kind services, expertise, or smaller funding that adds up. Every contribution counts toward a student's journey.",
     perks: ["Name listed on website", "Thank-you in newsletter", "Social recognition"],
     cta: "Become a Supporter",
-    accent: "tier-community",
     sponsors: [],
   },
 ];
@@ -68,102 +68,100 @@ const tiers = [
 
   <Nav currentPath="/sponsors" />
 
-  <main id="main-content">
+  <main id="main-content" class="ws">
 
-    <section class="sponsors-hero">
-      <div class="team-inner">
-        <p class="room-label">Make it possible</p>
-        <h1 class="team-h1">Sponsors power<br>the next generation.</h1>
-        <p class="team-lead">
+    <!-- Hero -->
+    <section class="ws-section sponsors-hero-section" aria-labelledby="sponsors-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow ws-eyebrow--blue">// Make it possible</p>
+        <h1 id="sponsors-heading" class="ws-h2">Sponsors power the next generation.</h1>
+        <p class="ws-body ws-body--wide">
           Her AI Studio is free for every student. That means we depend entirely on sponsors who share our belief that girls and women deserve equal access to AI education. Every dollar goes directly to students and their instructors.
         </p>
-        <a href="/prospectus.pdf" target="_blank" rel="noopener" class="sponsors-hero-cta">
-          Download the sponsorship prospectus
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M8 3v7M5 7l3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="/prospectus.pdf" target="_blank" rel="noopener" class="ws-text-link">
+          Download the sponsorship prospectus →
         </a>
       </div>
     </section>
 
-    <section class="sponsors-tiers-section" aria-labelledby="tiers-heading">
-      <div class="team-inner">
-        <h2 id="tiers-heading" class="sr-only">Sponsorship tiers</h2>
+    <!-- Tiers -->
+    <section class="ws-section" aria-labelledby="tiers-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--blue">// Sponsorship tiers</p>
+        <h2 id="tiers-heading" class="ws-h2">Five ways to help build this.</h2>
 
-        {tiers.map((tier) => (
-          <article class={`sponsors-tier ${tier.accent}`} aria-labelledby={`tier-${tier.id}`}>
-            <div class="sponsors-tier__header">
-              <span class="sponsors-tier__label">{tier.label}</span>
-              <h3 id={`tier-${tier.id}`} class="sr-only">{tier.label}</h3>
-            </div>
-            <div class="sponsors-tier__body">
-              <p class="sponsors-tier__desc">{tier.description}</p>
-              <ul class="sponsors-tier__perks" aria-label="Sponsor benefits">
+        <ul class="sponsors-tier-list" role="list">
+          {tiers.map((tier, i) => (
+            <li class="sponsors-tier">
+              <span class:list={["ws-tag", `ws-tag--${tierColors[i]}`]}>{tier.label}</span>
+              <p class="ws-body ws-body--wide">{tier.description}</p>
+
+              <ul class="sponsors-perks">
                 {tier.perks.map((perk) => (
-                  <li>
-                    <span class="sponsors-tier__check" aria-hidden="true">✦</span>
-                    {perk}
-                  </li>
+                  <li class="ws-body">{perk}</li>
                 ))}
               </ul>
+
               {tier.sponsors.length > 0 && (
-                <div class="sponsors-tier__current">
-                  <p class="sponsors-tier__current-label">Current sponsors</p>
-                  <ul class="sponsors-tier__sponsor-list" role="list">
-                    {tier.sponsors.map((s) => (
-                      <li class="sponsors-tier__sponsor-card">
-                        <div class="sponsors-tier__sponsor-top">
-                          {s.logo && (
-                            <Image
-                              src={s.logo}
-                              width={120}
-                              height={120}
-                              alt={s.name}
-                              loading="lazy"
-                              decoding="async"
-                              class="sponsors-tier__sponsor-logo"
-                            />
-                          )}
-                          {s.url && (
-                            <a href={s.url} target="_blank" rel="noopener" class="sponsors-tier__sponsor-visit">
-                              Visit {s.name}
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                                <path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                            </a>
-                          )}
-                        </div>
-                        {s.description && (
-                          <p class="sponsors-tier__sponsor-blurb">{s.description}</p>
+                <div class="sponsors-current">
+                  <p class="sponsors-current-label">Current sponsors</p>
+                  {tier.sponsors.map((s) => (
+                    <div class="sponsors-sponsor-card">
+                      <div class="sponsors-sponsor-top">
+                        {s.logo && (
+                          <Image
+                            src={s.logo}
+                            width={120}
+                            height={120}
+                            alt={s.name}
+                            loading="lazy"
+                            decoding="async"
+                            class="sponsors-sponsor-logo"
+                          />
                         )}
-                      </li>
-                    ))}
-                  </ul>
+                        {s.url && (
+                          <a href={s.url} target="_blank" rel="noopener" class="ws-text-link">
+                            Visit {s.name} →
+                          </a>
+                        )}
+                      </div>
+                      {s.description && (
+                        <p class="ws-body">{s.description}</p>
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
-              <a href="/join" class="sponsors-tier__cta">{tier.cta} →</a>
-            </div>
-          </article>
-        ))}
+
+              <a href={JOIN_FORM_URL} target="_blank" rel="noopener" class="ws-text-link sponsors-tier-cta">{tier.cta} →</a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
-    <section class="team-join-section">
-      <div class="team-inner team-join-inner">
-        <div>
-          <h2 class="team-join-h2">Ready to sponsor?</h2>
-          <p class="team-join-body">
-            Download the full prospectus or join the interest list and we'll be in touch with details on how your sponsorship directly funds student outcomes.
-          </p>
-        </div>
-        <div class="sponsors-cta-group">
-          <a href="/prospectus.pdf" target="_blank" rel="noopener" class="team-join-cta">
-            View prospectus
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+    <!-- CTA -->
+    <section class="ws-section sponsors-final-section" aria-labelledby="ready-heading">
+      <div class="ws-shell ws-shell--narrow">
+        <p class="ws-eyebrow ws-eyebrow--pink">// Ready to sponsor?</p>
+        <h2 id="ready-heading" class="ws-h2">Let's put it to work.</h2>
+        <p class="ws-body ws-body--wide">
+          Download the full prospectus or join the interest list and we'll be in touch with details on how your sponsorship directly funds student outcomes.
+        </p>
+        <div class="sponsors-cta-actions">
+          <div class="ws-primary-cta">
+            <div class="join-popup">
+              <a href="/prospectus.pdf" target="_blank" rel="noopener" class="join-popup-btn">
+                <span>View prospectus</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <a href={JOIN_FORM_URL} target="_blank" rel="noopener" class="ws-text-link">
+            Join interest list →
           </a>
-          <a href="/join" class="sponsors-cta-secondary">Join interest list</a>
         </div>
       </div>
     </section>
@@ -171,3 +169,111 @@ const tiers = [
     <Footer currentPath="/sponsors" />
   </main>
 </Layout>
+
+<style>
+  .sponsors-hero-section {
+    padding-top: 4rem;
+  }
+
+  .sponsors-hero-section .ws-text-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+
+  /* ── Tiers ────────────────────────────────────────────── */
+  .sponsors-tier-list {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sponsors-tier {
+    min-width: 0;
+    padding: 1.75rem;
+    border: 1.5px solid var(--ws-ink);
+  }
+
+  .sponsors-tier .ws-body--wide {
+    margin-top: 0.85rem;
+  }
+
+  .sponsors-perks {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sponsors-perks li {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+
+  .sponsors-perks li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--ws-electric);
+    font-weight: 700;
+  }
+
+  .sponsors-current {
+    margin-top: 1.5rem;
+  }
+
+  .sponsors-current-label {
+    font-family: var(--ws-font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ws-ink-muted);
+    margin: 0 0 0.75rem;
+  }
+
+  .sponsors-sponsor-card {
+    border: 1px solid var(--ws-border);
+    padding: 1.25rem;
+    max-width: 48rem;
+  }
+
+  .sponsors-sponsor-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .sponsors-sponsor-logo {
+    height: 36px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .sponsors-tier-cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+
+  /* ── CTA ──────────────────────────────────────────────── */
+  .sponsors-final-section {
+    border-bottom: none;
+  }
+
+  .sponsors-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+</style>

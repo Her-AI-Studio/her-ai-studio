@@ -1,4 +1,5 @@
 ---
+import "../styles/workshop.css";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -6,179 +7,142 @@ import Footer from "../components/Footer.astro";
 const title = "Parents & Educators — Her AI Studio";
 const description =
   "A free, inclusive, mentor-led program where high school girls learn to create with AI. What parents and educators can expect, and how to get involved.";
+
+const JOIN_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs2lV5106vJvtM-BLR6b9A6xZiRNw5C2Wyg/viewform";
+
+const parentCards = [
+  {
+    title: "Real making, not screen time",
+    body: "Every session is hands-on. Students build chatbots, generate art and music, and progress to their own pocket-sized AI device, a cyberdeck they design and program themselves.",
+  },
+  {
+    title: "A crew, not a lecture",
+    body: "Learning happens in small groups with mentors and peers who look like her. Curiosity is the only prerequisite; there's no way to fall behind.",
+  },
+  {
+    title: "Warm-ups, not hurdles",
+    body: "We start wherever each student is. Three weeks take her from first questions to a finished project she can show off, and be genuinely proud of, at our studio showcase.",
+  },
+  {
+    title: "Completely free",
+    body: "Her AI Studio is a nonprofit. Joining the program costs nothing, and we work to keep barriers low so any curious young person can take part.",
+  },
+];
+
+const educatorCards = [
+  {
+    title: "Share the opportunity",
+    body: "A simple announcement to students and families can be the nudge that gets a curious girl to join the interest list. Flyers, newsletters, and class chats all make a real difference.",
+  },
+  {
+    title: "Invite us to visit",
+    body: "We'd love to bring a studio session or a guest talk to your class or club, a low-stakes way for students to try AI before committing to a full cohort.",
+  },
+  {
+    title: "Connect us to students",
+    body: "Know a student who'd thrive here? Reach out to our team. We'll make sure she and her family get a warm, personal invitation and any support they need to participate.",
+  },
+  {
+    title: "DIY",
+    body: "We are working to open a shop where you can purchase our kits at cost. Use them with our curriculum to run your own studio sessions, or just let students explore on their own.",
+  },
+];
+
+const safetyCards = [
+  {
+    title: "Human mentors, always",
+    body: "Technology enhances, never replaces, the people in the room. Every AI interaction is supervised by educators and mentors who keep the experience safe, warm, and on-track.",
+  },
+  {
+    title: "Privacy first",
+    body: "Student data is protected with the same care we'd want for our own families: secure storage, strict access controls, and no sharing of personal information.",
+  },
+  {
+    title: "Fairness and inclusion",
+    body: "We proactively guard against bias in the AI we use and teach, and we work hard to make sure every student benefits equally from the tools and the support.",
+  },
+];
 ---
 
 <Layout {title} {description}>
   <Nav currentPath="/parents-educators" />
 
-  <main id="main-content">
+  <main id="main-content" class="ws">
+
     <!-- Hero -->
-    <section id="intro" class="studio-room room-parents-hero" aria-labelledby="pe-heading">
-      <div class="room-inner">
-        <p class="room-label pe-label" data-reveal>Parents &amp; educators</p>
-        <h2 id="pe-heading" class="pe-hero-h2" data-reveal data-delay="1">
-          Help her feel she belongs here.
-        </h2>
-        <p class="pe-lead" data-reveal data-delay="2">
-          Her AI Studio is a free, cohort-based program where high school girls
-          learn to create with AI — chatbots, art, apps, even their own AI
-          device — alongside peers and mentors who cheer them on. No
-          experience required, and no pressure to be a "tech" kid. Here's what
-          you can expect when a young person joins, and how you can support the
-          journey.
+    <section class="ws-section pe-hero-section" aria-labelledby="pe-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow">Parents &amp; educators</p>
+        <h1 id="pe-heading" class="ws-h2">Help her feel she belongs here.</h1>
+        <p class="ws-body ws-body--wide">
+          Her AI Studio is a free, cohort-based program where high school girls learn to create with AI using their own AI device, alongside peers and mentors who cheer them on. No experience required, and no pressure to be a "tech" kid. Here's what you can expect when a young person joins, and how you can support the journey.
         </p>
-        <div class="pe-hero-badges" data-reveal data-delay="3">
-          <span>Free for families</span>
-          <span>Grades 9–12</span>
-          <span>No experience needed</span>
-          <span>Mentor-led &amp; inclusive</span>
-        </div>
+        <ul class="pe-badges" aria-label="Program facts">
+          <li class="ws-tag ws-tag--blue">Free for families</li>
+          <li class="ws-tag ws-tag--pink">Grades 9–12</li>
+          <li class="ws-tag ws-tag--lime">No experience needed</li>
+          <li class="ws-tag ws-tag--orange">Mentor-led &amp; inclusive</li>
+        </ul>
       </div>
     </section>
 
     <!-- For parents -->
-    <section id="parents" class="studio-room room-parents" aria-labelledby="parents-heading">
-      <div class="room-inner">
-        <p class="room-label" data-reveal>For parents &amp; guardians</p>
-        <h2 id="parents-heading" class="pe-section-h2" data-reveal data-delay="1">
-          What to expect at the studio
-        </h2>
-        <p class="pe-section-lead" data-reveal data-delay="2">
-          Many parents aren't sure what "learning AI" actually looks like. Here's
-          the honest picture — what your teenager will do, and how we keep it safe
-          and supportive.
+    <section class="ws-section" aria-labelledby="parents-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--blue">// For parents &amp; guardians</p>
+        <h2 id="parents-heading" class="ws-h2">What to expect at the studio</h2>
+        <p class="ws-body ws-body--wide">
+          Many parents aren't sure what "learning AI" actually looks like. Here's the honest picture: what your teenager will do, and how we keep it safe and supportive.
         </p>
-
-        <div class="pe-grid" data-reveal data-delay="3">
-          <article class="pe-card">
-            <h3 class="pe-card__title">Real making, not screen time</h3>
-            <p class="pe-card__body">
-              Every session is hands-on. Students build chatbots, generate art and
-              music, and progress to their own pocket-sized AI device — a
-              "cyberdeck" they design and program themselves.
-            </p>
-          </article>
-
-          <article class="pe-card">
-            <h3 class="pe-card__title">A sisterhood, not a lecture</h3>
-            <p class="pe-card__body">
-              Learning happens in small groups with mentors and peers who look like
-              her. Curiosity is the only prerequisite; there's no way to fall
-              behind.
-            </p>
-          </article>
-
-          <article class="pe-card">
-            <h3 class="pe-card__title">Warm-ups, not hurdles</h3>
-            <p class="pe-card__body">
-              We start wherever each student is. Six weeks take her from first
-              questions to a finished project she can show off — and be genuinely
-              proud of — at our studio showcase.
-            </p>
-          </article>
-
-          <article class="pe-card">
-            <h3 class="pe-card__title">Completely free</h3>
-            <p class="pe-card__body">
-              Her AI Studio is a nonprofit. Joining the program costs nothing, and
-              we work to keep barriers low so any curious young person can take
-              part.
-            </p>
-          </article>
+        <div class="pe-card-grid">
+          {parentCards.map((card) => (
+            <article class="pe-card">
+              <h3 class="ws-principle-title">{card.title}</h3>
+              <p class="ws-body">{card.body}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
     <!-- For educators -->
-    <section id="educators" class="studio-room room-educators" aria-labelledby="educators-heading">
-      <div class="room-inner">
-        <p class="room-label" data-reveal>For educators</p>
-        <h2 id="educators-heading" class="pe-section-h2" data-reveal data-delay="1">
-          Bring the studio to your classroom
-        </h2>
-        <p class="pe-section-lead" data-reveal data-delay="2">
-          Teachers and administrators are some of the strongest champions for our
-          students. Here are the concrete ways you can help girls get through the
-          door.
+    <section class="ws-section" aria-labelledby="educators-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--orange">// For educators</p>
+        <h2 id="educators-heading" class="ws-h2">Bring the studio to your classroom</h2>
+        <p class="ws-body ws-body--wide">
+          Teachers and administrators are some of the strongest champions for our students. Here are the concrete ways you can help girls get through the door.
         </p>
-
-        <div class="pe-grid pe-grid--3" data-reveal data-delay="3">
-          <article class="pe-card pe-card--tall">
-            <h3 class="pe-card__title">Share the opportunity</h3>
-            <p class="pe-card__body">
-              A simple announcement to students and families can be the nudge that
-              gets a curious girl to join the interest list. Flyers, newsletters,
-              and class chats all make a real difference.
-            </p>
-          </article>
-
-          <article class="pe-card pe-card--tall">
-            <h3 class="pe-card__title">Invite us to visit</h3>
-            <p class="pe-card__body">
-              We'd love to bring a studio session or a guest talk to your class or
-              club — a low-stakes way for students to try AI before committing to
-              a full cohort.
-            </p>
-          </article>
-
-          <article class="pe-card pe-card--tall">
-            <h3 class="pe-card__title">Connect us to students</h3>
-            <p class="pe-card__body">
-              Know a student who'd thrive here? Reach out to our team. We'll make
-              sure she and her family get a warm, personal invitation and any
-              support they need to participate.
-            </p>
-          </article>
+        <div class="pe-card-grid pe-card-grid--4">
+          {educatorCards.map((card) => (
+            <article class="pe-card">
+              <h3 class="ws-principle-title">{card.title}</h3>
+              <p class="ws-body">{card.body}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
     <!-- Safety & responsible AI -->
-    <section id="safety" class="studio-room room-safety" aria-labelledby="safety-heading">
-      <div class="room-inner">
-        <p class="room-label" data-reveal>Safety &amp; responsible AI</p>
-        <h2 id="safety-heading" class="pe-section-h2" data-reveal data-delay="1">
-          Built on care and accountability
-        </h2>
-        <p class="pe-section-lead" data-reveal data-delay="2">
-          AI is powerful, and we treat it with respect. Our whole program is
-          guided by a written policy that keeps student wellbeing at the center.
+    <section class="ws-section" aria-labelledby="safety-heading">
+      <div class="ws-shell">
+        <p class="ws-eyebrow ws-eyebrow--pink">// Safety &amp; responsible AI</p>
+        <h2 id="safety-heading" class="ws-h2">Built on care and accountability</h2>
+        <p class="ws-body ws-body--wide">
+          AI is powerful, and we treat it with respect. Our whole program is guided by a written policy that keeps student wellbeing at the center.
         </p>
-
-        <div class="pe-grid" data-reveal data-delay="3">
+        <div class="pe-card-grid">
+          {safetyCards.map((card) => (
+            <article class="pe-card">
+              <h3 class="ws-principle-title">{card.title}</h3>
+              <p class="ws-body">{card.body}</p>
+            </article>
+          ))}
           <article class="pe-card">
-            <h3 class="pe-card__title">Human mentors, always</h3>
-            <p class="pe-card__body">
-              Technology enhances, never replaces, the people in the room. Every AI
-              interaction is supervised by educators and mentors who keep the
-              experience safe, warm, and on-track.
-            </p>
-          </article>
-
-          <article class="pe-card">
-            <h3 class="pe-card__title">Privacy first</h3>
-            <p class="pe-card__body">
-              Student data is protected with the same care we'd want for our own
-              families — secure storage, strict access controls, and no sharing of
-              personal information.
-            </p>
-          </article>
-
-          <article class="pe-card">
-            <h3 class="pe-card__title">Fairness and inclusion</h3>
-            <p class="pe-card__body">
-              We proactively guard against bias in the AI we use and teach, and we
-              work hard to make sure every student benefits equally from the tools
-              and the support.
-            </p>
-          </article>
-
-          <article class="pe-card">
-            <h3 class="pe-card__title">Transparency</h3>
-            <p class="pe-card__body">
-              We're open about how AI is used in our program. Families can always
-              ask questions and expect straight, honest answers. Read our full{" "}
-              <a href="/ai-policy">AI policy</a> any time.
+            <h3 class="ws-principle-title">Transparency</h3>
+            <p class="ws-body">
+              We're open about how AI is used in our program. Families can always ask questions and expect straight, honest answers. Read our full <a href="/ai-policy">AI policy</a> any time.
             </p>
           </article>
         </div>
@@ -186,212 +150,127 @@ const description =
     </section>
 
     <!-- CTA -->
-    <section id="involved" class="studio-room room-cta" aria-labelledby="involved-heading">
-      <div class="room-inner">
-        <div class="cta-layout">
-          <div class="cta-copy">
-            <p class="room-label cta-label" data-reveal>Get involved</p>
-            <h2 class="cta-h2" id="involved-heading" data-reveal data-delay="1">
-              Let's make room for her.
-            </h2>
-            <p class="cta-sub" data-reveal data-delay="2">
-              Whether you're a parent, guardian, or educator, the first step is the
-              same: join the interest list. You'll hear about the next cohort, how
-              to apply, and the small ways you can help — with no obligation and no
-              cost.
-            </p>
-            <div class="cta-bullets" data-reveal data-delay="3">
-              <p>Completely free to stay in the loop</p>
-              <p>Be first to know when the cohort opens</p>
-              <p>Questions welcome anytime</p>
-            </div>
-            <div class="pe-cta-actions" data-reveal data-delay="4">
-              <a href="/join" class="pe-cta-btn">Join the interest list</a>
-              <a href="https://discord.gg/aBvM6CsWYG" class="pe-cta-link" target="_blank" rel="noopener">
-                Ask us on Discord
+    <section class="ws-section pe-final-section" aria-labelledby="involved-heading">
+      <div class="ws-shell ws-shell--narrow">
+        <p class="ws-eyebrow ws-eyebrow--blue">// Get involved</p>
+        <h2 id="involved-heading" class="ws-h2">Let's make room for her.</h2>
+        <p class="ws-body ws-body--wide">
+          Whether you're a parent, guardian, or educator, the first step is the same: join the interest list. You'll hear about the next cohort, how to apply, and the small ways you can help, with no obligation and no cost.
+        </p>
+        <ul class="pe-cta-bullets">
+          <li class="ws-body">Completely free to stay in the loop</li>
+          <li class="ws-body">Be first to know when the cohort opens</li>
+          <li class="ws-body">Questions welcome anytime</li>
+        </ul>
+        <div class="pe-cta-actions">
+          <div class="ws-primary-cta">
+            <div class="join-popup">
+              <a href={JOIN_FORM_URL} target="_blank" rel="noopener" class="join-popup-btn">
+                <span>Join the interest list</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </a>
             </div>
           </div>
+          <a href="https://discord.gg/aBvM6CsWYG" target="_blank" rel="noopener" class="ws-text-link">
+            Ask us on Discord →
+          </a>
         </div>
       </div>
     </section>
+
   </main>
 
   <Footer currentPath="/parents-educators" />
 </Layout>
 
 <style>
-  .room-parents-hero {
-    background: var(--gradient-hero);
+  .pe-hero-section {
+    padding-top: 4rem;
   }
 
-  .room-parents-hero .room-label.pe-label {
-    color: oklch(1 0 0 / 0.85);
-  }
-
-  .pe-hero-h2 {
-    margin: 0 0 1.25rem;
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.75rem, 6vw, 4.75rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    color: #fff;
-    max-width: 100%;
-  }
-
-  .pe-lead {
-    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-    line-height: 1.7;
-    color: oklch(1 0 0 / 0.85);
-    max-width: 62ch;
-    margin: 0 0 2rem;
-  }
-
-  .pe-hero-badges {
+  .pe-badges {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.6rem;
   }
 
-  .pe-hero-badges span {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: #fff;
-    background: oklch(1 0 0 / 0.14);
-    border: 1px solid oklch(1 0 0 / 0.3);
-    border-radius: 999px;
-    padding: 0.5rem 1rem;
-  }
-
-  .room-parents {
-    background: var(--background);
-  }
-
-  .room-educators {
-    background: oklch(0.985 0.014 320);
-  }
-
-  .room-safety {
-    background: var(--background);
-  }
-
-  .pe-section-h2 {
-    margin: 0 0 0.75rem;
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.1rem, 4.5vw, 3.25rem);
-    letter-spacing: -0.03em;
-    line-height: 1.08;
-    color: var(--foreground);
-  }
-
-  .pe-section-lead {
-    margin: 0 0 2.25rem;
-    font-size: clamp(1rem, 1.6vw, 1.15rem);
-    line-height: 1.6;
-    color: var(--muted-foreground);
-    max-width: 56ch;
-  }
-
-  .pe-grid {
+  .pe-card-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    margin-top: 2.5rem;
   }
 
-  .pe-grid--3 {
+  .pe-card-grid--3 {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .pe-card-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .pe-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 1.75rem;
-    box-shadow: var(--shadow-card);
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-  }
-
-  .pe-card--tall {
-    justify-content: center;
-  }
-
-  .pe-card__title {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--primary);
-  }
-
-  .pe-card__body {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: var(--muted-foreground);
-    max-width: 100%;
-  }
-
-  .pe-card__body a {
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .pe-cta-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-  }
-
-  .pe-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.05rem;
-    text-decoration: none;
-    padding: 0.875rem 2rem;
-    border-radius: 999px;
-    background: oklch(1 0 0 / 0.95);
-    color: var(--foreground);
-    box-shadow: var(--shadow-lift);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .pe-cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
-  }
-
-  .pe-cta-link {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #fff;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: oklch(1 0 0 / 0.5);
+    padding: 1.75rem;
+    border: 1.5px solid var(--ws-ink);
   }
 
   @media (max-width: 900px) {
-    .pe-grid,
-    .pe-grid--3 {
+    .pe-card-grid,
+    .pe-card-grid--3,
+    .pe-card-grid--4 {
       grid-template-columns: 1fr 1fr;
     }
   }
 
   @media (max-width: 640px) {
-    .pe-grid,
-    .pe-grid--3 {
+    .pe-card-grid,
+    .pe-card-grid--3,
+    .pe-card-grid--4 {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* ── CTA ──────────────────────────────────────────────── */
+  .pe-final-section {
+    border-bottom: none;
+  }
+
+  .pe-cta-bullets {
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .pe-cta-bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .pe-cta-bullets li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--ws-electric);
+    font-weight: 700;
+  }
+
+  .pe-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
   }
 </style>
