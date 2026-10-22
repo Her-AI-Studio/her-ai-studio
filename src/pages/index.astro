@@ -13,9 +13,9 @@ import circuitHeart from "../assets/circuit-heart.svg?raw";
 
 const title = "Her AI Studio: cohort-based workshops with AI kits for girls who build AI, not just use it";
 const description =
-  "Free workshop series where high school girls in grades 9–12 design, wire, and code their own AI-powered cyberdeck, mentored by college engineers. Join the interest list for the first cohort.";
+  "Free workshop series where women design, wire, and code their own AI-powered cyberdeck. Join the interest list for the first cohort.";
 const ogTitle = "Her AI Studio";
-const ogDescription = "Real hardware. Real code. A free workshop for girls who build AI.";
+const ogDescription = "Real hardware. Real code. A free workshop for women who build AI.";
 
 const heroImageWidths = [480, 720, 960, 1402];
 const heroImageSizes = "(max-width: 860px) min(560px, 92vw), 44vw";
@@ -73,11 +73,10 @@ const JOIN_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs
             <span class="ws-highlight ws-highlight--blue">Make</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--pink">Play</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--orange">Build</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--blue">Break</span><span class="ws-tagline-sep">/</span><span class="ws-highlight ws-highlight--pink">Share</span>
           </p>
           <p class="ws-lead">
-            Free cohort-based workshops where high school girls in grades 9–12 design, wire, and code their own
-            AI-powered cyberdeck. Real hardware, real code, mentored by female college engineers only a few
-            years ahead of them. Powered by our AI Kits running local models on Arduino-based hardware. Dream it, Build it.
+            Free cohort-based workshops where women design, wire, and code their own
+            AI-powered cyberdeck. Powered by our AI Kits running local models on Arduino-based hardware. Dream it, Build it.
           </p>
-          <div class="ws-primary-cta">
+          <div class="ws-primary-cta ws-primary-cta--group">
             <div class="join-popup">
               <a href={JOIN_FORM_URL} target="_blank" rel="noopener" class="join-popup-btn">
                 <span>Join the interest list</span>
@@ -86,6 +85,12 @@ const JOIN_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs
                 </svg>
               </a>
             </div>
+            <a href="https://her-ai-studio.github.io/curriculum/" target="_blank" rel="noopener" class="ws-secondary-btn">
+              <span>Curriculum</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -419,7 +424,6 @@ const JOIN_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs
         <h2 id="involved-heading" class="ws-h2">Come build something loud</h2>
         <div class="ws-paths-grid">
           <div class="ws-path-col">
-            <span class="ws-tag ws-tag--blue">Grades 9–12</span>
             <h3 class="ws-principle-title">Students</h3>
             <p class="ws-body">Stay tuned to join a cohort as we prepare our launch.</p>
             <div class="ws-primary-cta ws-primary-cta--compact">
@@ -544,6 +548,53 @@ const JOIN_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd85ZFRjybbvWUcs
       order: -1;
       margin: 0 auto;
     }
+  }
+
+  /* ── Hero CTA group (join + curriculum buttons side by side) ─────── */
+  .ws-primary-cta--group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ws-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--ws-font-body);
+    font-weight: 700;
+    background: var(--ws-electric);
+    color: var(--ws-electric-foreground);
+    border: 1.5px solid var(--ws-ink);
+    border-radius: var(--ws-radius);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    box-shadow: var(--ws-shadow-sticker);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .ws-secondary-btn svg {
+    transition: transform 0.15s ease;
+  }
+
+  .ws-secondary-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ws-ink);
+  }
+
+  .ws-secondary-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  .ws-secondary-btn:active {
+    transform: translate(0, 0);
+    box-shadow: 1px 1px 0 var(--ws-ink);
+  }
+
+  .ws-secondary-btn:focus-visible {
+    outline: 3px solid var(--ws-ink);
+    outline-offset: 3px;
   }
 
   /* ── Primary CTA (student path — plain text-link variant) ────────── */

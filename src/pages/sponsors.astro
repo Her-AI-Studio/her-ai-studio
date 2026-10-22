@@ -4,7 +4,9 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import schematikLogo from "../assets/sponsors/schematik.png";
+import qualcommLogo from "../assets/sponsors/qualcomm.png";
 
 const title = "Sponsors — Her AI Studio";
 const description = "Her AI Studio is made possible by sponsors who believe in equitable access to AI education for women and girls.";
@@ -36,7 +38,12 @@ const tiers = [
     description: "Hardware is the biggest barrier for students in our program. Hardware Sponsors donate kits or funds to put real devices in students' hands.",
     perks: ["Logo in hardware kit inserts", "Recognition at showcase events", "Sponsor spotlight post", "Annual impact report"],
     cta: "Donate Hardware or Kits",
-    sponsors: [],
+    sponsors: [{
+      name: "QualComm",
+      description: "QualComm is a leading technology company that provides innovative solutions for the connected world. They have donated a set of Arduino Uno Q boards for our members.",
+      url: "https://qualcomm.com",
+      logo: qualcommLogo,
+    }],
   },
   {
     id: "software",
@@ -57,9 +64,9 @@ const tiers = [
     id: "community",
     label: "Community Supporter",
     description: "Community Supporters contribute in-kind services, expertise, or smaller funding that adds up. Every contribution counts toward a student's journey.",
-    perks: ["Name listed on website", "Thank-you in newsletter", "Social recognition"],
+    perks: ["Name listed on site", "Our gratitude, always"],
     cta: "Become a Supporter",
-    sponsors: [],
+    sponsors: ["Olivia Borchers", "Jen Looper", "Dana Czinsky", "Kara Silverman"],
   },
 ];
 ---
@@ -105,31 +112,38 @@ const tiers = [
               {tier.sponsors.length > 0 && (
                 <div class="sponsors-current">
                   <p class="sponsors-current-label">Current sponsors</p>
-                  {tier.sponsors.map((s) => (
-                    <div class="sponsors-sponsor-card">
-                      <div class="sponsors-sponsor-top">
-                        {s.logo && (
-                          <Image
-                            src={s.logo}
-                            width={120}
-                            height={120}
-                            alt={s.name}
-                            loading="lazy"
-                            decoding="async"
-                            class="sponsors-sponsor-logo"
-                          />
-                        )}
-                        {s.url && (
-                          <a href={s.url} target="_blank" rel="noopener" class="ws-text-link">
-                            Visit {s.name} →
-                          </a>
+                  {tier.sponsors.map((s) => {
+                    const sponsor: { name: string; url?: string; logo?: ImageMetadata; description?: string } =
+                      typeof s === "string" ? { name: s } : s;
+                    return (
+                      <div class="sponsors-sponsor-card">
+                        <div class="sponsors-sponsor-top">
+                          {sponsor.logo && (
+                            <div class="sponsors-logo-frame">
+                              <Image
+                                src={sponsor.logo}
+                                alt={sponsor.name}
+                                loading="lazy"
+                                decoding="async"
+                                class="sponsors-sponsor-logo"
+                              />
+                            </div>
+                          )}
+                          <div class="sponsors-sponsor-meta">
+                            <p class="sponsors-sponsor-name">{sponsor.name}</p>
+                            {sponsor.url && (
+                              <a href={sponsor.url} target="_blank" rel="noopener" class="ws-text-link">
+                                Visit site →
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                        {sponsor.description && (
+                          <p class="ws-body">{sponsor.description}</p>
                         )}
                       </div>
-                      {s.description && (
-                        <p class="ws-body">{s.description}</p>
-                      )}
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
 
@@ -245,18 +259,57 @@ const tiers = [
   .sponsors-sponsor-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .sponsors-logo-frame {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--ws-paper);
+    border: 1.5px solid var(--ws-ink);
+    border-radius: var(--ws-radius);
+    box-shadow: var(--ws-shadow-sticker);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .sponsors-sponsor-card:nth-of-type(odd) .sponsors-logo-frame {
+    transform: rotate(-1.5deg);
+  }
+
+  .sponsors-sponsor-card:nth-of-type(even) .sponsors-logo-frame {
+    transform: rotate(1.5deg);
+  }
+
+  .sponsors-logo-frame:hover {
+    transform: translate(-2px, -2px) rotate(0deg);
+    box-shadow: 4px 5px 0 var(--ws-ink);
   }
 
   .sponsors-sponsor-logo {
-    height: 36px;
+    height: 40px;
     width: auto;
-    max-width: 160px;
+    max-width: 200px;
     object-fit: contain;
     display: block;
+  }
+
+  .sponsors-sponsor-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  .sponsors-sponsor-name {
+    font-family: var(--ws-font-body);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ws-ink);
+    margin: 0;
   }
 
   .sponsors-tier-cta {
