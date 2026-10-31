@@ -13,9 +13,12 @@ import zhaopeng from "../assets/zhaopeng.jpg"
 import francesca from "../assets/francesca.jpg"
 import jim from "../assets/jim.jpg"
 import circuitHeart from "../assets/circuit-heart.svg?raw";
+import ishita from "../assets/ishita.jpg";
+import linh from "../assets/linh.jpg";
+import olivia from "../assets/olivia.jpg";
 
 const title = "Our Team — Her AI Studio";
-const description = "Meet the people building Her AI Studio, a free creative AI program for girls and people who identify as women.";
+const description = "Meet the people building Her AI Studio, a free creative AI program for women.";
 
 const teamImageWidths = [320, 480, 640, 800];
 const teamImageSizes = "(max-width: 700px) min(540px, 90vw), 45vw";
@@ -81,6 +84,26 @@ const board = [
     bio: "Francesca leads a Data & Applied AI engineering organization at Microsoft, where her teams build enterprise AI platforms end to end, from data foundations and knowledge graphs to production agents, focused on proving that what they ship is reliable enough to trust in production.",
     image: francesca,
     imageAlt: "Francesca Lazzeri smiling in front of a brick wall, wearing a black turtleneck and pearl earrings.",
+  },
+];
+const youthboard = [
+  {
+    name: "Ishita G.",
+    role: "Youth Board Member",
+    image: ishita,
+    imageAlt: "Ishita G.",
+  },
+  {
+    name: "Linh L.",
+    role: "Youth Board Member",
+    image: linh,
+    imageAlt: "Linh L.",
+  },
+  {
+    name: "Olivia",
+    role: "Youth Board Member",
+    image: olivia,
+    imageAlt: "Olivia B.",
   },
 ];
 ---
@@ -166,21 +189,25 @@ const board = [
         <p class="ws-eyebrow ws-eyebrow--pink">// Youth</p>
         <h2 id="curriculum-heading" class="ws-h2">Youth Board</h2>
         <p class="ws-body ws-body--wide">
-          We're looking for young leaders to join our youth board and help shape the future of AI education for girls and women. Fill out{" "}
-          <a href="https://forms.gle/Lvps3a6CeJWMUcdw5" class="ws-text-link" target="_blank" rel="noopener">the application form →</a>{" "}
-          before the end of August, 2026, to apply.
+          We rely on our youth board to bring fresh perspectives and energy to our mission.
         </p>
         <ul class="youth-grid" role="list">
-          {[1, 2, 3, 4].map((_, i) => (
-            <li class="youth-card">
-              <div class:list={["ws-photo", i % 2 === 0 ? "ws-photo--tilt-left" : "ws-photo--tilt-right"]}>
-                <div class="ws-photo-frame youth-card-art" aria-hidden="true" set:html={circuitHeart} />
-              </div>
-              <span class="ws-tag ws-tag--lime">Open seat</span>
-              <h3 class="ws-principle-title">Youth Board Member</h3>
-              <p class="ws-body">
-                We're looking for young leaders to join our youth board and help shape the future of AI education for girls and women.
-              </p>
+           {youthboard.map((member, i) => (
+            <li class="board-card">
+               <div class:list={["ws-photo", i % 2 === 0 ? "ws-photo--tilt-left" : "ws-photo--tilt-right"]}>
+              <div class="ws-photo-frame">
+                  <Image
+                    src={member.image}
+                    alt={member.imageAlt}
+                    widths={[240, 320, 480]}
+                    sizes="(max-width: 560px) 90vw, (max-width: 860px) 45vw, 23vw"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                </div>
+              <h3 class="ws-principle-title">{member.name}</h3>
+  
             </li>
           ))}
         </ul>
